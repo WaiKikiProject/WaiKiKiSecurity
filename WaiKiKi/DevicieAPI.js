@@ -6,6 +6,6 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 
-var server = app.listen(3300, function(){
-    console.log("Express server has started on port 3300")
+var server = app.listen(7777, function(){
+    console.log("Express server has started on port 7777")
 });
