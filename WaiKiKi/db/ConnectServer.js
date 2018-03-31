@@ -17,7 +17,7 @@ module.exports = function(){
 	      })
 	    },
 	    
-	    database_open: function (con) {
+	    databaseOpen: function (con) {
 	        con.connect(function (err) {
 	          if (err) {
 	            console.error('mysql connection error :' + err);

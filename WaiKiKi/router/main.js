@@ -10,7 +10,7 @@ module.exports = function(app)
 	 
 	 var mysql_dbc = require("../db/ConnectServer")();
 	 var connection = mysql_dbc.initialize();
-	 mysql_dbc.database_open(connection);
+	 mysql_dbc.databaseOpen(connection);
 	 
 	 app.use(bodyParser.urlencoded({extended:true}));
 	 app.use(bodyParser.json());
