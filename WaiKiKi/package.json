@@ -2,7 +2,7 @@
   "name": "NodeExam1",
   "version": "0.1.0",
   "description": "NodeExam1",
-  "main": "Device.js",
+  "main": "StartAPIServer.js",
   "scripts": {
     "test": "echo \"Error: no test specified! Configure in package.json\" && exit 1"
   },
