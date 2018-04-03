@@ -2,48 +2,117 @@
  * http://usejsdoc.org/
  */
 
-exports.checkinstall = function(email,deviceID,master,connection,callback){
+exports.checkinstall = function(email,device_id,master,connection,callback){
+	
+	console.log("start checkinstall");
 	
 	var result_code = require("../conf/ResultCode");
-	var FindEntity = require("../db/FindEntity")(connection);
 	
-	if(email == null || deviceID == null || master == null){
-		console.log("MissmatchParameter");
-		callback.resultcallback(result_code.MissMatchParameterMessage,result_code.MissMatchParameterCode);
-		return;
-	}
-		
-	if(FindEntity.findUser(email),callback){
-		callback.resultcallback(result_code.NotExistEMailMessage,result_code.NotExistEMailCode);
-		return;
-	}else if(!FindEntity.findDevice(deviceID),callback){
-		callback.resultcallback(result_code.NotExistDeivceMessage,result_code.NotExistDeivceCode);
-		return;
-	}
+	var async = require('async');
 
-	var installstmt = "select * from install where id like ?";
-	connection.query(installstmt,[deviceID],function(err, result){
-		if(err){
-	
-		}else{
-			console.log(result);
-			if(result == 0 && master == "o"){
-				console.log(1);
-				callback.resultcallback(result_code.SuccessMessage,result_code.SuccessCode);
-			}else if(result == 0 && master == 'x'){
-				console.log(2);
-				callback.resultcallback(result_code.NotInstallMasterMessage,result_code.NotInstallMasterCode);
-			}else if(result != 0 && master == 'o'){
-				console.log(3);
-				callback.resultcallback(result_code.AleadyInstallDeviceMessage,result_code.AleadyInstallDeviceCode);
-			}else if(result != 0 && master == 'x'){
-				console.log(4);
-				callback.resultcallback(result_code.SuccessMessage,result_code.SuccessCode);
+	async.series({
+		
+		checkfunction(asyncCallback){		
+			console.log("start installCheck method");
+			if(email == null || device_id == null || master == null){
+				console.log("MissmatchParameter");
+				callback.resultcallback(result_code.MissMatchParameterMessage,result_code.MissMatchParameterCode);
+				asyncCallback(true);
 			}else{
-				console.log(5);
-				callback.resultcallback(result_code.NotDistmatchErrorMessage,result_code.NotDistmatchErrorCode);
+				asyncCallback(null);
 			}
+		},
+		findUser :function(asyncCallback){
+			  
+			console.log("start findUser method");
+			  
+			  var finduserstmt = "select * from member where e_mail like ?";
+			  connection.query(finduserstmt,[email],function(err, result){
+					if(err){
+						callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
+						asyncCallback(true);
+					}else{
+						if(result != 0 ){
+							console.log("Find User");		
+							asyncCallback(null);	
+						}else{
+							console.log("Not Find User");
+							callback.resultcallback(result_code.NotExistEMailMessage,result_code.NotExistEMailCode);					
+							asyncCallback(true);
+						}
+					}
+				});
+		},
+		
+		 findDevice: function(asyncCallback,result){
+			  
+			  console.log("start findDevice method");
+			  
+			  var finddevicestmt = "select * from device where id like ?";
+			  connection.query(finddevicestmt,[device_id],function(err, result){
+					if(err){
+						callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
+						asyncCallback(true);
+					}else{
+						if(result != 0 ){
+							asyncCallback(null);
+						}else{
+							callback.resultcallback(result_code.NotExistDeivceMessage,result_code.NotExistDeivceCode);
+							asyncCallback(true);
+						}
+					}
+				});
+		  },
+		  
+		  deviceInstall: function(asyncCallback){
+				
+				console.log("start deviceInstall method");
+				
+				console.log(email);
+				console.log(device_id);
+				console.log(master);
+				
+				var installstmt = "select * from install where id like ?";
+				connection.query(installstmt,[device_id],function(err, result){
+				if(err){
+					callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
+					asyncCallback(true);
+				}else{
+					console.log(result);
+					if(result == 0 && master == "o"){
+						console.log(1);
+						callback.resultcallback(result_code.SuccessMessage,result_code.SuccessCode);
+						asyncCallback(null);
+					}else if(result == 0 && master == 'x'){
+						console.log(2);
+						callback.resultcallback(result_code.NotInstallMasterMessage,result_code.NotInstallMasterCode);
+						asyncCallback(true);
+					}else if(result != 0 && master == 'o'){
+						console.log(3);
+						callback.resultcallback(result_code.AleadyInstallDeviceMessage,result_code.AleadyInstallDeviceCode);
+						asyncCallback(true);
+					}else if(result != 0 && master == 'x'){
+						console.log(4);
+						callback.resultcallback(result_code.SuccessMessage,result_code.SuccessCode);
+						asyncCallback(null);
+					}else{
+						console.log(5);
+						callback.resultcallback(result_code.NotDistmatchErrorMessage,result_code.NotDistmatchErrorCode);
+						asyncCallback(true);
+					}
+				}
+			});
 		}
-	});
+	},
+	
+	function(err){
+		 if (err)
+		        console.log('err');
+		 else
+		        console.log('done');
+	}
+	);
+
+
 }
 

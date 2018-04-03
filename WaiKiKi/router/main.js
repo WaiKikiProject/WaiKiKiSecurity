@@ -14,21 +14,21 @@ module.exports = function(app)
 	 var mysql_dbc = require("../db/ConnectServer")();
 	 var connection = mysql_dbc.initialize();
 	 mysql_dbc.databaseOpen(connection);
-	 
+
 	 var statuscode;
 	 var resultmessage;
 	 
 	 var callback = function(res){
-			return {
-				resultcallback : function(message, code){
-			 		resultmessage = message;
-			 		console.log(resultmessage);
-			 		res.setHeader('Content-Type', 'application/json');
-			 		res.statusCode = code;
-			 	    res.json(resultmessage);
-			 	}
-			}
+		return {
+			resultcallback : function(message, code){
+			 	resultmessage = message;
+			 	console.log(resultmessage);
+			 	res.setHeader('Content-Type', 'application/json');
+			 	res.statusCode = code;
+			 	res.json(resultmessage);
+			 }
 		}
+	}
 	
 	 app.post('/device',function(req,res){
 		 
@@ -39,7 +39,7 @@ module.exports = function(app)
 		var master = req.body.master;
 		console.log(email);
 		console.log(device_id);
-		console.log(master)
+		console.log(master);
 		
 		var dinstall = require("../api/DeviceInstallAPI");
 	    dinstall.checkinstall(email,device_id,master,connection,callback(res));	

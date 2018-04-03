@@ -24,8 +24,6 @@ exports.NotExistDeivceMessage = {"message":"존재하지 않는 Device"};
 exports.AleadyInstallDeviceCode = 410;
 exports.AleadyInstallDeviceMessage = {"message":"이미 설치"};
 
-
-
 exports.NotInstallMasterCode = 411;
 exports.NotInstallMasterMessage = {"message":"Master가 없는 디바이스"};
 
