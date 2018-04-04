@@ -10,11 +10,6 @@ module.exports = function(app)
 	 app.use(bodyParser.urlencoded({extended:true}));
 	 app.use(bodyParser.json());
 	 
-	 
-	 var mysql_dbc = require("../db/ConnectServer")();
-	 var connection = mysql_dbc.initialize();
-	 mysql_dbc.databaseOpen(connection);
-
 	 var statuscode;
 	 var resultmessage;
 	 
@@ -30,10 +25,8 @@ module.exports = function(app)
 		}
 	}
 	
-	 app.post('/device',function(req,res){
+	 app.post('/install',function(req,res){
 		 
-		var statuscode;
-		var resultmessage;
 		var email = req.body.email;
 		var device_id = req.body.device_id;
 		var master = req.body.master;
@@ -41,12 +34,12 @@ module.exports = function(app)
 		console.log(device_id);
 		console.log(master);
 		
-		var dinstall = require("../api/DeviceInstallAPI");
-	    dinstall.checkinstall(email,device_id,master,connection,callback(res));	
+		var dInstall = require("../api/DeviceInstallAPI");
+	    dInstall.checkInstall(email,device_id,master,callback(res));	
 	 });
 
 	 
-     app.get('/device',function(req,res){
+     app.get('/install',function(req,res){
     	
      });
      

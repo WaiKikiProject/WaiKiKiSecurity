@@ -2,17 +2,24 @@
  * http://usejsdoc.org/
  */
 
-exports.checkinstall = function(email,device_id,master,connection,callback){
+exports.checkInstall = function(email,device_id,master,callback){
 	
 	console.log("start checkinstall");
 	
 	var result_code = require("../conf/ResultCode");
 	
 	var async = require('async');
+	
+	 var mysql_dbc = require("../db/ConnectServer")();
+	 var connection = mysql_dbc.initialize();
+	 mysql_dbc.databaseOpen(connection);
+
+	
+	
 
 	async.series({
 		
-		checkfunction(asyncCallback){		
+		checkParameter : function(asyncCallback){		
 			console.log("start installCheck method");
 			if(email == null || device_id == null || master == null){
 				console.log("MissmatchParameter");
@@ -64,7 +71,29 @@ exports.checkinstall = function(email,device_id,master,connection,callback){
 				});
 		  },
 		  
-		  deviceInstall: function(asyncCallback){
+		  checkAlreadyInstall : function(asyncCallback){
+			  
+				console.log("Start checkAlreadyInstall");
+				  
+				  var finduserstmt = "select * from install where e_mail like ?";
+				  connection.query(finduserstmt,[email],function(err, result){
+						if(err){
+							callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
+							asyncCallback(true);
+						}else{
+							if(result != 0 ){
+								console.log("Disable Install");	
+								callback.resultcallback(result_code.AleadyInstallDeviceMessage,result_code.AleadyInstallDeviceCode);					
+								asyncCallback(true);
+							}else{
+								console.log("Enable Install");		
+								asyncCallback(null);
+							}
+						}
+					});
+			},
+		  
+			deviceInstall: function(asyncCallback){
 				
 				console.log("start deviceInstall method");
 				
@@ -81,7 +110,6 @@ exports.checkinstall = function(email,device_id,master,connection,callback){
 					console.log(result);
 					if(result == 0 && master == "o"){
 						console.log(1);
-						callback.resultcallback(result_code.SuccessMessage,result_code.SuccessCode);
 						asyncCallback(null);
 					}else if(result == 0 && master == 'x'){
 						console.log(2);
@@ -93,7 +121,6 @@ exports.checkinstall = function(email,device_id,master,connection,callback){
 						asyncCallback(true);
 					}else if(result != 0 && master == 'x'){
 						console.log(4);
-						callback.resultcallback(result_code.SuccessMessage,result_code.SuccessCode);
 						asyncCallback(null);
 					}else{
 						console.log(5);
@@ -102,10 +129,28 @@ exports.checkinstall = function(email,device_id,master,connection,callback){
 					}
 				}
 			});
+		},
+		
+		insertInstall: function(asyncCallback){
+			
+			console.log("Start InsertQuery");
+			
+			var insertstmt = "insert into install values(?,?,?)";
+			connection.query(insertstmt, [email,device_id,master], function(err, result) {
+				if(err){
+					callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
+					asyncCallback(true);
+				}else{
+					callback.resultcallback(result_code.SuccessMessage,result_code.SuccessCode);
+					asyncCallback(null);
+				}
+			})
 		}
+		
 	},
 	
-	function(err){
+	asyncCallback = function(err){
+		
 		 if (err)
 		        console.log('err');
 		 else
