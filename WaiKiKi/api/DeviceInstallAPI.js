@@ -2,20 +2,13 @@
  * http://usejsdoc.org/
  */
 
-exports.checkInstall = function(email,device_id,master,callback){
+exports.checkInstall = function(email,device_id,master,connection,callback){
 	
 	console.log("start checkinstall");
 	
 	var result_code = require("../conf/ResultCode");
 	
-	var async = require('async');
-	
-	 var mysql_dbc = require("../db/ConnectServer")();
-	 var connection = mysql_dbc.initialize();
-	 mysql_dbc.databaseOpen(connection);
-
-	
-	
+	var async = require('async');	
 
 	async.series({
 		
@@ -75,8 +68,8 @@ exports.checkInstall = function(email,device_id,master,callback){
 			  
 				console.log("Start checkAlreadyInstall");
 				  
-				  var finduserstmt = "select * from install where e_mail like ?";
-				  connection.query(finduserstmt,[email],function(err, result){
+				  var finduserstmt = "select * from install where e_mail like ? and id like ?";
+				  connection.query(finduserstmt,[email,device_id],function(err, result){
 						if(err){
 							callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
 							asyncCallback(true);
@@ -117,7 +110,7 @@ exports.checkInstall = function(email,device_id,master,callback){
 						asyncCallback(true);
 					}else if(result != 0 && master == 'o'){
 						console.log(3);
-						callback.resultcallback(result_code.AleadyInstallDeviceMessage,result_code.AleadyInstallDeviceCode);
+						callback.resultcallback(result_code.AleadyInstallMasterMessage,result_code.AleadyInstallMasterCode);
 						asyncCallback(true);
 					}else if(result != 0 && master == 'x'){
 						console.log(4);

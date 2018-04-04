@@ -1,10 +1,11 @@
 var express = require('express');
 var app = express();
-var router = require('./router/main')(app);
 
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
-app.engine('html', require('ejs').renderFile);
+var mysql_dbc = require("./db/ConnectServer")();
+var connection = mysql_dbc.initialize();
+mysql_dbc.databaseOpen(connection);
+
+var router = require('./router/main')(app,connection);
 
 var server = app.listen(9999, function(){
     console.log("Express server has started on port 9999")

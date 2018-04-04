@@ -3,7 +3,7 @@
  */
 
 
-module.exports = function(app)
+module.exports = function(app,connection)
 {
 	 var result_code = require("../conf/ResultCode");
 	 var bodyParser = require('body-parser');
@@ -35,7 +35,7 @@ module.exports = function(app)
 		console.log(master);
 		
 		var dInstall = require("../api/DeviceInstallAPI");
-	    dInstall.checkInstall(email,device_id,master,callback(res));	
+	    dInstall.checkInstall(email,device_id,master,connection,callback(res));	
 	 });
 
 	 

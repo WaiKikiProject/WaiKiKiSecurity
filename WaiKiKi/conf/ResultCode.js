@@ -20,9 +20,12 @@ exports.NotMatchPWMessage = {"message":"비밀번호 틀림"};
 
 exports.NotExistDeivceCode = 405;
 exports.NotExistDeivceMessage = {"message":"존재하지 않는 Device"}; 
+
+exports.AleadyInstallDeviceCode = 409;
+exports.AleadyInstallDeviceMessage = {"message":"이미 장치에 설치됌"};
 	
-exports.AleadyInstallDeviceCode = 410;
-exports.AleadyInstallDeviceMessage = {"message":"이미 설치"};
+exports.AleadyInstallMasterCode = 410;
+exports.AleadyInstallMasterMessage = {"message":"이미 마스터가 설치됌"};
 
 exports.NotInstallMasterCode = 411;
 exports.NotInstallMasterMessage = {"message":"Master가 없는 디바이스"};
