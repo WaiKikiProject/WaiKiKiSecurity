@@ -134,12 +134,32 @@ exports.checkInstall = function(email,device_id,master,connection,callback){
 					callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
 					asyncCallback(true);
 				}else{
-					callback.resultcallback(result_code.SuccessMessage,result_code.SuccessCode);
 					asyncCallback(null);
 				}
 			})
-		}
+		},
 		
+		 resultJson : function(asyncCallback){
+			  
+				console.log("Start resultJson");
+				
+				var selectstmt = "select id,master,name,s_mode from device join install using(id) where e_mail like ? and id like ?";
+				connection.query(selectstmt,[email,device_id],function(err,result){
+					if(err){
+						callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
+						asyncCallback(true);
+					}else{
+						if(result != 0){
+							callback.resultcallback(JSON.stringify(result),result_code.SuccessCode);
+							asyncCallback(true);
+						}
+						else{
+							callback.resultcallback(result_code.NotDistmatchErrorMessage,result_code.NotDistmatchErrorCode);
+							asyncCallback(true);
+						}
+					}
+				}); 
+			  }
 	},
 	
 	asyncCallback = function(err){

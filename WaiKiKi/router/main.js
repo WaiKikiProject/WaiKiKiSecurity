@@ -43,6 +43,16 @@ module.exports = function(app,connection)
     	
      });
      
+     app.post('/event',function(req,res){
+     	var event_code = req.body.event_code;
+     	var device_id = req.body.device_id;
+     	console.log(event_code);
+		console.log(device_id);
+	
+		var CreateEventAPI = require("../api/CreateEventAPI");
+		CreateEventAPI.create(event_code, device_id,connection, callback(res));	
+     });
+     
      app.get('/',function(req,res){
 
     	 res.end('result OK');
