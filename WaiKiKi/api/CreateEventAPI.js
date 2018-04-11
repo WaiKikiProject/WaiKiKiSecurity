@@ -2,12 +2,13 @@
  * http://usejsdoc.org/
  */
 
-exports.create = function(event_code,device_id,connection,callback){
+exports.create = function(device_id,event_code,connection,callback){
 	
 	console.log("start CreateEventAPI");
 	
-	var result_code = require("../conf/ResultCode");
+	var device_id;
 	
+	var result_code = require("../conf/ResultCode");
 	var async = require('async');
 
 	async.series({
@@ -22,27 +23,7 @@ exports.create = function(event_code,device_id,connection,callback){
 				asyncCallback(null);
 			}
 		},
-		
-		findDevice: function(asyncCallback,result){
-			  
-			console.log("start findDevice method");
-			  
-			var finddevicestmt = "select * from device where id like ?";
-			connection.query(finddevicestmt,[device_id],function(err, result){
-				if(err){
-					callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
-					asyncCallback(true);
-				}else{
-					if(result != 0 ){
-						asyncCallback(null);
-					}else{
-						callback.resultcallback(result_code.NotExistDeivceMessage,result_code.NotExistDeivceCode);
-						asyncCallback(true);
-					}
-				}
-			});
-		  },
-		  
+
 		  insertEvent: function(asyncCallback){
 			
 			  console.log("Start InsertQuery");
@@ -50,10 +31,22 @@ exports.create = function(event_code,device_id,connection,callback){
 			  var insertstmt = "insert into event values(?,now(),?)";
 			  connection.query(insertstmt, [event_code,device_id], function(err, result) {
 				  if(err){
-					callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
-					asyncCallback(true);
+					connection.rollback(function () {
+					  	callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
+						asyncCallback(true);
+                     });
 				  }else{
-					asyncCallback(null);
+					  var insertstmt = "insert into confirmevent values(?,?,'x')";
+					  connection.query(insertstmt, [email,event_code], function(err, result) {
+						  if(err){
+							  connection.rollback(function () {
+								  	callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
+									asyncCallback(true);
+			                     });
+						  }else{
+							asyncCallback(null);
+						  }
+					  });
 				  }
 			  });
 		  },

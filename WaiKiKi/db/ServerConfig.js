@@ -10,7 +10,7 @@ module.exports = (function () {
       port: '3306',
       user: 'root',
       password: '1q2w3e4r!',
-      database: 'wikiki'
+      database: 'waikiki'
     },
     real: { // real server db info
       host: '',

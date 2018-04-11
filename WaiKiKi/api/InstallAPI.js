@@ -2,9 +2,9 @@
  * http://usejsdoc.org/
  */
 
-exports.checkInstall = function(email,device_id,device_name,connection,callback){
+exports.Install = function(email,device_id,connection,callback){
 	
-	console.log("start deviceinstall");
+	console.log("start install");
 	
 	var result_code = require("../conf/ResultCode");
 	
@@ -14,7 +14,7 @@ exports.checkInstall = function(email,device_id,device_name,connection,callback)
 		
 		checkParameter : function(asyncCallback){		
 			console.log("start installCheck method");
-			if(email == null || device_id == null || device_name == null){
+			if(email == null || device_id == null){
 				console.log("MissmatchParameter");
 				callback.resultcallback(result_code.MissMatchParameterMessage,result_code.MissMatchParameterCode);
 				asyncCallback(true);
@@ -55,10 +55,10 @@ exports.checkInstall = function(email,device_id,device_name,connection,callback)
 						asyncCallback(true);
 					}else{
 						if(result != 0 ){
-							callback.resultcallback(result_code.AleadyInstallDeviceMessage,result_code.AleadyInstallDeviceCode);
-							asyncCallback(true);
-						}else{
 							asyncCallback(null);
+						}else{
+							callback.resultcallback(result_code.NotExistDeivceMessage,result_code.NotExistDeivceCode);
+							asyncCallback(true);
 						}
 					}
 				});
@@ -71,18 +71,38 @@ exports.checkInstall = function(email,device_id,device_name,connection,callback)
 			
 				var date = new Date();
 			
-				var insertstmt = "insert into device values(?,?,?,?)";
-				connection.query(insertstmt, [device_id,device_name,"x",email], function(err, result) {
+				var insertstmt = "insert into install values(?,?,?)";
+				connection.query(insertstmt, [date.getTime().toString(),email,device_id], function(err, result) {
 					if(err){
 						callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
 						asyncCallback(true);
-					}else{			
-						var InstallAPI = require('../api/InstallAPI');	
-						InstallAPI.Install(email,device_id,connection,callback);
-						asyncCallback(null);					
+					}else{
+						asyncCallback(null);
 					}	
 				})
-			}		
+			},
+		
+			resultJson : function(asyncCallback){
+			  
+					console.log("Start resultJson");
+				
+					var selectstmt = "select device_id,master,device_name,s_mode from device join install using(device_id) where email like ? and device_id like ?";
+					connection.query(selectstmt,[email,device_id],function(err,result){
+					if(err){
+						callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
+						asyncCallback(true);
+					}else{
+						if(result != 0){
+							callback.resultcallback(JSON.stringify(result),result_code.SuccessCode);
+							asyncCallback(true);
+						}
+						else{
+							callback.resultcallback(result_code.NotDistmatchErrorMessage,result_code.NotDistmatchErrorCode);
+							asyncCallback(true);
+						}
+					}
+				}); 
+			 }
 	},
 	
 	asyncCallback = function(err){

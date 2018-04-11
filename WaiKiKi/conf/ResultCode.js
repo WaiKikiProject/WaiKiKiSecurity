@@ -30,6 +30,10 @@ exports.AleadyInstallMasterMessage = {"message":"이미 마스터가 설치됌"}
 exports.NotInstallMasterCode = 411;
 exports.NotInstallMasterMessage = {"message":"Master가 없는 디바이스"};
 
+exports.NotFindInformationCode = 412;
+exports.NotFindInformationMessage = {"message":"정보를 찾을 수 없습니다."};
+
+
 exports.DatabaseErrorCode = 460;
 exports.DatabaseErrorMessage  = {"message":"DB에러"};
 

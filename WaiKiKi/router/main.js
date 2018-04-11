@@ -29,13 +29,13 @@ module.exports = function(app,connection)
 		 
 		var email = req.body.email;
 		var device_id = req.body.device_id;
-		var master = req.body.master;
+		var device_name = req.body.device_name;
 		console.log(email);
 		console.log(device_id);
-		console.log(master);
+		console.log(device_name);
 		
 		var dInstall = require("../api/DeviceInstallAPI");
-	    dInstall.checkInstall(email,device_id,master,connection,callback(res));	
+	    dInstall.checkInstall(email,device_id,device_name,connection,callback(res));	
 	 });
 
 	 
@@ -44,14 +44,34 @@ module.exports = function(app,connection)
      });
      
      app.post('/event',function(req,res){
+    	var email = req.body.email;
+    	var device_id = req.body.device_id;
      	var event_code = req.body.event_code;
-     	var device_id = req.body.device_id;
-     	console.log(event_code);
-		console.log(device_id);
+		console.log(event_code);
 	
 		var CreateEventAPI = require("../api/CreateEventAPI");
-		CreateEventAPI.create(event_code, device_id,connection, callback(res));	
+		CreateEventAPI.create(email,device_id,event_code,connection, callback(res));	
      });
+     
+     app.get('/event/:email/:device_id',function(req,res){
+      	var email = req.body.email;
+      	var device_id = req.body.device_id;
+      	console.log(email);
+      	console.log(device_id);
+
+ 		var CheckEventAPI = require("../api/GetEventAPI");
+ 		CheckEventAPI.chek(event_code,connection, callback(res));	
+      });
+     
+     app.post('/convert',function(req,res){
+     	var device_id = req.body.device_id;
+      	var install_code = req.body.install_code;
+      	console.log(device_id);
+      	console.log(install_code);
+ 	
+ 		var ConvertSequrityAPI = require("../api/ConvertSequrityAPI");
+ 		ConvertSequrityAPI.convert(device_id,install_code,connection, callback(res));
+      });
      
      app.get('/',function(req,res){
 

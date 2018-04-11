@@ -7,6 +7,6 @@ mysql_dbc.databaseOpen(connection);
 
 var router = require('./router/main')(app,connection);
 
-var server = app.listen(9999, function(){
-    console.log("Express server has started on port 9999")
+var server = app.listen(9000, function(){
+    console.log("Express server has started on port 9000")
 });
