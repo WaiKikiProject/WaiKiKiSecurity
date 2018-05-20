@@ -1,0 +1,73 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.1.2'
+        classpath 'com.google.gms:google-services:3.2.0'
+        classpath 'io.realm:realm-gradle-plugin:5.0.0'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        mavenLocal()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+def getDate() {
+    def date = new Date()
+    def formattedDate = date.format('DDDHHmm')
+    return formattedDate
+}
+
+def getRevisionHash() {
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        // git repo가 아닌 경우 발생하는 오류 무시
+        ignoreExitValue true
+
+        executable = "git"
+        args = ["rev-parse", "--short", "HEAD"]
+        standardOutput = stdout
+    }
+    def revision = stdout.toString().trim()
+    return revision
+}
+
+ext {
+    AppVersionCode = 18010001
+    AppVersionName = "1.0.0"
+
+    BuildSdkVersion = 27
+    BuildMinSdkVersion = 21
+    BuildTargetSdkVersion = 27
+
+    SupportLibraryGroup = "com.android.support"
+    AppcompatVersion = "27.1.1"
+
+    SupportConstraint = "com.android.support.constraint"
+    ConstraintVersion = "1.1.0"
+
+    RealmGroup = "io.realm"
+    RealmVersion = "5.1.0"
+    RealmAdapterVersion = "2.1.1"
+
+    RetrofitGroup = "com.squareup.retrofit2"
+    RetrofitVersion = "2.4.0"
+    RetrofitGsonVersion = "2.4.0"
+}
+

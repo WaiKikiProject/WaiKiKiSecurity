@@ -1,0 +1,34 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion BuildTargetSdkVersion
+    defaultConfig {
+        applicationId "com.security.waikiki.myapplication"
+        minSdkVersion BuildMinSdkVersion
+        targetSdkVersion BuildTargetSdkVersion
+        versionCode AppVersionCode
+        versionName AppVersionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation group: SupportLibraryGroup, name: "appcompat-v7", version: AppcompatVersion
+    implementation group: SupportConstraint, name: 'constraint-layout', version: ConstraintVersion
+    implementation group: RetrofitGroup, name: "retrofit", version: RetrofitVersion
+    implementation group: RetrofitGroup, name: "converter-gson", version: RetrofitGsonVersion
+    implementation group: RealmGroup, name: "realm-gradle-plugin", version: RealmVersion
+    implementation group: RealmGroup, name: "android-adapters", version: RealmAdapterVersion
+
+    testImplementation group: "junit", name: "junit", version: "4.12"
+    androidTestImplementation group: "com.android.support.test", name: "runner", version: "1.0.2"
+    androidTestImplementation group: "com.android.support.test.espresso", name: "espresso-core", version: "3.0.2"
+}

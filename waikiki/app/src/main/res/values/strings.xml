@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">My Application</string>
+
+    <string name="sign_in_email">이메일을 입력해주세요.</string>
+    <string name="sign_in_password">비밀번호를 입력해주세요.</string>
+    <string name="sign_in_forgot">이메일/비밀번호 찾기</string>
+    <string name="sign_in_navigation">회원가입을 하지 않은 경우, 회원가입을 눌러주세요</string>
+    <string name= "sign_in_sign_up">회원가입</string>
+    <string name="sign_in_login">로그인</string>
+    <string name="sign_up_name">이름을 입력해주세요.</string>
+    <string name="sign_up_repassword">비밀번호를 재입력해주세요.</string>
+
+</resources>
