@@ -1,8 +1,0 @@
-<resources>
-    <string name="app_name">dps</string>
-    <string name="em">이메일 입력</string>
-    <string name="pw">비밀번호 입력</string>
-    <string name="na">이름 입력</string>
-    <string name="repw">비밀번호 재입력</string>
-
-</resources>

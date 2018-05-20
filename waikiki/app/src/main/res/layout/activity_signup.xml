@@ -30,7 +30,6 @@
         android:id="@+id/logo"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@mipmap/res_ad2"
         app:layout_constraintDimensionRatio="H,299:50"
         app:layout_constraintLeft_toLeftOf="@id/left_guide"
         app:layout_constraintRight_toRightOf="@id/right_guide"

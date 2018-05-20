@@ -10,4 +10,13 @@
     <string name="sign_up_name">이름을 입력해주세요.</string>
     <string name="sign_up_repassword">비밀번호를 재입력해주세요.</string>
 
+    <string name="main_welcome">WaiKiKi의 보안솔루션</string>
+    <string name="main_master">마스터</string>
+    <string name="main_guest">게스트</string>
+    <string name="main_smode_on">보안모드 동작중</string>
+    <string name="main_smode_off">보안모드 해제</string>
+    <string name="main_event">%1$d개의 이벤트 발생</string>
+    <string name="main_install">설치하기</string>
+    <string name="main_title">WAIKIKI</string>
+
 </resources>

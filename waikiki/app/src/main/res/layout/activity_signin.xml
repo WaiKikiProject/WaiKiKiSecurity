@@ -39,7 +39,6 @@
         android:id="@+id/logo"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@mipmap/res_ad2"
         app:layout_constraintDimensionRatio="H,299:50"
         app:layout_constraintLeft_toLeftOf="@id/left_guide"
         app:layout_constraintRight_toRightOf="@id/right_guide"
@@ -78,7 +77,7 @@
         android:text="@string/sign_in_forgot"
         app:layout_constraintLeft_toLeftOf="@id/left_guide"
         app:layout_constraintRight_toRightOf="@id/right_guide"
-        app:layout_constraintTop_toBottomOf="@id/button_sign_in_login"
+        app:layout_constraintTop_toBottomOf="@id/button_login"
         android:layout_marginTop="10dp"/>
 
     <TextView
@@ -93,7 +92,7 @@
         android:layout_marginTop="30dp"/>
 
     <Button
-        android:id="@+id/button_sign_in_sign_up"
+        android:id="@+id/button_sign_up"
         style="@style/sign_in_button"
         android:layout_width="0dp"
         android:layout_height="45dp"
@@ -105,7 +104,7 @@
         android:layout_marginTop="10dp" />
 
     <Button
-        android:id="@+id/button_sign_in_login"
+        android:id="@+id/button_login"
         style="@style/sign_in_button"
         android:layout_width="0dp"
         android:layout_height="45dp"

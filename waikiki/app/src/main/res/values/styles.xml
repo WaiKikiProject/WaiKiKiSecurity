@@ -28,11 +28,53 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="text_main_user">
+        <item name="android:textColor">#FF1F1F1F</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="text_main_device_name">
+        <item name="android:textColor">#FF0E0E0E</item>
+        <item name="android:textSize">24dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="text_main_user_type">
+        <item name="android:textColor">#FFFF4545</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="text_main_door_name">
+        <item name="android:textColor">#FF333333</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="text_main_info">
+        <item name="android:textColor">#FF333333</item>
+        <item name="android:textSize">12.3dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="button_main_install">
+        <item name="android:textColor">#FFFFFFFF</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+
     <style name="splash" parent="AppTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowBackground">@layout/activity_splash</item>
     </style>
 
+    <style name="toolbar_title">
+        <item name="android:textSize">18dp</item>
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:gravity">center</item>
+    </style>
 
 </resources>
