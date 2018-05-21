@@ -113,7 +113,7 @@ module.exports = function(app,connection)
 		 console.log(name);
 		 console.log(password);
 		 
-		 var signup = require("../api/SignupAPI");
+		 var signup = require("../api/SignUpAPI");
 		 signup.checkSignup(email,name,password,connection,callback(res));
      });
 	

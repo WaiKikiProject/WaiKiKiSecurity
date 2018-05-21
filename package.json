@@ -6,7 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified! Configure in package.json\" && exit 1"
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WaiKikiProject/WaiKiKiSecurity.git"
+  },
   "keywords": [
     "node.js",
     "eclipse",
@@ -14,7 +17,6 @@
   ],
   "author": "",
   "license": "MIT",
-  "readmeFilename": "README.md",
   "dependencies": {
     "async": "^2.6.0",
     "bcrypt-nodejs": "0.0.3",
@@ -24,5 +26,10 @@
     "express-session": "^1.13.0",
     "mysql": "^2.15.0",
     "nconf": "^0.10.0"
-  }
+  },
+  "devDependencies": {},
+  "bugs": {
+    "url": "https://github.com/WaiKikiProject/WaiKiKiSecurity/issues"
+  },
+  "homepage": "https://github.com/WaiKikiProject/WaiKiKiSecurity#readme"
 }
