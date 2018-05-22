@@ -3,17 +3,17 @@
  */
 
 exports.create = function(email,device_id,connection,callback){
-	
+
 	console.log("start CreateEventAPI");
-	
+
 	var device_id;
-	
+
 	var result_code = require("../conf/ResultCode");
 	var async = require('async');
 
 	async.series({
-		
-		checkParameter : function(asyncCallback){		
+
+		checkParameter : function(asyncCallback){
 			console.log("start checkParameter");
 			if(email == null || device_id == null){
 				console.log("MissmatchParameter");
@@ -25,11 +25,11 @@ exports.create = function(email,device_id,connection,callback){
 		},
 
 		  insertEvent: function(asyncCallback){
-			
+
 			  var date = new Date();
 			  
 			  console.log("Start InsertQuery");
-			
+
 			  var insertstmt = "insert into event values(?,now(),?)";
 			  connection.query(insertstmt, [date.getTime().toString(),device_id], function(err, result) {
 				  if(err){
@@ -52,11 +52,11 @@ exports.create = function(email,device_id,connection,callback){
 				  }
 			  });
 		  },
-		  
+
 		  resultJson : function(asyncCallback){
-			  
+
 			console.log("Start resultJson");
-			
+
 			var selectstmt = "select * from event where device_id like ?";
 			connection.query(selectstmt,[device_id],function(err,result){
 				if(err){
@@ -72,12 +72,12 @@ exports.create = function(email,device_id,connection,callback){
 						asyncCallback(null);
 					}
 				}
-			}); 
+			});
 		  }
 		},
-	
+
 	asyncCallback = function(err){
-		
+
 		 if (err)
 		        console.log('err');
 		 else
