@@ -64,17 +64,17 @@
         <item name="android:gravity">center</item>
     </style>
 
-
-    <style name="splash" parent="AppTheme">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="android:windowBackground">@layout/activity_splash</item>
-    </style>
-
     <style name="toolbar_title">
         <item name="android:textSize">18dp</item>
         <item name="android:textColor">#ffffffff</item>
         <item name="android:gravity">center</item>
+    </style>
+
+    <style name="edit_device_name">
+        <item name="android:textSize">16dp</item>
+        <item name="android:textColor">@color/color_222222</item>
+        <item name="android:textColorHint">@color/color_8d8d8d</item>
+        <item name="android:paddingLeft">20dp</item>
     </style>
 
 </resources>
