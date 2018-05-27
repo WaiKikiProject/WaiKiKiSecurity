@@ -49,10 +49,11 @@
         style="@style/sign_in_edittext"
         android:background="@drawable/background_edit"
         android:layout_width="0dp"
-        android:layout_height="@dimen/button_height"
+        android:layout_height="47dp"
         app:layout_constraintLeft_toLeftOf="@id/left_guide"
         app:layout_constraintRight_toRightOf="@id/right_guide"
         app:layout_constraintTop_toTopOf="@id/login_guide"
+        android:maxLength="20"
         android:hint="@string/sign_in_email"
         />
 
@@ -61,11 +62,13 @@
         style="@style/sign_in_edittext"
         android:background="@drawable/background_edit"
         android:layout_width="0dp"
-        android:layout_height="@dimen/button_height"
+        android:layout_height="47dp"
         app:layout_constraintLeft_toLeftOf="@id/left_guide"
         app:layout_constraintRight_toRightOf="@id/right_guide"
         app:layout_constraintTop_toBottomOf="@id/edit_email"
         android:layout_marginTop="10dp"
+        android:maxLength="10"
+        android:inputType="textPassword"
         android:hint="@string/sign_in_password"
         />
 

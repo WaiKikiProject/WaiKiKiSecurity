@@ -41,11 +41,12 @@
         android:hint="@string/sign_in_email"
         style="@style/sign_in_edittext"
         android:layout_width="0dp"
-        android:layout_height="@dimen/button_height"
+        android:layout_height="45dp"
         app:layout_constraintLeft_toLeftOf="@id/left_guide"
         app:layout_constraintRight_toRightOf="@id/right_guide"
         app:layout_constraintTop_toBottomOf="@id/logo"
         android:layout_marginTop="50dp"
+        android:maxLength="20"
 
         />
 
@@ -54,12 +55,13 @@
         android:background="@drawable/background_edit"
         android:hint="@string/sign_up_name"
         android:layout_width="0dp"
-        android:layout_height="@dimen/button_height"
+        android:layout_height="45dp"
         style="@style/sign_in_edittext"
         app:layout_constraintLeft_toLeftOf="@id/left_guide"
         app:layout_constraintRight_toRightOf="@id/right_guide"
         app:layout_constraintTop_toBottomOf="@id/edittext_signup_email"
         android:layout_marginTop="10dp"
+        android:maxLength="8"
         />
 
     <EditText
@@ -68,11 +70,13 @@
         android:hint="@string/sign_in_password"
         style="@style/sign_in_edittext"
         android:layout_width="0dp"
-        android:layout_height="@dimen/button_height"
+        android:layout_height="45dp"
         app:layout_constraintLeft_toLeftOf="@id/left_guide"
         app:layout_constraintRight_toRightOf="@id/right_guide"
         app:layout_constraintTop_toBottomOf="@id/edittext_signup_name"
         android:layout_marginTop="10dp"
+        android:maxLength="10"
+        android:inputType="textPassword"
         />
 
     <EditText
@@ -81,18 +85,20 @@
         android:hint="@string/sign_up_repassword"
         style="@style/sign_in_edittext"
         android:layout_width="0dp"
-        android:layout_height="@dimen/button_height"
+        android:layout_height="45dp"
         app:layout_constraintLeft_toLeftOf="@id/left_guide"
         app:layout_constraintRight_toRightOf="@id/right_guide"
         app:layout_constraintTop_toBottomOf="@id/edittext_signup_password"
         android:layout_marginTop="10dp"
+        android:maxLength="10"
+        android:inputType="textPassword"
         />
 
     <Button
         android:id="@+id/button_sign_in_login"
         style="@style/sign_in_button"
         android:layout_width="0dp"
-        android:layout_height="@dimen/button_height"
+        android:layout_height="45dp"
         android:text="@string/sign_in_sign_up"
         android:background="@drawable/background_button"
         app:layout_constraintLeft_toLeftOf="@id/left_guide"
