@@ -2,7 +2,7 @@ package com.security.waikiki.myapplication.network;
 
 public class ServerConfig
 {
-	public static final String BASE_URL = "http://192.168.0.21:7777/";
+	public static final String BASE_URL = "http://192.168.0.15:7777/";
 
 	public static int CONNECTION_TIMEOUT = 5000;
 	public static int READ_TIMEOUT = 5000;
