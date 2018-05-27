@@ -26,8 +26,8 @@ public class SignInActivity extends RootParentActivity {
         setContentView(R.layout.activity_signin);
 
 
-        edit_email = (EditText)findViewById(R.id.edit_email);
-        edit_password = (EditText)findViewById(R.id.edit_password);
+        edit_email = (EditText) findViewById(R.id.edit_email);
+        edit_password = (EditText) findViewById(R.id.edit_password);
 
         findViewById(R.id.button_login).setOnClickListener(mOnclickListener);
         findViewById(R.id.button_sign_up).setOnClickListener(mOnclickListener);
@@ -46,22 +46,25 @@ public class SignInActivity extends RootParentActivity {
 
             switch (view.getId()) {
                 case R.id.button_login:
-                    if (edit_email.getText().toString().length() == 0) {
-                        Toast.makeText(SignInActivity.this, "이메일을 입력해주세요", Toast.LENGTH_SHORT).show();
-                        edit_email.requestFocus();
-                        return;
-                    }else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(edit_email.getText().toString()).matches()){
-                        Toast.makeText(SignInActivity.this,"이메일 형식이 아닙니다",Toast.LENGTH_SHORT).show();
-                        edit_email.requestFocus();
-                        return;
-                    }else if(edit_password.getText().toString().length() == 0) {
-                        Toast.makeText(SignInActivity.this, "비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show();
-                        edit_password.requestFocus();
-                        return;
-                    }else {
-                        ServerManager.getInstanse().loginMethod(callBack, edit_email.getText().toString(), edit_password.getText().toString());
-                    }
-                    break;
+//                    if (edit_email.getText().toString().length() == 0) {
+//                        Toast.makeText(SignInActivity.this, "이메일을 입력해주세요", Toast.LENGTH_SHORT).show();
+//                        edit_email.requestFocus();
+//                        return;
+//                    } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(edit_email.getText().toString()).matches()) {
+//                        Toast.makeText(SignInActivity.this, "이메일 형식이 아닙니다", Toast.LENGTH_SHORT).show();
+//                        edit_email.requestFocus();
+//                        return;
+//                    } else if (edit_password.getText().toString().length() == 0) {
+//                        Toast.makeText(SignInActivity.this, "비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show();
+//                        edit_password.requestFocus();
+//                        return;
+//                    } else {
+//                        ServerManager.getInstanse().loginMethod(callBack, edit_email.getText().toString(), edit_password.getText().toString());
+//                    }
+//                    break;
+                    intent = new Intent(SignInActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
                 case R.id.button_sign_up:
                     intent = new Intent(SignInActivity.this, SignUpActivity.class);
                     startActivityForResult(intent, WaiKiKi.SIGN_IN);
