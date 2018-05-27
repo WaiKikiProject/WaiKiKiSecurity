@@ -2,11 +2,12 @@
  * http://usejsdoc.org/
  */
 
-exports.create = function(email,device_id,connection,callback){
+exports.create = function(device_id,connection,callback){
 
 	console.log("start CreateEventAPI");
 
 	var device_id;
+	var date;
 
 	var result_code = require("../conf/ResultCode");
 	var async = require('async');
@@ -16,7 +17,7 @@ exports.create = function(email,device_id,connection,callback){
 
 		checkParameter : function(asyncCallback){
 			console.log("start checkParameter");
-			if(email == null || device_id == null){
+			if(device_id == null){
 				console.log("MissmatchParameter");
 				callback.resultcallback(result_code.MissMatchParameterMessage,result_code.MissMatchParameterCode);
 				asyncCallback(true);
@@ -27,29 +28,20 @@ exports.create = function(email,device_id,connection,callback){
 
 		  insertEvent: function(asyncCallback){
 
-			  var date = new Date();
-			  
+			 date = new Date().getTime().toString();
+
+
 			  console.log("Start InsertQuery");
 
 			  var insertstmt = "insert into event values(?,now(),?)";
-			  connection.query(insertstmt, [date.getTime().toString(),device_id], function(err, result) {
+			  connection.query(insertstmt, [date,device_id], function(err, result) {
 				  if(err){
 					connection.rollback(function () {
 					  	callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
-						asyncCallback(true);
-                     });
+							asyncCallback(true);
+           	});
 				  }else{
-					  var insertstmt = "insert into confirmevent values(?,?,'x')";
-					  connection.query(insertstmt, [date.getTime().toString(),email], function(err, result) {
-						  if(err){
-							  connection.rollback(function () {
-								  	callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
-									asyncCallback(true);
-			                     });
-						  }else{
-							asyncCallback(null);
-						  }
-					  });
+						asyncCallback(null);
 				  }
 			  });
 		  },
@@ -59,8 +51,8 @@ exports.create = function(email,device_id,connection,callback){
 
 			console.log("Start resultJson");
 
-			var selectstmt = "select * from event where device_id like ?";
-			connection.query(selectstmt,[device_id],function(err,result){
+			var selectstmt = "select event_code from event where event_code like ?";
+			connection.query(selectstmt,[date],function(err,result){
 				if(err){
 					callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
 					asyncCallback(true);

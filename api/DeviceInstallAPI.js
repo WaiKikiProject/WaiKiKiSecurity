@@ -49,7 +49,7 @@ exports.checkInstall = function(email,device_id,device_name,connection,callback)
 
 			  console.log("start findDevice method");
 
-			  var finddevicestmt = "select * from install where device_id like ?";
+			  var finddevicestmt = "select * from device where device_id like ?";
 			  connection.query(finddevicestmt,[device_id],function(err, result){
 					if(err){
 						callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
