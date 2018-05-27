@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_FFFBF7F1"
+    >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@drawable/background_gradient"
+        app:contentInsetEnd="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetRight="0dp"
+        app:contentInsetStart="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/button_up"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:visibility="invisible">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="18dp"
+                    android:background="@drawable/icon_back"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="W,28:37"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:duplicateParentState="true" />
+            </android.support.constraint.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/text_title"
+                style="@style/toolbar_title"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/main_title" />
+
+            <RelativeLayout
+                android:id="@+id/button_home"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:visibility="invisible">
+
+                <View
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_centerInParent="true" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:duplicateParentState="true" />
+            </RelativeLayout>
+        </LinearLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/center_guide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.45"
+        android:orientation="horizontal"
+        />
+    <android.support.constraint.Guideline
+        android:id="@+id/left_guide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.1"
+        android:orientation="vertical"
+        />
+    <android.support.constraint.Guideline
+        android:id="@+id/right_guide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.9"
+        android:orientation="vertical"
+        />
+
+    <TextView
+        android:id="@+id/text_navi_main"
+        style="@style/text_device_navi_main"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/install_name_main_navi"
+        app:layout_constraintLeft_toLeftOf="@id/left_guide"
+        app:layout_constraintRight_toRightOf="@id/right_guide"
+        app:layout_constraintBottom_toTopOf="@id/text_navi_sub"
+        android:layout_marginBottom="20dp"
+        />
+
+
+    <TextView
+        android:id="@+id/text_navi_sub"
+        style="@style/text_device_navi_sub"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/install_name_navi"
+        app:layout_constraintLeft_toLeftOf="@id/left_guide"
+        app:layout_constraintRight_toRightOf="@id/right_guide"
+        app:layout_constraintBottom_toTopOf="@id/edit_name"
+        android:layout_marginBottom="20dp"
+        />
+
+    <EditText
+        android:id="@+id/edit_name"
+        style="@style/edit_device_name"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        app:layout_constraintLeft_toLeftOf="@id/left_guide"
+        app:layout_constraintRight_toRightOf="@id/right_guide"
+        app:layout_constraintBottom_toBottomOf="@id/center_guide"
+        android:background="@drawable/background_edit_name"
+        android:inputType="text"
+        android:maxLength="8"
+        />
+
+    <Button
+        android:id="@+id/button_setting"
+        style="@style/button_main_install"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        app:layout_constraintLeft_toLeftOf="@id/left_guide"
+        app:layout_constraintRight_toRightOf="@id/right_guide"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="20dp"
+        android:background="@color/color_FFFF4545"
+        android:text="@string/install_name_setting"
+        />
+
+</android.support.constraint.ConstraintLayout>
