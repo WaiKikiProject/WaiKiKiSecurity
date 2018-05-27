@@ -9,15 +9,15 @@ module.exports = (function () {
       host: 'localhost',
       port: '3306',
       user: 'root',
-      password: 'password',
+      password: '1234',
       database: 'waikiki'
     },
     real: { // real server db info
-      host: '13.209.49.159',
-      port: '3306',
-      user: 'root',
-      password: 'password',
-      database: 'waikiki'
+      host: '',
+      port: '',
+      user: '',
+      password: '',
+      database: ''
     },
     dev: { // dev server db info
       host: '',

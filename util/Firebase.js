@@ -1,0 +1,60 @@
+var StatusType 
+	{ 
+		EVENT = 1, 
+ 		SEQURITY = 2,
+		UNSEQURIT = 3,
+		INVITE = 4,
+		APPROVE = 5
+	};
+exports.StatusType;
+
+exports.tokenData = function(token,type){
+	var PushMessage = require('../conf/PushMessage');
+	var FCM = require('fcm-push');
+
+	var serverKey = 'AAAAae8MGHw:APA91bG7FX8ftAVRnlGEunyHPOhJKXlZnCMfIULcsw-NdYzoe6aQXHltPpBrHdqDZRtGe19-wIBqoWBXG9IFQ6C5xOeskc-s16c6JluaJZqVILbyKRnizl8mFwawr69YtK7opwTecY4X';
+	
+	var fcm = new FCM(serverKey);
+	
+	var body_message;
+		
+	switch(type){
+		case EVENT:
+			body_message = PushMessage.EVENT_MESSAGE;
+			break;
+		case SEQURITY:
+			body_message = PushMessage.SCURITY_MESSAGE;
+			break;
+		case UNSEQURITY:
+			body_message = PushMessage.UNSCURITY_MESSAGE;
+			break;
+		case INVITE:
+			body_message = PushMessage.INVICE_MESSAGE;
+			break;
+		case APPROVE:
+			body_message = PushMessage.APPROVE_MESSAGE;
+			break;
+		};
+		
+		var message = {
+		to: token, // required fill with device token or topics
+		collapse_key: '', 
+		data: {
+			your_custom_data_key: 'your_custom_data_value'
+		},
+		notification: {
+			title: PushMessage.APP_NAME,
+			body: body_message
+		}
+		};
+		
+		//callback style
+		fcm.send(message, function(err, response){
+			if (err) {
+				console.log("Something has gone wrong!");
+			} else {
+				console.log("Successfully sent with response: ", response);
+			}
+		});
+	
+}

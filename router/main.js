@@ -1,7 +1,3 @@
-/**
- * http://usejsdoc.org/
- */
-
 module.exports = function(app,connection)
 {
 	 var result_code = require("../conf/ResultCode");
@@ -11,7 +7,7 @@ module.exports = function(app,connection)
 
 	 var statuscode;
 	 var resultmessage;
-	 
+	
 	 var callback = function(res){
 		return {
 			resultcallback : function(message, code){
@@ -57,6 +53,16 @@ module.exports = function(app,connection)
 	    dInstall.checkInstall(email,device_id,device_name,connection,callback(res));	
 	 });
 	 
+	 app.post('/token',function(req,res){
+		 var email = req.body.email;
+		 var token = req.body.token;
+		 console.log(email);
+		 console.log(token);
+		 
+		 var cheekToken = require("../api/DeviceTokenAPI");
+		 cheekToken.devicetoken(email,token,connection,callback(res));
+     });
+	
 	 app.get('/eventdetail',function(req,res){
  		 
 		 var cheekLookup = require("../api/EventDetailAPI");

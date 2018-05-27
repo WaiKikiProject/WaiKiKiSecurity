@@ -10,7 +10,8 @@ exports.create = function(email,device_id,connection,callback){
 
 	var result_code = require("../conf/ResultCode");
 	var async = require('async');
-
+	var Firebase = require('../util/Firebase');
+	
 	async.series({
 
 		checkParameter : function(asyncCallback){
@@ -52,6 +53,7 @@ exports.create = function(email,device_id,connection,callback){
 				  }
 			  });
 		  },
+		
 
 		  resultJson : function(asyncCallback){
 
