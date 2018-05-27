@@ -46,6 +46,7 @@
         app:layout_constraintRight_toRightOf="@id/right_guide"
         app:layout_constraintTop_toBottomOf="@id/logo"
         android:layout_marginTop="50dp"
+        android:maxLength="20"
 
         />
 
@@ -60,6 +61,7 @@
         app:layout_constraintRight_toRightOf="@id/right_guide"
         app:layout_constraintTop_toBottomOf="@id/edittext_signup_email"
         android:layout_marginTop="10dp"
+        android:maxLength="8"
         />
 
     <EditText
@@ -73,6 +75,8 @@
         app:layout_constraintRight_toRightOf="@id/right_guide"
         app:layout_constraintTop_toBottomOf="@id/edittext_signup_name"
         android:layout_marginTop="10dp"
+        android:maxLength="10"
+        android:inputType="textPassword"
         />
 
     <EditText
@@ -86,6 +90,8 @@
         app:layout_constraintRight_toRightOf="@id/right_guide"
         app:layout_constraintTop_toBottomOf="@id/edittext_signup_password"
         android:layout_marginTop="10dp"
+        android:maxLength="10"
+        android:inputType="textPassword"
         />
 
     <Button
