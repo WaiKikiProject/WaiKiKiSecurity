@@ -83,10 +83,10 @@ public class MainFragment extends Fragment {
 
         switch (mUserType) {
             case GUEST:
-                mTextUserType.setText(R.string.type_guest);
+                mTextUserType.setText(R.string.main_guest);
                 break;
             case MASTER:
-                mTextUserType.setText(R.string.type_master);
+                mTextUserType.setText(R.string.main_master);
                 break;
         }
 

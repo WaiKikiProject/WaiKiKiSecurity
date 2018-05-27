@@ -1,10 +1,9 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion BuildTargetSdkVersion
     defaultConfig {
-        applicationId "com.security.waikiki.myapplication"
+        applicationId "com.security.waikiki.waikiki"
         minSdkVersion BuildMinSdkVersion
         targetSdkVersion BuildTargetSdkVersion
         versionCode AppVersionCode
@@ -28,11 +27,8 @@ dependencies {
     implementation group: RetrofitGroup, name: "converter-gson", version: RetrofitGsonVersion
     implementation group: RealmGroup, name: "realm-gradle-plugin", version: RealmVersion
     implementation group: RealmGroup, name: "android-adapters", version: RealmAdapterVersion
-    implementation group: 'com.sothree.slidinguppanel', name: 'library', version: SlidingUpPanelVersion
-    implementation group: 'com.google.firebase', name: 'firebase-messaging', version:'11.4.2'
 
     testImplementation group: "junit", name: "junit", version: "4.12"
     androidTestImplementation group: "com.android.support.test", name: "runner", version: "1.0.2"
     androidTestImplementation group: "com.android.support.test.espresso", name: "espresso-core", version: "3.0.2"
-
 }

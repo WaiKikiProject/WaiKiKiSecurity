@@ -1,202 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.sothree.slidinguppanel.SlidingUpPanelLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/layout_sliding"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_FFFBF7F1"
-    android:gravity="bottom"
-    app:umanoPanelHeight="96dp"
-    app:umanoShadowHeight="5dp">
+    >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/color_FFFF4545"
+        app:contentInsetEnd="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetRight="0dp"
+        app:contentInsetStart="0dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            >
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/button_up"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:visibility="invisible">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="18dp"
+                    android:background="@drawable/icon_back"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="W,28:37"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:duplicateParentState="true" />
+            </android.support.constraint.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/text_title"
+                style="@style/toolbar_title"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/main_title"
+                />
+
+            <RelativeLayout
+                android:id="@+id/button_home"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:visibility="invisible"
+                >
+
+                <View
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_centerInParent="true"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:duplicateParentState="true"
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+    </android.support.v7.widget.Toolbar>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:background="@drawable/background_gradient"
-            app:contentInsetEnd="0dp"
-            app:contentInsetLeft="0dp"
-            app:contentInsetRight="0dp"
-            app:contentInsetStart="0dp">
+        <android.support.constraint.Guideline
+            android:id="@+id/left_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1"
+            />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+        <android.support.constraint.Guideline
+            android:id="@+id/right_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9"
+            />
 
-                <android.support.constraint.ConstraintLayout
-                    android:id="@+id/button_up"
-                    android:layout_width="56dp"
-                    android:layout_height="56dp"
-                    android:visibility="invisible">
+        <TextView
+            android:id="@+id/textview_user"
+            style="@style/text_main_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="36dp"
+            android:text="@string/main_welcome"
+            app:layout_constraintBottom_toTopOf="@id/viewpager"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            />
 
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="18dp"
-                        android:background="@drawable/icon_back"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintDimensionRatio="W,28:37"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:duplicateParentState="true" />
-                </android.support.constraint.ConstraintLayout>
-
-                <TextView
-                    android:id="@+id/text_title"
-                    style="@style/toolbar_title"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="@string/main_title" />
-
-                <RelativeLayout
-                    android:id="@+id/button_home"
-                    android:layout_width="56dp"
-                    android:layout_height="56dp"
-                    android:visibility="invisible">
-
-                    <View
-                        android:layout_width="56dp"
-                        android:layout_height="56dp"
-                        android:layout_centerInParent="true" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:duplicateParentState="true" />
-                </RelativeLayout>
-            </LinearLayout>
-        </android.support.v7.widget.Toolbar>
-
-        <android.support.constraint.ConstraintLayout
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="H,1:0.8"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5"
+            ></android.support.v4.view.ViewPager>
 
-            <android.support.constraint.Guideline
-                android:id="@+id/left_guideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.1" />
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/button_left"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingBottom="30dp"
+            android:paddingTop="30dp"
+            app:layout_constraintBottom_toBottomOf="@id/viewpager"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/left_guideline"
+            app:layout_constraintTop_toTopOf="@id/viewpager"
+            >
 
-            <android.support.constraint.Guideline
-                android:id="@+id/right_guideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.9" />
-
-            <TextView
-                android:id="@+id/textview_user"
-                style="@style/text_main_user"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="36dp"
-                android:text="@string/main_welcome"
-                app:layout_constraintBottom_toTopOf="@id/viewpager"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent" />
-
-            <android.support.v4.view.ViewPager
-                android:id="@+id/viewpager"
+            <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:background="@drawable/icon_left"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio="H,1:0.8"
+                app:layout_constraintDimensionRatio="H,22:28"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.7">
-
-            </android.support.v4.view.ViewPager>
-
-            <android.support.constraint.ConstraintLayout
-                android:id="@+id/button_left"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingBottom="30dp"
-                android:paddingTop="30dp"
-                app:layout_constraintBottom_toBottomOf="@id/viewpager"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/left_guideline"
-                app:layout_constraintTop_toTopOf="@id/viewpager">
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:background="@drawable/icon_left"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="H,22:28"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </android.support.constraint.ConstraintLayout>
-
-            <android.support.constraint.ConstraintLayout
-                android:id="@+id/button_right"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingBottom="30dp"
-                android:paddingTop="30dp"
-                app:layout_constraintBottom_toBottomOf="@id/viewpager"
-                app:layout_constraintLeft_toLeftOf="@id/right_guideline"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/viewpager">
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:background="@drawable/icon_right"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="H,22:28"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </android.support.constraint.ConstraintLayout>
-
-            <com.security.waikiki.myapplication.util.CircleAnimIndicator
-                android:id="@+id/pager_indicator"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginTop="30dp"
-                app:layout_constraintLeft_toLeftOf="@id/viewpager"
-                app:layout_constraintRight_toRightOf="@id/viewpager"
-                app:layout_constraintTop_toBottomOf="@id/viewpager" />
-
-
+                />
         </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/button_right"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingBottom="30dp"
+            android:paddingTop="30dp"
+            app:layout_constraintBottom_toBottomOf="@id/viewpager"
+            app:layout_constraintLeft_toLeftOf="@id/right_guideline"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/viewpager"
+            >
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:background="@drawable/icon_right"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="H,22:28"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+        </android.support.constraint.ConstraintLayout>
+
+        <com.security.waikiki.myapplication.util.CircleAnimIndicator
+            android:id="@+id/pager_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintLeft_toLeftOf="@id/viewpager"
+            app:layout_constraintRight_toRightOf="@id/viewpager"
+            app:layout_constraintTop_toBottomOf="@id/viewpager"
+            ></com.security.waikiki.myapplication.util.CircleAnimIndicator>
     </android.support.constraint.ConstraintLayout>
-
-
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <include
-            android:id="@+id/include_menu"
-            layout="@layout/activity_menu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </android.support.constraint.ConstraintLayout>
-
-
-</com.sothree.slidinguppanel.SlidingUpPanelLayout>
+</android.support.constraint.ConstraintLayout>

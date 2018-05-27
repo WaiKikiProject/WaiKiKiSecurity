@@ -5,13 +5,9 @@
     <color name="colorAccent">#FF4081</color>
     <color name="color_ffffff">#ffffff</color>
     <color name="color_8d8d8d">#8d8d8d</color>
-    <color name="color_ababab">#ababab</color>
     <color name="color_555555">#555555</color>
     <color name="color_222222">#222222</color>
     <color name="color_FFFF4545">#FFFF4545</color>
     <color name="color_111111">#111111</color>
     <color name="color_FFFBF7F1">#FFFBF7F1</color>
-    <color name="color_D43131">#FFD43131</color>
-    <color name="colorTransparent">#00000000</color>
-    <color name="color_88D43131">#66D43131</color>
 </resources>

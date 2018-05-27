@@ -54,13 +54,13 @@ public class ServerManager
 	}
 
 
-	public void loginMethod(ServerCallBack callBack, String email, String password)
+	public void loginMethod(IGCallBack callBack, String email,String password)
 	{
 		Call<ResponseBody> call = mServerInterface.login(email, password);
 		call.enqueue(callBack);
 	}
 
-    public void signUpMethod(ServerCallBack callBack, String email, String name, String password)
+    public void signUpMethod(IGCallBack callBack, String email,String name,String password)
     {
         Call<ResponseBody> call = mServerInterface.signUp(email, name, password);
         call.enqueue(callBack);
