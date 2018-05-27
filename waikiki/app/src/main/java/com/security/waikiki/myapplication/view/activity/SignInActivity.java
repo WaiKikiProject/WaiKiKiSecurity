@@ -3,10 +3,12 @@ package com.security.waikiki.myapplication.view.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.security.waikiki.myapplication.R;
 import com.security.waikiki.myapplication.WaiKiKi;
 import com.security.waikiki.myapplication.network.ServerCallBack;
@@ -61,9 +63,11 @@ public class SignInActivity extends RootParentActivity {
 //                        ServerManager.getInstanse().loginMethod(callBack, edit_email.getText().toString(), edit_password.getText().toString());
 //                    }
 //                    break;
-                    intent = new Intent(SignInActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
+//                    intent = new Intent(SignInActivity.this, MainActivity.class);
+//                    startActivity(intent);
+//                    finish();
+                    Log.d("SignInActivity",FirebaseInstanceId.getInstance().getToken());
+                      ServerManager.getInstanse().sendToken(callBack,"test", FirebaseInstanceId.getInstance().getToken());
                     break;
                 case R.id.button_sign_up:
                     intent = new Intent(SignInActivity.this, SignUpActivity.class);
