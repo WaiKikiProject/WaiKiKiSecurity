@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="dialogtitle">Waikiki</string>
+    <string name="dialogconfirm">확인</string>
+
 </resources>

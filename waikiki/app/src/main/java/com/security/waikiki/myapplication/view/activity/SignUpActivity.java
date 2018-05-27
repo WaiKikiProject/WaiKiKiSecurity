@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.security.waikiki.myapplication.Customdialog;
 import com.security.waikiki.myapplication.R;
 import com.security.waikiki.myapplication.network.ServerCallBack;
 import com.security.waikiki.myapplication.network.ServerManager;
@@ -16,6 +17,7 @@ import retrofit2.Response;
 
 public class SignUpActivity extends RootParentActivity {
 
+    private Customdialog dialog;
     EditText email, password, name, repassword;
 
     @Override
@@ -40,8 +42,8 @@ public class SignUpActivity extends RootParentActivity {
         @Override
         public void onClick(View view) {
             if (email.getText().toString().length() == 0) {
-                Toast.makeText(SignUpActivity.this, "이메일을 입력해주세요", Toast.LENGTH_SHORT).show();
-                email.requestFocus();
+                dialog = new Customdialog(SignUpActivity.this,"이메일", "이메일을 입력해주세요", mOnclickListener);
+                dialog.show();
                 return;
             }else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()){
                 Toast.makeText(SignUpActivity.this,"이메일 형식이 아닙니다",Toast.LENGTH_SHORT).show();
