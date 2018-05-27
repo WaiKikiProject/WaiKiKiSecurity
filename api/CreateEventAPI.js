@@ -57,7 +57,7 @@ exports.create = function(device_id,connection,callback){
 					callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
 					asyncCallback(true);
 				}else{
-					if(result != 0){
+					if(result != 0){	Firebase.sendMessage("cap4W3Z3S3A:APA91bEQQakXVRuPpzac0KseA59ENKUbUfo4ToNFJFjJmwaHJipFsrM_WuNfEEIB59s3D1WpLh43rsQf7596fEGUi9DFlYrAUgbNw2v5ZMLOXzGxrndZlWb8owKzxoMxpcpPGtTrn-gP",2);
 						callback.resultcallback(JSON.stringify(result),result_code.SuccessCode);
 						asyncCallback(null);
 					}

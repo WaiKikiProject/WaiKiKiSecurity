@@ -21,7 +21,7 @@ exports.checkSignup = function(email,name,password,connection,callback){
 		insertUserInform : function(asyncCallback){		
 			console.log("start insertUserInform method");
 			
-			var findEmailstmt = "insert into user values (?,?,?)";
+			var findEmailstmt = "insert into user values (?,?,?,NULL)";
 			
 			connection.query(findEmailstmt,[email,name,password],function(err, result){
 				if(err){

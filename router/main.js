@@ -31,13 +31,11 @@ module.exports = function(app,connection)
       });
 	
 	 app.post('/event',function(req,res){
-		var email = req.body.email;
     	var device_id = req.body.device_id;
-		console.log(email);
 		console.log(device_id);
 	
 		var CreateEventAPI = require("../api/CreateEventAPI");
-		CreateEventAPI.create(email,device_id,connection, callback(res));	
+		CreateEventAPI.create(device_id,connection, callback(res));	
      });
 	 
 	 app.post('/deviceinstall',function(req,res){

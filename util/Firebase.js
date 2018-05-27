@@ -2,13 +2,13 @@ var StatusType
 	{ 
 		EVENT = 1, 
  		SEQURITY = 2,
-		UNSEQURIT = 3,
+		UNSEQURITY = 3,
 		INVITE = 4,
 		APPROVE = 5
 	};
 exports.StatusType;
 
-exports.tokenData = function(token,type){
+exports.sendMessage = function(token,type){
 	var PushMessage = require('../conf/PushMessage');
 	var FCM = require('fcm-push');
 
