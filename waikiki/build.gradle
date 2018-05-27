@@ -50,7 +50,7 @@ def getRevisionHash() {
 
 ext {
     AppVersionCode = 18010001
-    AppVersionName = "1.0.0"
+    AppVersionName = "1.0.1"
 
     BuildSdkVersion = 27
     BuildMinSdkVersion = 21
@@ -69,5 +69,8 @@ ext {
     RetrofitGroup = "com.squareup.retrofit2"
     RetrofitVersion = "2.4.0"
     RetrofitGsonVersion = "2.4.0"
+
+    SlidingUpPanelVersion = "3.4.0"
+    FireBaseMessageVersion = "15.0.2"
 }
 

@@ -10,19 +10,37 @@
     <string name="sign_up_name">이름을 입력해주세요.</string>
     <string name="sign_up_repassword">비밀번호를 재입력해주세요.</string>
 
+    <string name="type_master">마스터</string>
+    <string name="type_guest">마스터</string>
+    <string name="type_master_english">MASTER</string>
+    <string name="type_guest_english">GUEST</string>
+
     <string name="main_welcome">WaiKiKi의 보안솔루션</string>
-    <string name="main_master">마스터</string>
-    <string name="main_guest">게스트</string>
     <string name="main_smode_on">보안모드 동작중</string>
     <string name="main_smode_off">보안모드 해제</string>
     <string name="main_event">%1$d개의 이벤트 발생</string>
     <string name="main_install">설치하기</string>
     <string name="main_title">WAIKIKI</string>
 
+    <string name="menu_title">메뉴</string>
+    <string name="menu_close">닫기</string>
+    <string name="menu_usertype">유저타입 - %1$s</string>
+    <string name="menu_member">설치현황</string>
+    <string name="menu_evnet">침입 이벤트</string>
+    <string name="menu_smode_log">장치 컨트롤 로그</string>
+    <string name="menu_member_invite">멤버초대</string>
+    <string name="menu_delete">장치 삭제</string>
+    <string name="menu_logout">로그아웃</string>
 
+
+    <string name="install_splash_title">설치하기</string>
+    <string name="install_splash_navi">설치하기 원하는 유형을 선택해주세요.</string>
+
+    <string name="install_name_title">장치 닉네임</string>
     <string name="install_name_main_navi">장치 닉네임 설정</string>
     <string name="install_name_navi">보안장치의 대표할 닉네임을정해주세요.\n설치후에도 설정을 통해 이름을 변경하실 수 있습니다.</string>
+    <string name="install_name_hint">장치 닉네임 입력</string>
     <string name="install_name">장치 닉네임 입력</string>
-    <string name="install_install">설치하기</string>
+    <string name="install_name_setting">설정완료</string>
 
 </resources>

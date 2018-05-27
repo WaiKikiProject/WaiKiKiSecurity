@@ -16,4 +16,8 @@ public interface ServerInterface
 	@POST("login/")
 	@FormUrlEncoded
 	Call<ResponseBody> login(@Field("email") String email,@Field("password") String password);
+
+	@POST("login/")
+	@FormUrlEncoded
+	Call<ResponseBody> secndToken(@Field("email") String email,@Field("token") String token);
 }
