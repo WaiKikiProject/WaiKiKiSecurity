@@ -16,7 +16,7 @@ exports.create = function(device_id,connection,callback){
 
 		checkParameter : function(asyncCallback){
 			console.log("start checkParameter");
-			if(email == null || device_id == null){
+			if(device_id == null){
 				console.log("MissmatchParameter");
 				callback.resultcallback(result_code.MissMatchParameterMessage,result_code.MissMatchParameterCode);
 				asyncCallback(true);
@@ -49,14 +49,14 @@ exports.create = function(device_id,connection,callback){
 
 			console.log("Start resultJson");
 
-			var selectstmt = "select install_code from event where install_code like ?";
+			var selectstmt = "select install_code from event where event_code like ?";
 			connection.query(selectstmt,[date],function(err,result){
 				if(err){
 					callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
 					asyncCallback(true);
 				}else{
 					if(result != 0){
-						callback.resultcallback(JSON.stringify(date),result_code.SuccessCode);
+						callback.resultcallback(JSON.stringify(result),result_code.SuccessCode);
 						asyncCallback(null);
 					}
 					else{
