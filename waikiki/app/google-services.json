@@ -10,11 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:454982113404:android:4143d542428754d6",
         "android_client_info": {
-<<<<<<< HEAD
-          "package_name": "com.security.waikiki.myapplication.view.activity"
-=======
           "package_name": "com.security.waikiki.myapplication"
->>>>>>> ad9b4cc19e9022980be72c9cd209d15c5b39b14f
         }
       },
       "oauth_client": [

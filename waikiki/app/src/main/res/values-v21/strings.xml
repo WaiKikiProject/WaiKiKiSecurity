@@ -1,11 +1,5 @@
-<<<<<<< HEAD
-<resources>
-    <string name="app_name">My Application</string>
-
-    <string name="dialogtitle">WAIKIKI</string>
-=======
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
->>>>>>> ad9b4cc19e9022980be72c9cd209d15c5b39b14f
-
+    <string name="app_name">My Application</string>
+    <string name="dialogtitle">WAIKIKI</string>
 </resources>
