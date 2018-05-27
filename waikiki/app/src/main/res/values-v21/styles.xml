@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="sign_in_edittext">
-        <item name="android:textColorHint">@color/color_555555</item>
-        <item name="android:textSize">14dp</item>
-        <item name="android:paddingLeft">20dp</item>
-        <item name="android:textColor">@color/color_222222</item>
-        <item name="android:gravity">center_vertical</item>
+    <style name="dialog_title">
+        <item name="android:textColor">@color/color_FFFBF7F1</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:gravity">center</item>
     </style>
 
 
