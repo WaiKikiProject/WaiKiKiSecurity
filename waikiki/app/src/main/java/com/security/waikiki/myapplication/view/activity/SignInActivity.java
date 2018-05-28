@@ -1,6 +1,7 @@
 package com.security.waikiki.myapplication.view.activity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -14,12 +15,16 @@ import com.security.waikiki.myapplication.WaiKiKi;
 import com.security.waikiki.myapplication.network.ServerCallBack;
 import com.security.waikiki.myapplication.network.ServerManager;
 
+import java.util.concurrent.CountDownLatch;
+
 import okhttp3.ResponseBody;
 import retrofit2.Response;
 
 public class SignInActivity extends RootParentActivity {
 
     EditText edit_email, edit_password;
+
+    CountDownLatch mCountDownLatch;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,6 +45,27 @@ public class SignInActivity extends RootParentActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    public boolean isValid() {
+
+//        if (edit_email.getText().toString().length() == 0) {
+//            Toast.makeText(SignInActivity.this, "이메일을 입력해주세요", Toast.LENGTH_SHORT).show();
+//            edit_email.requestFocus();
+//            return false;
+//        } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(edit_email.getText().toString()).matches()) {
+//            Toast.makeText(SignInActivity.this, "이메일 형식이 아닙니다", Toast.LENGTH_SHORT).show();
+//            edit_email.requestFocus();
+//            return false;
+//        } else if (edit_password.getText().toString().length() == 0) {
+//            Toast.makeText(SignInActivity.this, "비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show();
+//            edit_password.requestFocus();
+//            return false;
+//        }
+
+        return true;
+
+    }
+
+
     private View.OnClickListener mOnclickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -47,27 +73,9 @@ public class SignInActivity extends RootParentActivity {
 
             switch (view.getId()) {
                 case R.id.button_login:
-//                    if (edit_email.getText().toString().length() == 0) {
-//                        Toast.makeText(SignInActivity.this, "이메일을 입력해주세요", Toast.LENGTH_SHORT).show();
-//                        edit_email.requestFocus();
-//                        return;
-//                    } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(edit_email.getText().toString()).matches()) {
-//                        Toast.makeText(SignInActivity.this, "이메일 형식이 아닙니다", Toast.LENGTH_SHORT).show();
-//                        edit_email.requestFocus();
-//                        return;
-//                    } else if (edit_password.getText().toString().length() == 0) {
-//                        Toast.makeText(SignInActivity.this, "비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show();
-//                        edit_password.requestFocus();
-//                        return;
-//                    } else {
-//                        ServerManager.getInstanse().loginMethod(callBack, edit_email.getText().toString(), edit_password.getText().toString());
-//                    }
-//                    break;
-//                    intent = new Intent(SignInActivity.this, MainActivity.class);
-//                    startActivity(intent);
-//                    finish();
-                    Log.d("SignInActivity",FirebaseInstanceId.getInstance().getToken());
-                      ServerManager.getInstanse().sendToken(callBack,"test", FirebaseInstanceId.getInstance().getToken());
+                    if (isValid()) {
+                        new LoginTask().execute();
+                    }
                     break;
                 case R.id.button_sign_up:
                     intent = new Intent(SignInActivity.this, SignUpActivity.class);
@@ -81,15 +89,40 @@ public class SignInActivity extends RootParentActivity {
     ServerCallBack<ResponseBody> callBack = new ServerCallBack<ResponseBody>() {
         @Override
         public void onResponseResult(Response<ResponseBody> response) {
-            Intent intent;
             if (response.isSuccessful()) {
-                intent = new Intent(SignInActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-                Toast.makeText(SignInActivity.this, "성공", Toast.LENGTH_LONG).show();
+                mCountDownLatch.countDown();
             } else {
-                Toast.makeText(SignInActivity.this, "실패", Toast.LENGTH_LONG).show();
             }
         }
     };
+
+    public class LoginTask extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            mCountDownLatch = new CountDownLatch(0);
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+//            ServerManager.getInstanse().loginMethod(callBack, edit_email.getText().toString(), edit_password.getText().toString());
+//            ServerManager.getInstanse().sendToken(callBack, "test", FirebaseInstanceId.getInstance().getToken());
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+            if (mCountDownLatch.getCount() <= 0) {
+                Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+
+        }
+    }
 }
