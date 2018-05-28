@@ -11,7 +11,7 @@
     <string name="sign_up_repassword">비밀번호를 재입력해주세요.</string>
 
     <string name="type_master">마스터</string>
-    <string name="type_guest">마스터</string>
+    <string name="type_guest">게스트</string>
     <string name="type_master_english">MASTER</string>
     <string name="type_guest_english">GUEST</string>
 
@@ -32,9 +32,12 @@
     <string name="menu_delete">장치 삭제</string>
     <string name="menu_logout">로그아웃</string>
 
-
     <string name="install_splash_title">설치하기</string>
     <string name="install_splash_navi">설치하기 원하는 유형을 선택해주세요.</string>
+    <string name="install_splash_install">장치설치</string>
+    <string name="install_splash_type">타입선택</string>
+    <string name="install_splash_master_navi">마스터유형의 설치는\n마스터가 설치되지 않은 장치만 가능합니다.</string>
+    <string name="install_splash_guest_navi">게스트유형의 설치는\n마스터가 설치된 장치만 가능합니다.\n설치는 마스터의 요청승인후 완료됩니다.</string>
 
     <string name="install_name_title">장치 닉네임</string>
     <string name="install_name_main_navi">장치 닉네임 설정</string>

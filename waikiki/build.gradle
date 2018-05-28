@@ -68,6 +68,6 @@ ext {
     RetrofitGsonVersion = "2.4.0"
 
     SlidingUpPanelVersion = "3.4.0"
-    FireBaseMessageVersion = "15.0.2"
+    FireBaseMessageVersion = '11.4.2'
 }
 

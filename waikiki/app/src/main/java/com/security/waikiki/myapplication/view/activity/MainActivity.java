@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.security.waikiki.myapplication.R;
+import com.security.waikiki.myapplication.entitiy.UserType;
 import com.security.waikiki.myapplication.util.CircleAnimIndicator;
 import com.security.waikiki.myapplication.view.adapter.ViewPagerAdapter;
 import com.security.waikiki.myapplication.view.fragment.MainFragment;
@@ -106,9 +107,9 @@ public class MainActivity extends RootParentActivity {
             listFragment.clear();
         }
 
-        MainFragment fragment1 = new MainFragment(MainFragment.UserType.GUEST, MainFragment.SecureMode.SECURE);
-        MainFragment fragment2 = new MainFragment(MainFragment.UserType.MASTER, MainFragment.SecureMode.UNSECURE);
-        MainFragment fragment3 = new MainFragment(MainFragment.UserType.DEFAULT, null);
+        MainFragment fragment1 = new MainFragment(UserType.GUEST, MainFragment.SecureMode.SECURE);
+        MainFragment fragment2 = new MainFragment(UserType.MASTER, MainFragment.SecureMode.UNSECURE);
+        MainFragment fragment3 = new MainFragment(UserType.DEFAULT, null);
         listFragment.add(fragment1);
         listFragment.add(fragment2);
         listFragment.add(fragment3);

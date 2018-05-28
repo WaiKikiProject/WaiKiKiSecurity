@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.security.waikiki.myapplication.R;
+import com.security.waikiki.myapplication.entitiy.UserType;
 
 @SuppressLint("ValidFragment")
 public class MainFragment extends Fragment {
@@ -30,13 +31,6 @@ public class MainFragment extends Fragment {
     private TextView mTextUserType;
     private TextView mTextSMode;
     private TextView mTextevent;
-
-    public enum UserType {
-        MASTER,
-        GUEST,
-        DEFAULT
-    }
-
     public enum SecureMode {
         SECURE,
         UNSECURE
