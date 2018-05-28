@@ -25,10 +25,9 @@
         android:layout_height="wrap_content"
         android:elevation="5dp"
         android:orientation="vertical"
-        app:layout_constraintLeft_toLeftOf="@id/left_guide"
-        app:layout_constraintRight_toRightOf="@id/right_guide"
         app:layout_constraintBottom_toTopOf="@id/button_close"
-        >
+        app:layout_constraintLeft_toLeftOf="@id/left_guide"
+        app:layout_constraintRight_toRightOf="@id/right_guide">
 
         <TextView
             android:id="@+id/button_menu_title"
@@ -36,15 +35,20 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height"
             android:background="@color/color_D43131"
-            android:text="@string/menu_title" />
+            android:text="@string/menu_title"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/text_usertype"
             style="@style/button_menu_list"
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height"
+            android:background="@color/color_12365E"
+            android:gravity="center"
             android:text="@string/type_master"
-            android:background="@color/color_88D43131"
+            android:textColor="@color/color_ffffff"
+            android:textSize="18dp"
+            android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/button_menu_title" />
 
         <View
@@ -62,6 +66,7 @@
                 style="@style/button_menu_list"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/button_height"
+                android:layout_marginLeft="10dp"
                 android:text="@string/menu_member"
                 app:layout_constraintTop_toBottomOf="@id/button_menu_title" />
 
@@ -82,6 +87,7 @@
                 style="@style/button_menu_list"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/button_height"
+                android:layout_marginLeft="10dp"
                 android:text="@string/menu_evnet"
                 app:layout_constraintTop_toBottomOf="@id/button_menu_title" />
 
@@ -102,6 +108,7 @@
                 style="@style/button_menu_list"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/button_height"
+                android:layout_marginLeft="10dp"
                 android:text="@string/menu_smode_log"
                 app:layout_constraintTop_toBottomOf="@id/button_menu_title" />
 
@@ -122,6 +129,7 @@
                 style="@style/button_menu_list"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/button_height"
+                android:layout_marginLeft="10dp"
                 android:text="@string/menu_member_invite"
                 app:layout_constraintTop_toBottomOf="@id/button_menu_title" />
 
@@ -142,6 +150,7 @@
                 style="@style/button_menu_list"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/button_height"
+                android:layout_marginLeft="10dp"
                 android:text="@string/menu_delete"
                 app:layout_constraintTop_toBottomOf="@id/button_menu_title" />
 
@@ -161,13 +170,9 @@
                 style="@style/button_menu_list"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/button_height"
+                android:layout_marginLeft="10dp"
                 android:text="@string/menu_logout"
                 app:layout_constraintTop_toBottomOf="@id/button_menu_title" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/color_8d8d8d" />
 
         </LinearLayout>
     </LinearLayout>
@@ -179,8 +184,8 @@
         android:layout_height="@dimen/button_height"
         android:background="@color/color_D43131"
         android:text="@string/menu_close"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/color_FFFBF7F1"
     android:gravity="bottom"
-    app:umanoPanelHeight="96dp"
+    app:umanoPanelHeight="@dimen/button_height"
     app:umanoShadowHeight="5dp">
 
     <android.support.constraint.ConstraintLayout
@@ -17,7 +17,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:background="@drawable/background_gradient"
+            android:background="@color/color_D43131"
             app:contentInsetEnd="0dp"
             app:contentInsetLeft="0dp"
             app:contentInsetRight="0dp"

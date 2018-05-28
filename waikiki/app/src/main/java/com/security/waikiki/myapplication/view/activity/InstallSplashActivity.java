@@ -42,7 +42,7 @@ public class InstallSplashActivity extends RootParentActivity {
         supportActionBar.setDisplayHomeAsUpEnabled(false);
         supportActionBar.setDisplayShowCustomEnabled(true);
 
-        setStatusbar(toolbar);
+//        setStatusbar(toolbar);
 
         mButtonUserType = findViewById(R.id.button_usertype);
         mLayoutOption = findViewById(R.id.layout_option);
@@ -86,13 +86,16 @@ public class InstallSplashActivity extends RootParentActivity {
                 case R.id.button_master:
                     mUserType = UserType.MASTER;
                     mTextNavi.setText(getString(R.string.install_splash_master_navi));
+                    mTextNavi.setVisibility(View.VISIBLE);
                     mTextUserType.setText(getString(R.string.type_master));
                     setOptionUI();
                     break;
                 case R.id.button_guest:
                     mUserType = UserType.GUEST;
                     mTextNavi.setText(getString(R.string.install_splash_guest_navi));
+                    mTextNavi.setVisibility(View.VISIBLE);
                     mTextUserType.setText(getString(R.string.type_guest));
+                    mTextUserType.setVisibility(View.VISIBLE);
                     setOptionUI();
                     break;
                 case R.id.button_install:
@@ -100,7 +103,6 @@ public class InstallSplashActivity extends RootParentActivity {
                         Intent intent;
                         if (mUserType.equals(UserType.MASTER)) {
                             intent = new Intent(InstallSplashActivity.this, InstallNameActivity.class);
-                            startActivityForResult(intent, WaiKiKi.INSTALL);
                         } else {
                             intent = new Intent(InstallSplashActivity.this, InstallNFCACtivity.class);
                         }

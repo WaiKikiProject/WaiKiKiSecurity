@@ -2,6 +2,8 @@ package com.security.waikiki.myapplication.view.fragment;
 
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,10 +17,12 @@ import android.widget.TextView;
 
 import com.security.waikiki.myapplication.R;
 import com.security.waikiki.myapplication.entitiy.UserType;
+import com.security.waikiki.myapplication.view.activity.InstallSplashActivity;
 
 @SuppressLint("ValidFragment")
 public class MainFragment extends Fragment {
 
+    private Context mContext;
     private ViewGroup mRootview;
 
     private UserType mUserType;
@@ -31,6 +35,7 @@ public class MainFragment extends Fragment {
     private TextView mTextUserType;
     private TextView mTextSMode;
     private TextView mTextevent;
+
     public enum SecureMode {
         SECURE,
         UNSECURE
@@ -45,6 +50,8 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mRootview = (ViewGroup) inflater.inflate(R.layout.fragment_main_circle, container, false);
+
+        mContext = container.getContext();
 
         mTextDeviceName = mRootview.findViewById(R.id.textview_device_name);
         mTextSMode = mRootview.findViewById(R.id.text_smode);
@@ -103,7 +110,12 @@ public class MainFragment extends Fragment {
     private View.OnClickListener mOnclickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-
+            switch (view.getId()) {
+                case R.id.button_install:
+                    Intent intent = new Intent(mContext, InstallSplashActivity.class);
+                    mContext.startActivity(intent);
+                    break;
+            }
 
         }
     };

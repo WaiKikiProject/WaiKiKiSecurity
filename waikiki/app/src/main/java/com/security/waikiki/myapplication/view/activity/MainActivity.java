@@ -62,7 +62,7 @@ public class MainActivity extends RootParentActivity {
         supportActionBar.setDisplayHomeAsUpEnabled(false);
         supportActionBar.setDisplayShowCustomEnabled(true);
 
-        setStatusbar(toolbar);
+//        setStatusbar(toolbar);
 
         mLayoutSliding = findViewById(R.id.layout_sliding);
 
