@@ -99,6 +99,14 @@ module.exports = function(app,connection)
 		 login.checkLogin(email,password,connection,callback(res));
      });
 	
+	 app.delete('/logout',function(req,res){
+		 var email = req.body.email;
+		 console.log(email);
+		 
+		 var logout = require("../api/LogOutAPI");
+		 logout.userOut(email,connection,callback(res));
+     });
+	
      app.post('/picture',function(req,res){
 		 var fs = require('fs');
 		 
@@ -121,14 +129,4 @@ module.exports = function(app,connection)
 		 signup.checkSignup(email,name,password,connection,callback(res));
      });
 	
-	 app.delete('/userout',function(req,res){
-    	 var email = req.body.email;
-		 var password = req.body.password;
-		 console.log(email);
-		 console.log(password);
-		 
-		 var checkOut = require("../api/UseroutAPI");
-		 checkOut.userOut(email,password,connection,callback(res));
-     });
-
 }

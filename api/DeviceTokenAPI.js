@@ -18,12 +18,10 @@ exports.devicetoken = function(email,token,connection,callback){
 			}
 		},
 		
-		insertInstall: function(asyncCallback){
+		insertToken: function(asyncCallback){
 
 				console.log("Start InsertQuery");
-
-				var date = new Date();
-
+			
 				var insertstmt = "update user set token=? where email like ?";
 				connection.query(insertstmt, [token,email], function(err, result) {
 					if(err){

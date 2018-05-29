@@ -1,15 +1,15 @@
-exports.userOut = function(email,password,connection,callback){
+exports.userOut = function(email,connection,callback){
 	
-	console.log("start userOut");
+	console.log("start logout");
 	
 	var result_code = require("../conf/ResultCode");
 	var async = require('async');
 
 	async.series({
 		
-		checkParameter : function(asyncCallback){		
-			console.log("start userOutCheck method");
-			if(email == null || password == null){
+		checkParameter : function(asyncCallback){
+			console.log("start checkToken method");
+			if(email == null){
 				console.log("MissmatchParameter");
 				callback.resultcallback(result_code.MissMatchParameterMessage,result_code.MissMatchParameterCode);
 				asyncCallback(true);
@@ -17,15 +17,16 @@ exports.userOut = function(email,password,connection,callback){
 				asyncCallback(null);
 			}
 		},
+		
+		deleteToken: function(asyncCallback){
 
-		UserOutCheck : function(asyncCallback){
-			console.log("start userOutCheck method");
-			
-			var userOutstmt = "delete from user where email like ? and password like ?;";
-			
-			connection.query(userOutstmt,[email,password],function(err, result){
+				console.log("Start DeleteQuery");
+
+				var insertstmt = "update user set token=NULL where email like ?";
+				connection.query(insertstmt, [email], function(err, result) {
 					if(err){
-						callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
+						callback.resultcallback(result_code.DatabaseOverlapMessage,result_code.DatabaseOverlapCode);
+						console.log("이메일이 틀렸어요.");
 						asyncCallback(true);
 					}else{
 						if(result != 0){
@@ -36,7 +37,7 @@ exports.userOut = function(email,password,connection,callback){
 							asyncCallback(true);
 						}
 					}
-			});
+				})
 		}
 
 	},
