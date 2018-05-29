@@ -1,0 +1,76 @@
+create table user
+(
+	email varchar(50) primary key,
+	name varchar(30) not null,
+	password varchar(30) not null,
+	token varchar(200)
+);
+
+create table device
+(
+	device_id varchar(30) primary key,
+	device_name varchar(30) not null,
+	s_mode enum("O","X") not null,
+	master varchar(50) references user(email)
+);
+
+create table install
+(
+	email varchar(50) references user(email),
+	device_id varchar(30) references device(device_id),
+	PRIMARY KEY(email, device_id)
+);
+
+create table event
+(
+	event_code varchar(30) primary key,
+	event_date datetime not null,
+	device_id varchar(30) references device(device_id)
+);
+
+create table picture
+(
+	event_code varchar(50) references event(event_code),
+	picture_url varchar(100) not null
+);
+
+create table confirmevent
+(
+	event_code varchar(30) references event(event_code),
+	email varchar(30) references user(email),
+	confirm_result char(1) not null
+);
+
+create table convertlog
+(	
+	email varchar(50) references user(email),
+	convert_date datetime,
+	convert_result enum("O","X") not null
+);
+
+
+
+
+
+email : dudwls5174@naver.com
+name : 이영진
+password : 1234
+
+device_id : product_num1
+device_name : 우리집
+s_mode : x
+master : o
+
+picture_url : picture_num1
+
+confirm_result : x
+
+convert_result : x
+
+
+
+     host: '13.209.49.159',
+      port: '3306',
+      user: 'root',
+      password: 'password',
+      database: 'waikiki'
