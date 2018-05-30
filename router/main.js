@@ -66,6 +66,12 @@ module.exports = function(app,connection)
 		 cheekLookup.eventLookup(connection,callback(res));
      });
 
+		 app.get('/installList/:email',function(req,res){
+	 	 	 var email = req.params.email;
+			 var Installlist = require("../api/InstallListAPI");
+			 Installlist.getInstallList(email,connection,callback(res));
+		});
+
 	 app.post('/eventlistview',function(req,res){
 
 		var install_code = req.query.install_code;
