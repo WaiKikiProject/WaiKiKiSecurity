@@ -49,8 +49,8 @@ exports.create = function(device_id,connection,callback){
 			 sendMessage : function(asyncCallback){
 				 	console.log("sendMessage");
 
-					var selectstmt = "select event_code from event where event_code like ?";
-					connection.query(selectstmt,[date],function(err,result){
+					var selectstmt = "select token from install join user using(email) where device_id like ?";
+					connection.query(selectstmt,[device_id],function(err,result){
 						if(err){
 							callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
 							asyncCallback(true);
@@ -72,8 +72,8 @@ exports.create = function(device_id,connection,callback){
 
 			console.log("Start resultJson");
 
-			var selectstmt = "select token from install join user using(email) where device_id like ?";
-			connection.query(selectstmt,[device_id],function(err,result){
+			var selectstmt = "select evnet_code from event where evnet_code ?";
+			connection.query(selectstmt,[evnet_code]],function(err,result){
 				if(err){
 					callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
 					asyncCallback(true);
