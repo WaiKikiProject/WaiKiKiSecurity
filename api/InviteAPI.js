@@ -63,6 +63,27 @@ exports.invite = function(email,device_id,connection,callback){
 				});
 		 	},
 
+      installcheck: function(asyncCallback,result){
+
+         console.log("start installcheck method");
+
+         var finddevicestmt = "select * from install where device_id like ? and email like ?";
+         connection.query(finddevicestmt,[device_id,email],function(err, result){
+           if(err){
+             callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
+             asyncCallback(true);
+           }else{
+             if(result != 0 ){
+                callback.resultcallback(result_code.AleadyInstallDeviceCode,result_code.AleadyInstallDeviceMessage);
+               asyncCallback(null);
+             }else{
+
+               asyncCallback(true);
+             }
+           }
+         });
+       },
+
 			insertInstall: function(asyncCallback){
 
 				console.log("Start InsertQuery");
