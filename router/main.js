@@ -22,13 +22,12 @@ module.exports = function(app,connection)
 
 	 app.post('/convert',function(req,res){
      	var device_id = req.body.device_id;
-      	var install_code = req.body.install_code;
-      	console.log(device_id);
-      	console.log(install_code);
+			var email = req.body.email;
+      console.log(device_id);
 
- 		var ConvertSequrityAPI = require("../api/ConvertSequrityAPI");
- 		ConvertSequrityAPI.convert(device_id,install_code,connection, callback(res));
-      });
+ 			var ConvertSequrityAPI = require("../api/ConvertSequrityAPI");
+ 			ConvertSequrityAPI.convert(email,device_id,connection, callback(res));
+    });
 
 	 app.post('/event',function(req,res){
     	var device_id = req.body.device_id;

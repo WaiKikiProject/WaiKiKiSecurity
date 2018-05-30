@@ -8,6 +8,7 @@ exports.convert = function(email,device_id,connection,callback){
 
 	var result_code = require("../conf/ResultCode");
 	var async = require('async');
+	var Firebase = require('../util/Firebase');
 
 	var s_mode;
 
@@ -15,7 +16,7 @@ exports.convert = function(email,device_id,connection,callback){
 
 		checkParameter : function(asyncCallback){
 			console.log("start checkParameter");
-			if(device_id == null || install_code == null){
+			if(device_id == null || email == null){
 				console.log("MissmatchParameter");
 				callback.resultcallback(result_code.MissMatchParameterMessage,result_code.MissMatchParameterCode);
 				asyncCallback(true);
@@ -28,7 +29,7 @@ exports.convert = function(email,device_id,connection,callback){
 
 			console.log("start findDevice method");
 
-			var findstmt = "select device_id,s_mode from device where device_id like ?";
+			var findstmt = "select * from device where device_id like ?";
 			connection.query(findstmt,[device_id],function(err, result){
 				if(err){
 					callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
@@ -44,7 +45,26 @@ exports.convert = function(email,device_id,connection,callback){
 					}
 				}
 			});
-		  },
+		},
+
+		installcheck : function(asyncCallback){
+				console.log("start installcheck method");
+
+				var findstmt = "select * from install where device_id like ? and email like ?";
+				connection.query(findstmt,[device_id,email],function(err, result){
+							if(err){
+								callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
+								asyncCallback(true);
+							}else{
+								if(result != 0 ){
+								asyncCallback(null);
+							}else{
+								callback.resultcallback(result_code.NotInstallUserMessage,result_code.NotInstallUserCode);
+								asyncCallback(true);
+							}
+						}
+				});
+		},
 
 		  updateEvent: function(asyncCallback){
 
@@ -73,19 +93,47 @@ exports.convert = function(email,device_id,connection,callback){
 	          });
 				  }else{
 					var insertstmt = "insert into convertlog values(?,now(),?,?)";
-					connection.query(insertstmt, [email,s_modem,device_id], function(err, result) {
+					connection.query(insertstmt, [email,s_mode,device_id], function(err, result) {
 						  if(err){
 							  connection.rollback(function () {
 								  	callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
 										asyncCallback(true);
 			          });
 						  }else{
-							asyncCallback(null);
+									asyncCallback(null);
 						  }
 					  });
 				  }
 			  });
-		  }
+		  },
+
+			sendMessage : function(asyncCallback){
+				 console.log("sendMessage");
+
+				 var selectstmt = "select token from install join user using(email) where device_id like ?";
+				 connection.query(selectstmt,[device_id],function(err,result){
+					 if(err){
+						 callback.resultcallback(result_code.SuccessMessage,result_code.SuccessCode);
+						 asyncCallback(true);
+					 }else{
+						 if(result != 0){
+							 for(var i in result){
+								 if(s_mode == "O"){
+										 Firebase.sendMessage(result[i].token,2);
+								 }else if(s_mode == "X"){
+									 Firebase.sendMessage(result[i].token,3);
+								 }
+							 }
+ 						   callback.resultcallback(result_code.SuccessMessage,result_code.SuccessCode);
+							 asyncCallback(null);
+						 }
+						 else{
+							 callback.resultcallback(result_code.SuccessMessage,result_code.SuccessCode);
+							 asyncCallback(null);
+						 }
+					 }
+				 });
+			},
 		},
 
 	asyncCallback = function(err){

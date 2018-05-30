@@ -1,8 +1,6 @@
 var express = require('express');
 var app = express();
 
-var fs = require('fs');
-
 var mysql_dbc = require("./db/ConnectServer")();
 var connection = mysql_dbc.initialize();
 mysql_dbc.databaseOpen(connection);
