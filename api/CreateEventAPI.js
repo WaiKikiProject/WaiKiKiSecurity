@@ -73,7 +73,7 @@ exports.create = function(device_id,connection,callback){
 			console.log("Start resultJson");
 
 			var selectstmt = "select evnet_code from event where evnet_code ?";
-			connection.query(selectstmt,[evnet_code]],function(err,result){
+			connection.query(selectstmt,[evnet_code],function(err,result){
 				if(err){
 					callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
 					asyncCallback(true);
