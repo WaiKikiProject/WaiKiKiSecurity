@@ -72,7 +72,7 @@ exports.create = function(device_id,connection,callback){
 
 			console.log("Start resultJson");
 
-			var selectstmt = "select token from install where device_id like ?";
+			var selectstmt = "select token from install join user using(email) where device_id like ?";
 			connection.query(selectstmt,[device_id],function(err,result){
 				if(err){
 					callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
