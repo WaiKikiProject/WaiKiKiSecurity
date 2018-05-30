@@ -99,7 +99,7 @@ exports.invite = function(email,device_id,connection,callback){
              }
            }
          });
-      },
+      }
 	},
 
 	asyncCallback = function(err){

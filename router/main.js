@@ -96,8 +96,8 @@ module.exports = function(app,connection)
 			console.log(email);
 			console.log(device_id);
 
-			 var checkinstall = require("../api/InviteAPI");
-			 checkinstall.Install(email,device_id,connection,callback(res));
+			 var Invite = require("../api/InviteAPI");
+			 Invite.invite(email,device_id,connection,callback(res));
 	     });
 
 
