@@ -35,7 +35,7 @@ exports.sendMessage = function(token,type){
 		case APPROVE:
 			body_message = PushMessage.APPROVE_MESSAGE;
 			break;
-		case INVI:
+		case INVITECOMPLETE:
 			body_message = PushMessage.INVITECOMPLETE_MESSAGE;
 			break;
 		};
