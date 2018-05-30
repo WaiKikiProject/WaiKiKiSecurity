@@ -56,8 +56,8 @@ exports.create = function(device_id,connection,callback){
 							asyncCallback(true);
 						}else{
 							if(result != 0){
-								for(var i in result){
-									Firebase.sendMessage(rows[i].token,"1");
+									console.log(result[i].token);
+									Firebase.sendMessage(result[i].token,"1");
 								}
 								asyncCallback(null);
 							}
