@@ -58,7 +58,7 @@ exports.create = function(device_id,connection,callback){
 							if(result != 0){
 								for(var i in result){
 									console.log(result[i].token);
-									Firebase.sendMessage(result[i].token,"1");
+									Firebase.sendMessage(result[i].token,1);
 								}
 								asyncCallback(null);
 							}
@@ -73,7 +73,7 @@ exports.create = function(device_id,connection,callback){
 
 			console.log("Start resultJson");
 
-			var selectstmt = "select evnet_code from event where evnet_code ?";
+			var selectstmt = "select evnet_code from event where evnet_code like ?";
 			connection.query(selectstmt,[date],function(err,result){
 				if(err){
 					callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
