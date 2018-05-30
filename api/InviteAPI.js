@@ -74,7 +74,7 @@ exports.invite = function(email,device_id,connection,callback){
              asyncCallback(true);
            }else{
              if(result != 0 ){
-                callback.resultcallback(result_code.AleadyInstallDeviceCode,result_code.AleadyInstallDeviceMessage);
+               callback.resultcallback(result_code.AleadyInstallDeviceMessage,result_code.AleadyInstallDeviceCode);
                asyncCallback(true);
              }else{
                asyncCallback(null);
