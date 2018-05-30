@@ -12,7 +12,7 @@ exports.create = function(device_id,connection,callback){
 	var result_code = require("../conf/ResultCode");
 	var async = require('async');
 	var Firebase = require('../util/Firebase');
-	
+
 	async.series({
 
 		checkParameter : function(asyncCallback){
@@ -45,19 +45,40 @@ exports.create = function(device_id,connection,callback){
 				  }
 			  });
 		  },
-		
+
+			 sendMessage : function(asyncCallback){
+				 	console.log("sendMessage");
+
+					var selectstmt = "select event_code from event where event_code like ?";
+					connection.query(selectstmt,[date],function(err,result){
+						if(err){
+							callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
+							asyncCallback(true);
+						}else{
+							if(result != 0){
+								for(var i in result){
+									Firebase.sendMessage(rows[i].token,"1");
+								}
+								asyncCallback(null);
+							}
+							else{
+								asyncCallback(null);
+							}
+						}
+					});
+			 },
 
 		  resultJson : function(asyncCallback){
 
 			console.log("Start resultJson");
 
-			var selectstmt = "select event_code from event where event_code like ?";
-			connection.query(selectstmt,[date],function(err,result){
+			var selectstmt = "select token from install where device_id like ?";
+			connection.query(selectstmt,[device_id],function(err,result){
 				if(err){
 					callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
 					asyncCallback(true);
 				}else{
-					if(result != 0){	Firebase.sendMessage("cap4W3Z3S3A:APA91bEQQakXVRuPpzac0KseA59ENKUbUfo4ToNFJFjJmwaHJipFsrM_WuNfEEIB59s3D1WpLh43rsQf7596fEGUi9DFlYrAUgbNw2v5ZMLOXzGxrndZlWb8owKzxoMxpcpPGtTrn-gP",2);
+					if(result != 0){
 						callback.resultcallback(JSON.stringify(result),result_code.SuccessCode);
 						asyncCallback(null);
 					}
