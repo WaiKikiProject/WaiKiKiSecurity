@@ -24,8 +24,11 @@ exports.NotMatchNameMessage = {"message":"존재하지 않는 이름"};
 exports.NotExistDeivceCode = 405;
 exports.NotExistDeivceMessage = {"message":"존재하지 않는 Device"};
 
+exports.NotExistUserCode = 406;
+exports.NotExistUserMessage = {"message":"설치된 유저 없음"};
+
 exports.NotInstallUserCode = 408;
-exports.NotInstallUserMessage = {"message":"장치에 설치되지 않음"}; 
+exports.NotInstallUserMessage = {"message":"장치에 설치되지 않음"};
 
 exports.AleadyInstallDeviceCode = 409;
 exports.AleadyInstallDeviceMessage = {"message":"이미 장치에 설치됌"};
@@ -35,6 +38,14 @@ exports.AleadyInstallMasterMessage = {"message":"이미 마스터가 설치됌"}
 
 exports.NotInstallMasterCode = 411;
 exports.NotInstallMasterMessage = {"message":"Master가 없는 디바이스"};
+
+exports.NotExistEventCode = 450;
+exports.NotExistEventMessage = {"message":"이벤트 없음"};
+
+exports.NotExistEventCode = 4;
+exports.NotExistEventMessage = {"message":"이벤트 없음"};
+
+
 
 exports.DatabaseErrorCode = 460;
 exports.DatabaseErrorMessage  = {"message":"DB에러"};

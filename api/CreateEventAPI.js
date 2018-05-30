@@ -46,6 +46,32 @@ exports.create = function(device_id,connection,callback){
 			  });
 		  },
 
+			insertConfirmEvent: function(asyncCallback){
+
+				console.log("Start ConfirmEventInsertQuery");
+
+				var selectUserstmt = "select email from install where device_id like ?";
+				connection.query(insertstmt, [device_id], function(err, result) {
+					if(err){
+					connection.rollback(function () {
+							callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
+							asyncCallback(true);
+						});
+					}else{
+							if(result != 0){
+								for(var i in result){
+									insertConfirmEvent(result[i].email,date,connection,asyncCallback);
+								}
+								asyncCallback(null);
+							}
+							else {
+								callback.resultcallback(result_code.NotExistEventMessage,result_code.NotExistEventCode);
+								asyncCallback(true);
+							}
+					}
+				});
+			},
+
 			 sendMessage : function(asyncCallback){
 				 	console.log("sendMessage");
 
@@ -100,6 +126,23 @@ exports.create = function(device_id,connection,callback){
 		        console.log('done');
 	}
 	);
+
+	insertConfirmEvent = function(email,code,connection,asyncCallback){
+
+		console.log("Start ConfirmEventInsertQuery");
+
+		var insertstmt = "insert into confirmevent values(?,?,'X')";
+		connection.query(insertstmt, [code,email], function(err, result) {
+			if(err){
+			connection.rollback(function () {
+					callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
+					asyncCallback(true);
+				});
+			}else{
+
+			}
+		});
+	}
 
 
 }

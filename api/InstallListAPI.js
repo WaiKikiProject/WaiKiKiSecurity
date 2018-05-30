@@ -1,7 +1,7 @@
 
 exports.getInstallList = function(email,connection,callback){
 
-	console.log("start invite");
+	console.log("start InstallList");
 
 	var result_code = require("../conf/ResultCode");
 	var async = require('async');
@@ -9,7 +9,7 @@ exports.getInstallList = function(email,connection,callback){
 	async.series({
 
 		checkParameter : function(asyncCallback){
-			console.log("start installCheck method");
+			console.log("start checkParameter method");
 			if(email == null){
 				console.log("MissmatchParameter");
 				callback.resultcallback(result_code.MissMatchParameterMessage,result_code.MissMatchParameterCode);

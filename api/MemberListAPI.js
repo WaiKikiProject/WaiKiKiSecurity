@@ -1,7 +1,7 @@
 
 exports.getMemberList = function(device_id,connection,callback){
 
-	console.log("start invite");
+	console.log("start MemberList");
 
 	var result_code = require("../conf/ResultCode");
 	var async = require('async');
