@@ -2,12 +2,13 @@ package com.security.waikiki.myapplication;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
-
 
 public class Customdialog extends Dialog {
 
@@ -17,17 +18,14 @@ public class Customdialog extends Dialog {
     TextView title, mesgase, confirm;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customdialog);
 
-//        WindowManager.LayoutParams lpWindow = new WindowManager.LayoutParams();
-//        lpWindow.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
-//        lpWindow.dimAmount = 0.3f;
-//        getWindow().setAttributes(lpWindow);
-
-
+        getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         findViewById(R.id.dialog_confirm).setOnClickListener(mOnclickListener);
 
         title = findViewById(R.id.dialog_title);
@@ -39,7 +37,7 @@ public class Customdialog extends Dialog {
 
     public Customdialog(@NonNull Context context, String title, String content,
                         View.OnClickListener singleListener) {
-        super(context, android.R.style.Theme_Translucent_NoTitleBar);
+        super(context);
         this.dialogtitel = title;
         this.dialogmesgase = content;
     }
@@ -52,6 +50,7 @@ public class Customdialog extends Dialog {
             dismiss();
         }
     };
+
 }
 
 

@@ -42,28 +42,28 @@ public class SignUpActivity extends RootParentActivity {
         @Override
         public void onClick(View view) {
             if (email.getText().toString().length() == 0) {
-                dialog = new Customdialog(SignUpActivity.this,"이메일", "이메일을 입력해주세요", mOnclickListener);
+                dialog = new Customdialog(SignUpActivity.this,"이메일", "이메일을 입력해주세요.", mOnclickListener);
                 dialog.show();
                 return;
             }else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()){
-                Toast.makeText(SignUpActivity.this,"이메일 형식이 아닙니다",Toast.LENGTH_SHORT).show();
-                email.requestFocus();
+                dialog = new Customdialog(SignUpActivity.this,"이메일","이메일 형식이 아닙니다.", mOnclickListener);
+                dialog.show();
                 return;
             }else if(name.getText().toString().length() == 0) {
-                Toast.makeText(SignUpActivity.this, "이름을 입력해주세요", Toast.LENGTH_SHORT).show();
-                name.requestFocus();
+                dialog = new Customdialog(SignUpActivity.this, "이름","이름을 입력해주세요.", mOnclickListener);
+                dialog.show();
                 return;
             }else if(password.getText().toString().length() == 0) {
-                Toast.makeText(SignUpActivity.this, "비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show();
-                password.requestFocus();
+                dialog = new Customdialog(SignUpActivity.this, "비밀번호","비밀번호를 입력해주세요.", mOnclickListener);
+                dialog.show();
                 return;
             }else if(repassword.getText().toString().length() == 0) {
-                Toast.makeText(SignUpActivity.this, "비밀번호를 재입력해주세요", Toast.LENGTH_SHORT).show();
-                repassword.requestFocus();
+                dialog = new Customdialog(SignUpActivity.this, "비밀번호 확인","비밀번호를 재입력 해주세요.", mOnclickListener);
+                dialog.show();
                 return;
             }else if(!password.getText().toString().equals(repassword.getText().toString())) {
-                Toast.makeText(SignUpActivity.this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
-                repassword.requestFocus();
+                dialog = new Customdialog(SignUpActivity.this, "비밀번호 확인","비밀번호가 일치 하지않습니다.", mOnclickListener);
+                dialog.show();
                 return;
             }else {
                 ServerManager.getInstanse().signUpMethod(callBack,email.getText().toString() ,name.getText().toString(), password.getText().toString());
@@ -80,9 +80,9 @@ public class SignUpActivity extends RootParentActivity {
                 intent = new Intent(SignUpActivity.this, SignInActivity.class);
                 startActivity(intent);
                 finish();
-                Toast.makeText(SignUpActivity.this, "성공", Toast.LENGTH_LONG).show();
+                dialog = new Customdialog(SignUpActivity.this, "회원가입 성공","회원가입에 성공 했습니다.", mOnclickListener);
             } else {
-                Toast.makeText(SignUpActivity.this, "실패", Toast.LENGTH_LONG).show();
+                dialog = new Customdialog(SignUpActivity.this, "회원가입 실패","회원가입에 실패 했습니다.", mOnclickListener);
             }
         }
     };
