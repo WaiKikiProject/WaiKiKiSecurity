@@ -1,10 +1,11 @@
-var StatusType 
-	{ 
-		EVENT = 1, 
+var StatusType
+	{
+		EVENT = 1,
  		SEQURITY = 2,
 		UNSEQURITY = 3,
 		INVITE = 4,
-		APPROVE = 5
+		APPROVE = 5,
+		INVITECOMPLETE = 6
 	};
 exports.StatusType;
 
@@ -13,11 +14,11 @@ exports.sendMessage = function(token,type){
 	var FCM = require('fcm-push');
 
 	var serverKey = 'AAAAae8MGHw:APA91bG7FX8ftAVRnlGEunyHPOhJKXlZnCMfIULcsw-NdYzoe6aQXHltPpBrHdqDZRtGe19-wIBqoWBXG9IFQ6C5xOeskc-s16c6JluaJZqVILbyKRnizl8mFwawr69YtK7opwTecY4X';
-	
+
 	var fcm = new FCM(serverKey);
-	
+
 	var body_message;
-		
+
 	switch(type){
 		case EVENT:
 			body_message = PushMessage.EVENT_MESSAGE;
@@ -29,16 +30,19 @@ exports.sendMessage = function(token,type){
 			body_message = PushMessage.UNSCURITY_MESSAGE;
 			break;
 		case INVITE:
-			body_message = PushMessage.INVICE_MESSAGE;
+			body_message = PushMessage.INVITE_MESSAGE;
 			break;
 		case APPROVE:
 			body_message = PushMessage.APPROVE_MESSAGE;
 			break;
+		case INVI:
+			body_message = PushMessage.INVITECOMPLETE_MESSAGE;
+			break;
 		};
-		
+
 		var message = {
 		to: token, // required fill with device token or topics
-		collapse_key: '', 
+		collapse_key: '',
 		data: {
 			your_custom_data_key: 'your_custom_data_value'
 		},
@@ -47,7 +51,7 @@ exports.sendMessage = function(token,type){
 			body: body_message
 		}
 		};
-		
+
 		//callback style
 		fcm.send(message, function(err, response){
 			if (err) {
@@ -56,5 +60,5 @@ exports.sendMessage = function(token,type){
 				console.log("Successfully sent with response: ", response);
 			}
 		});
-	
+
 }
