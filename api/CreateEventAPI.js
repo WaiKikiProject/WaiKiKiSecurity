@@ -73,7 +73,7 @@ exports.create = function(device_id,connection,callback){
 
 			console.log("Start resultJson");
 
-			var selectstmt = "select evnet_code from event where evnet_code like ?";
+			var selectstmt = "select event_code from event where event_code like ?";
 			connection.query(selectstmt,[date],function(err,result){
 				if(err){
 					callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
