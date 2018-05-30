@@ -92,9 +92,11 @@ exports.invite = function(email,device_id,connection,callback){
            }else{
              if(result != 0){
                 Firebase.sendMessage(result[0].token,1);
-               asyncCallback(null);
+                callback.resultcallback(result_code.SuccessMessage,result_code.SuccessCode);
+                asyncCallback(null);
              }
              else{
+               	callback.resultcallback(result_code.NotDistmatchErrorMessage,result_code.NotDistmatchErrorCode);
                asyncCallback(null);
              }
            }
