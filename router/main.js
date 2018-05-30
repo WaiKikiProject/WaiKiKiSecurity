@@ -66,11 +66,17 @@ module.exports = function(app,connection)
 		 cheekLookup.eventLookup(connection,callback(res));
      });
 
-		 app.get('/installList/:email',function(req,res){
+		 app.get('/installlist/:email',function(req,res){
 	 	 	 var email = req.params.email;
 			 var Installlist = require("../api/InstallListAPI");
 			 Installlist.getInstallList(email,connection,callback(res));
 		});
+
+		app.get('/memberlist/:device_id',function(req,res){
+			var device_id = req.params.device_id;
+			var MemberList = require("../api/MemberListAPI");
+			MemberList.getMemberList(device_id,connection,callback(res));
+	 });
 
 	 app.post('/eventlistview',function(req,res){
 
