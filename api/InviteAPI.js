@@ -112,7 +112,7 @@ exports.invite = function(email,device_id,connection,callback){
              asyncCallback(true);
            }else{
              if(result != 0){
-                Firebase.sendMessage(result[0].token,1);
+                Firebase.sendMessage(result[0].token,6);
                 callback.resultcallback(result_code.SuccessMessage,result_code.SuccessCode);
                 asyncCallback(null);
              }
