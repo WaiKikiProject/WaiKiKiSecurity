@@ -31,6 +31,9 @@
     <string name="menu_member_invite">멤버초대</string>
     <string name="menu_delete">장치 삭제</string>
     <string name="menu_logout">로그아웃</string>
+    <string name="menu_master">메뉴(마스터)</string>
+    <string name="menu_guest">메뉴(게스트)</string>
+    <string name="menu_install">장치 설치</string>
 
     <string name="install_splash_title">설치하기</string>
     <string name="install_splash_navi">설치하기 원하는 유형을 선택해주세요.</string>
