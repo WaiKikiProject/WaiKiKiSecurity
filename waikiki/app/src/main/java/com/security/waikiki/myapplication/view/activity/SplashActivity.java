@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.security.waikiki.myapplication.R;
+import com.security.waikiki.myapplication.db.RealmManager;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
@@ -19,17 +20,10 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-
-        //changepoint
-        checkLoading(true);
+       checkLoading();
     }
 
-    private void checkLoading(boolean first) {
-        mCountDownLatch = new CountDownLatch(first ? 1 : 3);
-        if (!first) {
-
-        }
-
+    private void checkLoading() {
         new LoadingWaitTask();
     }
 
@@ -51,9 +45,15 @@ public class SplashActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            Intent intent = new Intent(SplashActivity.this, SignInActivity.class);
-            startActivity(intent);
-            finish();
+            if(RealmManager.getUser() == null){
+                Intent intent = new Intent(SplashActivity.this, SignInActivity.class);
+                startActivity(intent);
+                finish();
+            }else {
+                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
         }
 
     }

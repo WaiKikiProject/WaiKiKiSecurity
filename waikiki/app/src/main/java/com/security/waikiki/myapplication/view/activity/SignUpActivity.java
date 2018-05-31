@@ -5,9 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.security.waikiki.myapplication.Customdialog;
+import com.security.waikiki.myapplication.util.Customdialog;
 import com.security.waikiki.myapplication.R;
 import com.security.waikiki.myapplication.network.ServerCallBack;
 import com.security.waikiki.myapplication.network.ServerManager;

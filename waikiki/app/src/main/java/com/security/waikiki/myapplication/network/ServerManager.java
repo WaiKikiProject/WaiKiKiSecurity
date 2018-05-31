@@ -1,5 +1,7 @@
 package com.security.waikiki.myapplication.network;
 
+import com.security.waikiki.myapplication.entitiy.User;
+
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -49,8 +51,8 @@ public class ServerManager {
     }
 
 
-    public void loginMethod(ServerCallBack callBack, String email, String password) {
-        Call<ResponseBody> call = mServerInterface.login(email, password);
+    public void loginMethod(ServerCallBack callBack, User user) {
+        Call<User> call = mServerInterface.login(user);
         call.enqueue(callBack);
     }
 

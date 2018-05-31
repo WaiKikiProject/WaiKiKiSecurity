@@ -1,4 +1,4 @@
-package com.security.waikiki.myapplication;
+package com.security.waikiki.myapplication.util;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -9,6 +9,8 @@ import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
+
+import com.security.waikiki.myapplication.R;
 
 public class Customdialog extends Dialog {
 

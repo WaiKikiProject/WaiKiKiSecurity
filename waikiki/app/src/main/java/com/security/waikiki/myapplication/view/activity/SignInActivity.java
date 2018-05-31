@@ -12,6 +12,8 @@ import android.widget.Toast;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.security.waikiki.myapplication.R;
 import com.security.waikiki.myapplication.WaiKiKi;
+import com.security.waikiki.myapplication.controller.ControlCallback;
+import com.security.waikiki.myapplication.controller.Task;
 import com.security.waikiki.myapplication.network.ServerCallBack;
 import com.security.waikiki.myapplication.network.ServerManager;
 
@@ -96,6 +98,27 @@ public class SignInActivity extends RootParentActivity {
         }
     };
 
+    ControlCallback controlCallback = new ControlCallback()
+    {
+        @Override
+        public void onSucccess()
+        {
+           Toast.makeText(getApplicationContext(),"success",Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onError(int code)
+        {
+            Toast.makeText(getApplicationContext(),"error : "+code,Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onFail()
+        {
+            Toast.makeText(getApplicationContext(),"serverfail",Toast.LENGTH_SHORT).show();
+        }
+    };
+
     public class LoginTask extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPreExecute() {
@@ -106,6 +129,8 @@ public class SignInActivity extends RootParentActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
+
+            Task.getInstance().loginTask(edit_email.getText().toString(), edit_password.getText().toString(),controlCallback);
 
 //            ServerManager.getInstanse().loginMethod(callBack, edit_email.getText().toString(), edit_password.getText().toString());
 //            ServerManager.getInstanse().sendToken(callBack, "test", FirebaseInstanceId.getInstance().getToken());
