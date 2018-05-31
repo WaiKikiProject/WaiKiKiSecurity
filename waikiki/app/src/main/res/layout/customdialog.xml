@@ -1,38 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.constraint.Guideline
-        android:id="@+id/left_guide"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.15" />
+    <!--<android.support.constraint.Guideline-->
+        <!--android:id="@+id/left_guide"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="vertical"-->
+        <!--android:background="@android:color/transparent"-->
+        <!--app:layout_constraintGuide_percent="0.15" />-->
 
-    <android.support.constraint.Guideline
-        android:id="@+id/right_guide"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.85"
-        />
+    <!--<android.support.constraint.Guideline-->
+        <!--android:id="@+id/right_guide"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="vertical"-->
+        <!--android:background="@android:color/transparent"-->
+        <!--app:layout_constraintGuide_percent="0.85"-->
+        <!--/>-->
 
-    <android.support.constraint.Guideline
-        android:id="@+id/top_guide"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.2" />
+    <!--<android.support.constraint.Guideline-->
+        <!--android:id="@+id/top_guide"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:background="@android:color/transparent"-->
+        <!--app:layout_constraintGuide_percent="0.4" />-->
 
 
     <TextView
         android:id="@+id/dialog_title"
         style="@style/dialog_title"
-        android:layout_width="0dp"
-        android:layout_height="47dp"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
         android:background="@drawable/background_dialog_title"
         android:text="@string/dialogtitle"
         app:layout_constraintLeft_toLeftOf="@id/left_guide"
@@ -42,19 +46,24 @@
     <TextView
         android:id="@+id/dialog_mesgase"
         style="@style/dialog_mesgase"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_width="250dp"
+        android:layout_height="120dp"
         android:background="@drawable/background_dialog_mesage"
         android:text="TextView"
         app:layout_constraintLeft_toLeftOf="@id/left_guide"
         app:layout_constraintRight_toRightOf="@id/right_guide"
         app:layout_constraintTop_toBottomOf="@+id/dialog_title" />
 
+    <View
+        android:layout_width="250dp"
+        android:layout_height="1dp"
+        android:layout_centerInParent="true"
+        android:background="#BDBDBD"/>
+
     <TextView
         android:id="@+id/dialog_confirm"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-
+        android:layout_width="250dp"
+        android:layout_height="40dp"
         android:text="@string/dialogconfirm"
         android:background="@drawable/background_dialog_confirm"
         style="@style/dialog_confirm"
@@ -62,4 +71,4 @@
         app:layout_constraintRight_toRightOf="@id/right_guide"
         app:layout_constraintTop_toBottomOf="@+id/dialog_mesgase"/>
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
