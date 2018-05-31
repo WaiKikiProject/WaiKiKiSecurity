@@ -130,7 +130,7 @@ module.exports = function(app,connection)
      });
 
 	 app.delete('/logout',function(req,res){
-		 var email = req.body.email;
+		 var email = req.headers.email;
 		 console.log(email);
 
 		 var logout = require("../api/LogOutAPI");
