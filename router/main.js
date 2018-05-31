@@ -34,7 +34,7 @@ module.exports = function(app,connection)
 		console.log(device_id);
 
 		var CreateEventAPI = require("../api/CreateEventAPI");
-		CreateEventAPI.create(device_id,connection, callback(res));
+		CreateEventAPI.create(device_id,connection,callback(res));
      });
 
 	 app.post('/deviceinstall',function(req,res){
