@@ -3,15 +3,15 @@
  */
 
 exports.checkLogin = function(email,password,connection,callback){
-	
+
 	console.log("start checkLogin");
-	
+
 	var result_code = require("../conf/ResultCode");
 	var async = require('async');
 
 	async.series({
-		
-		checkParameter : function(asyncCallback){		
+
+		checkParameter : function(asyncCallback){
 			console.log("start installCheck method");
 			if(email == null || password == null){
 				console.log("MissmatchParameter");
@@ -24,16 +24,16 @@ exports.checkLogin = function(email,password,connection,callback){
 
 		LoginCheck : function(asyncCallback){
 			console.log("start LoginCheck method");
-			
+
 			var findPasswordstmt = "select * from user where email like ? and password like ?";
-			
+
 			connection.query(findPasswordstmt,[email,password],function(err, result){
 					if(err){
 						callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
 						asyncCallback(true);
 					}else{
 						if(result != 0){
-							callback.resultcallback(result_code.SuccessMessage,result_code.SuccessCode);
+							callback.resultcallback(result[0],result_code.SuccessCode);
 							asyncCallback(null);
 						}else{
 							callback.resultcallback(result_code.DissMatchLoginMessage,result_code.DissMatchLoginCode);
@@ -44,7 +44,7 @@ exports.checkLogin = function(email,password,connection,callback){
 		}
 
 	},
-	
+
 	asyncCallback = function(err){
 		 if (err)
 		        console.log('err');
