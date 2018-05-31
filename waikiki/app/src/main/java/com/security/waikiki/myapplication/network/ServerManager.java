@@ -1,7 +1,9 @@
 package com.security.waikiki.myapplication.network;
 
+import com.security.waikiki.myapplication.entitiy.Device;
 import com.security.waikiki.myapplication.entitiy.User;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -65,4 +67,15 @@ public class ServerManager {
         Call<ResponseBody> call = mServerInterface.sendToken(email, token);
         call.enqueue(callBack);
     }
+
+    public void logOutMethod(ServerCallBack callBack, String email){
+        Call<ResponseBody> call = mServerInterface.logout(email);
+        call.enqueue(callBack);
+    }
+
+    public void installListMethod(ServerCallBack callBack, String email){
+        Call<List<Device>> call = mServerInterface.getInstallist(email);
+        call.enqueue(callBack);
+    }
+
 }

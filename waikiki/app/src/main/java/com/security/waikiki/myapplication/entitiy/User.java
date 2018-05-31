@@ -6,71 +6,62 @@ import com.google.gson.annotations.SerializedName;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class User extends RealmObject
-{
-	@Expose
-	@SerializedName("email")
-	@PrimaryKey
-	private String UserEmail;
+public class User extends RealmObject {
+    @Expose
+    @SerializedName("email")
+    @PrimaryKey
+    private String UserEmail;
 
-	@Expose(deserialize = true)
-	@SerializedName("password")
-	private String Password;
+    @Expose(deserialize = true)
+    @SerializedName("password")
+    private String Password;
 
-	@Expose
-	@SerializedName("name")
-	private String UserName;
+    @Expose
+    @SerializedName("name")
+    private String UserName;
 
-	@Expose
-	@SerializedName("token")
-	private String Token;
+    @Expose
+    @SerializedName("token")
+    private String Token;
 
-	public User(){
+    public User() {
 
-	}
+    }
 
-	public User(String email,String password){
-		UserEmail = email;
-		Password = password;
-	}
+    public User(String email, String password) {
+        UserEmail = email;
+        Password = password;
+    }
 
-	public String getUserEmail()
-	{
-		return UserEmail;
-	}
+    public String getUserEmail() {
+        return UserEmail;
+    }
 
-	public void setUserEmail(String userEmail)
-	{
-		UserEmail = userEmail;
-	}
+    public void setUserEmail(String userEmail) {
+        UserEmail = userEmail;
+    }
 
-	public String getPassword()
-	{
-		return Password;
-	}
+    public String getPassword() {
+        return Password;
+    }
 
-	public void setPassword(String password)
-	{
-		Password = password;
-	}
+    public void setPassword(String password) {
+        Password = password;
+    }
 
-	public String getUserName()
-	{
-		return UserName;
-	}
+    public String getUserName() {
+        return UserName;
+    }
 
-	public void setUserName(String userName)
-	{
-		UserName = userName;
-	}
+    public void setUserName(String userName) {
+        UserName = userName;
+    }
 
-	public String getToken()
-	{
-		return Token;
-	}
+    public String getToken() {
+        return Token;
+    }
 
-	public void setToken(String token)
-	{
-		Token = token;
-	}
+    public void setToken(String token) {
+        Token = token;
+    }
 }

@@ -29,6 +29,7 @@ public class SplashActivity extends AppCompatActivity {
 
     public class LoadingWaitTask extends AsyncTask<Void, Void, Void> {
         public LoadingWaitTask() {
+            mCountDownLatch = new CountDownLatch(1);
             execute();
         }
 

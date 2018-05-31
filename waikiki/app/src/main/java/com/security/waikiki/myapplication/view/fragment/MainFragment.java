@@ -16,6 +16,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.security.waikiki.myapplication.R;
+import com.security.waikiki.myapplication.db.RealmManager;
+import com.security.waikiki.myapplication.entitiy.Device;
+import com.security.waikiki.myapplication.entitiy.User;
 import com.security.waikiki.myapplication.entitiy.UserType;
 import com.security.waikiki.myapplication.view.activity.InstallSplashActivity;
 
@@ -25,6 +28,7 @@ public class MainFragment extends Fragment {
     private Context mContext;
     private ViewGroup mRootview;
 
+    private Device mDevcie;
     private UserType mUserType;
     private SecureMode mSecureMode;
 
@@ -41,9 +45,20 @@ public class MainFragment extends Fragment {
         UNSECURE
     }
 
-    public MainFragment(UserType userType, SecureMode secureMode) {
-        mUserType = userType;
-        mSecureMode = secureMode;
+    public MainFragment(Device device) {
+
+        if (device != null) {
+            mDevcie = device;
+            mUserType = device.getMaster().equals(RealmManager.getUser().getUserName()) ? UserType.MASTER : UserType.GUEST;
+            mSecureMode = device.getSMode().equals("O") ? SecureMode.SECURE : SecureMode.UNSECURE;
+        } else {
+            mUserType = UserType.DEFAULT;
+        }
+
+    }
+
+    public UserType isMaster() {
+        return mUserType;
     }
 
     @Nullable
@@ -69,6 +84,9 @@ public class MainFragment extends Fragment {
     }
 
     public void setStatusUI() {
+        if (mDevcie != null) {
+            mTextDeviceName.setText(mDevcie.getDeviceName());
+        }
 
         switch (mUserType) {
             case MASTER:

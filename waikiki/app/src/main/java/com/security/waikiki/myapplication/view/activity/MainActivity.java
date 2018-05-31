@@ -11,8 +11,13 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.security.waikiki.myapplication.R;
+import com.security.waikiki.myapplication.controller.ControlCallback;
+import com.security.waikiki.myapplication.controller.Task;
+import com.security.waikiki.myapplication.db.RealmManager;
+import com.security.waikiki.myapplication.entitiy.Device;
 import com.security.waikiki.myapplication.entitiy.UserType;
 import com.security.waikiki.myapplication.util.CircleAnimIndicator;
 import com.security.waikiki.myapplication.view.adapter.ViewPagerAdapter;
@@ -21,6 +26,8 @@ import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.realm.RealmResults;
 
 
 public class MainActivity extends RootParentActivity {
@@ -44,10 +51,11 @@ public class MainActivity extends RootParentActivity {
     private LinearLayout mButtonSModeLog;
     private LinearLayout mButtonMemberInvite;
     private LinearLayout mButtonDelete;
-    private LinearLayout mButtonMemberLogOut;
+    private LinearLayout mButtonLogOut;
 
     private List<MainFragment> listFragment;
 
+    private UserType mUserType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,11 +99,13 @@ public class MainActivity extends RootParentActivity {
         mButtonSModeLog = mMenuView.findViewById(R.id.button_event);
         mButtonMemberInvite = mMenuView.findViewById(R.id.button_member_invite);
         mButtonDelete = mMenuView.findViewById(R.id.button_delete);
+        mButtonLogOut = mMenuView.findViewById(R.id.button_logout);
         mButtonMember.setOnClickListener(mOnClickListener);
         mButtonEvent.setOnClickListener(mOnClickListener);
         mButtonSModeLog.setOnClickListener(mOnClickListener);
         mButtonMemberInvite.setOnClickListener(mOnClickListener);
         mButtonDelete.setOnClickListener(mOnClickListener);
+        mButtonLogOut.setOnClickListener(mOnClickListener);
 
     }
 
@@ -107,12 +117,14 @@ public class MainActivity extends RootParentActivity {
             listFragment.clear();
         }
 
-        MainFragment fragment1 = new MainFragment(UserType.GUEST, MainFragment.SecureMode.SECURE);
-        MainFragment fragment2 = new MainFragment(UserType.MASTER, MainFragment.SecureMode.UNSECURE);
-        MainFragment fragment3 = new MainFragment(UserType.DEFAULT, null);
-        listFragment.add(fragment1);
-        listFragment.add(fragment2);
-        listFragment.add(fragment3);
+        RealmResults<Device> devices = RealmManager.getDevices();
+
+        for (Device device : devices){
+            MainFragment fragment = new MainFragment(device);
+            listFragment.add(fragment);
+        }
+        MainFragment fragment = new MainFragment( null);
+        listFragment.add(fragment);
 
 
         mAdapter = new ViewPagerAdapter(getSupportFragmentManager(), listFragment);
@@ -208,9 +220,33 @@ public class MainActivity extends RootParentActivity {
                 case R.id.button_delete:
                     break;
                 case R.id.button_logout:
+                    Task.getInstance().logoutTask(logoutCallback);
                     break;
 
             }
         }
     };
+
+    ControlCallback logoutCallback = new ControlCallback()
+    {
+        @Override
+        public void onSucccess()
+        {
+            finish();
+            Toast.makeText(getApplicationContext(),"success",Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onError(int code)
+        {
+            Toast.makeText(getApplicationContext(),"error : "+code,Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onFail()
+        {
+            Toast.makeText(getApplicationContext(),"serverfail",Toast.LENGTH_SHORT).show();
+        }
+    };
+
 }
