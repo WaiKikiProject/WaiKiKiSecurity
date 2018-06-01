@@ -45,7 +45,7 @@ exports.getInstallList = function(email,connection,callback){
 
 			console.log("start findInstall method");
 
-			  var findinstallstmt = "select * from install join device using(device_id) where email like ?";
+			  var findinstallstmt = "select device_id, device_name, s_mode, master from install join device using(device_id) where email like ?";
 			  connection.query(findinstallstmt,[email],function(err, result){
 					if(err){
 						callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
