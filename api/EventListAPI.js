@@ -43,10 +43,10 @@ exports.getEventList = function(email,connection,callback){
 
 		findEvent :function(asyncCallback){
 
-			console.log("start findMember method");
+			console.log("start findEvent method");
 
-			  var findmemberstmt = "select device_id,event_code,confirm_result from confirmevent where email like ?";
-			  connection.query(findmemberstmt,[device_id,email],function(err, result){
+			  var selectdeventstmt = "select device_id,event_code,confirm_result from confirmevent where email like ?";
+			  connection.query(selectdeventstmt,[email],function(err, result){
 					if(err){
 						callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
 						asyncCallback(true);

@@ -81,7 +81,7 @@ module.exports = function(app,connection)
 	 app.get('/eventlist/:email',function(req,res){
 		 var email = req.params.email;
 		 var EventList = require("../api/EventListAPI");
-		 EventList.getEventList(email,device_id,connection,callback(res));
+		 EventList.getEventList(email,connection,callback(res));
 	});
 
 	 app.post('/eventlistview',function(req,res){
