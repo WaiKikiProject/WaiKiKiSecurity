@@ -29,6 +29,7 @@ exports.devicetoken = function(email,token,connection,callback){
 						callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
 						asyncCallback(true);
 					}else{
+						callback.resultcallback(result_code.SuccessMessage,result_code.SuccessCode);
 						asyncCallback(null);
 					}
 				})

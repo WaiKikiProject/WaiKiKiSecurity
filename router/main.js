@@ -34,7 +34,7 @@ module.exports = function(app,connection)
 		console.log(device_id);
 
 		var CreateEventAPI = require("../api/CreateEventAPI");
-		CreateEventAPI.create(device_id,connection, callback(res));
+		CreateEventAPI.create(device_id,connection,callback(res));
      });
 
 	 app.post('/deviceinstall',function(req,res){
@@ -130,7 +130,7 @@ module.exports = function(app,connection)
      });
 
 	 app.delete('/logout',function(req,res){
-		 var email = req.body.email;
+		 var email = req.headers.email;
 		 console.log(email);
 
 		 var logout = require("../api/LogOutAPI");

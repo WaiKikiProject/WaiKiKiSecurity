@@ -50,8 +50,8 @@ exports.create = function(device_id,connection,callback){
 
 				console.log("Start ConfirmEventInsertQuery");
 
-				var selectUserstmt = "select email from install where device_id like ?";
-				connection.query(insertstmt, [device_id], function(err, result) {
+				var selectEventstmt = "select email from install where device_id like ?";
+				connection.query(selectEventstmt, [device_id], function(err, result) {
 					if(err){
 					connection.rollback(function () {
 							callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
