@@ -76,7 +76,7 @@ exports.getEventList = function(email,device_id,connection,callback){
 							asyncCallback(null);
 						}else{
 							console.log("Not Find Event");
-							callback.resultcallback(result_code.NotExistEventMessage,result_code.NotExistEventCode);
+							callback.resultcallback(result,result_code.SuccessCode);
 							asyncCallback(true);
 						}
 					}

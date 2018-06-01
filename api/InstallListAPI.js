@@ -56,7 +56,7 @@ exports.getInstallList = function(email,connection,callback){
 							asyncCallback(null);
 						}else{
 							console.log("Not Find Install");
-							callback.resultcallback(result_code.NotInstallMessage,result_code.NotInstallCode);
+							callback.resultcallback(result,result_code.SuccessCode);
 							asyncCallback(true);
 						}
 					}
