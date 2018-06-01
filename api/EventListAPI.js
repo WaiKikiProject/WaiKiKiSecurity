@@ -1,7 +1,7 @@
 
 exports.getEventList = function(email,connection,callback){
 
-	console.log("start MemberList");
+	console.log("start EvnetList");
 
 	var result_code = require("../conf/ResultCode");
 	var async = require('async');
@@ -45,8 +45,8 @@ exports.getEventList = function(email,connection,callback){
 
 			console.log("start findEvent method");
 
-			  var selectdeventstmt = "select device_id,event_code,confirm_result from confirmevent where email like ?";
-			  connection.query(selectdeventstmt,[email],function(err, result){
+			  var selecteventstmt = "select device_id,event_code,confirm_result from confirmevent join event using(event_code) where email like ?";
+			  connection.query(selecteventstmt,[email],function(err, result){
 					if(err){
 						callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
 						asyncCallback(true);
