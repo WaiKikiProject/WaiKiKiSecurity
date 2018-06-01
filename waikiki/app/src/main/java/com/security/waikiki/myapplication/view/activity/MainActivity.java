@@ -18,6 +18,8 @@ import com.security.waikiki.myapplication.controller.ControlCallback;
 import com.security.waikiki.myapplication.controller.Task;
 import com.security.waikiki.myapplication.db.RealmManager;
 import com.security.waikiki.myapplication.entitiy.Device;
+import com.security.waikiki.myapplication.entitiy.Event;
+import com.security.waikiki.myapplication.entitiy.User;
 import com.security.waikiki.myapplication.entitiy.UserType;
 import com.security.waikiki.myapplication.util.CircleAnimIndicator;
 import com.security.waikiki.myapplication.view.adapter.ViewPagerAdapter;
@@ -30,223 +32,399 @@ import java.util.List;
 import io.realm.RealmResults;
 
 
-public class MainActivity extends RootParentActivity {
+public class MainActivity extends RootParentActivity
+{
 
-    private View mMenuView;
+	private View mMenuView;
 
-    private SlidingUpPanelLayout mLayoutSliding;
+	private SlidingUpPanelLayout mLayoutSliding;
 
-    private TextView mTextUser;
-    private ConstraintLayout mButtonLeft;
-    private ConstraintLayout mButtonRight;
+	private ConstraintLayout mButtonLeft;
+	private ConstraintLayout mButtonRight;
 
-    private CircleAnimIndicator mPagerIndicator;
+	private CircleAnimIndicator mPagerIndicator;
 
-    private ViewPager mViewPager;
-    private ViewPagerAdapter mAdapter;
-    private int mViewPagerIndex;
+	private ViewPager mViewPager;
+	private ViewPagerAdapter mAdapter;
+	private int mViewPagerIndex;
 
-    private LinearLayout mButtonMember;
-    private LinearLayout mButtonEvent;
-    private LinearLayout mButtonSModeLog;
-    private LinearLayout mButtonMemberInvite;
-    private LinearLayout mButtonDelete;
-    private LinearLayout mButtonLogOut;
+	private TextView mTextEvent;
 
-    private List<MainFragment> listFragment;
+	private LinearLayout mButtonMember;
+	private LinearLayout mButtonEvent;
+	private LinearLayout mButtonSModeLog;
+	private LinearLayout mButtonMemberInvite;
+	private LinearLayout mButtonDelete;
+	private LinearLayout mButtonLogOut;
 
-    private UserType mUserType;
+	private List<MainFragment> listFragment;
+	private String mCurrentDeviceID;
+	private UserType mUserType;
+	private User mUser;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+	@Override
+	protected void onCreate(Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+		Toolbar toolbar = findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
 
-        ActionBar supportActionBar = getSupportActionBar();
-        supportActionBar.setDisplayShowHomeEnabled(false);
-        supportActionBar.setDisplayHomeAsUpEnabled(false);
-        supportActionBar.setDisplayShowCustomEnabled(true);
+		ActionBar supportActionBar = getSupportActionBar();
+		supportActionBar.setDisplayShowHomeEnabled(false);
+		supportActionBar.setDisplayHomeAsUpEnabled(false);
+		supportActionBar.setDisplayShowCustomEnabled(true);
 
 //        setStatusbar(toolbar);
 
-        mLayoutSliding = findViewById(R.id.layout_sliding);
+		mLayoutSliding = findViewById(R.id.layout_sliding);
 
-        mViewPager = findViewById(R.id.viewpager);
-        mTextUser = findViewById(R.id.textview_user);
-        mButtonLeft = findViewById(R.id.button_left);
-        mButtonRight = findViewById(R.id.button_right);
-        mPagerIndicator = findViewById(R.id.pager_indicator);
+		mViewPager = findViewById(R.id.viewpager);
+		mButtonLeft = findViewById(R.id.button_left);
+		mButtonRight = findViewById(R.id.button_right);
+		mPagerIndicator = findViewById(R.id.pager_indicator);
 
-        mButtonRight.setOnClickListener(mOnClickListener);
-        mButtonLeft.setOnClickListener(mOnClickListener);
+		mTextEvent = findViewById(R.id.textview_event);
 
-        mViewPagerIndex = 0;
+		mButtonRight.setOnClickListener(mOnClickListener);
+		mButtonLeft.setOnClickListener(mOnClickListener);
 
-        setViewPage();
+		mUser = RealmManager.getUser();
 
-        initMenu();
-    }
+		mViewPagerIndex = 0;
 
+		initMenu();
+		setViewPage();
 
-    private void initMenu() {
-        mMenuView = findViewById(R.id.include_menu);
+		getInstallData(mViewPagerIndex);
 
-        mButtonMember = mMenuView.findViewById(R.id.button_member);
-        mButtonEvent = mMenuView.findViewById(R.id.button_event);
-        mButtonSModeLog = mMenuView.findViewById(R.id.button_event);
-        mButtonMemberInvite = mMenuView.findViewById(R.id.button_member_invite);
-        mButtonDelete = mMenuView.findViewById(R.id.button_delete);
-        mButtonLogOut = mMenuView.findViewById(R.id.button_logout);
-        mButtonMember.setOnClickListener(mOnClickListener);
-        mButtonEvent.setOnClickListener(mOnClickListener);
-        mButtonSModeLog.setOnClickListener(mOnClickListener);
-        mButtonMemberInvite.setOnClickListener(mOnClickListener);
-        mButtonDelete.setOnClickListener(mOnClickListener);
-        mButtonLogOut.setOnClickListener(mOnClickListener);
-
-    }
+	}
 
 
-    private void setViewPage() {
-        if (listFragment == null) {
-            listFragment = new ArrayList<>();
-        } else {
-            listFragment.clear();
-        }
+	private void initMenu()
+	{
+		mMenuView = findViewById(R.id.include_menu);
 
-        RealmResults<Device> devices = RealmManager.getDevices();
+		mButtonMember = mMenuView.findViewById(R.id.button_member);
+		mButtonEvent = mMenuView.findViewById(R.id.button_event);
+		mButtonSModeLog = mMenuView.findViewById(R.id.button_smode_log);
+		mButtonMemberInvite = mMenuView.findViewById(R.id.button_member_invite);
+		mButtonDelete = mMenuView.findViewById(R.id.button_delete);
+		mButtonLogOut = mMenuView.findViewById(R.id.button_logout);
+		mButtonMember.setOnClickListener(mOnClickListener);
+		mButtonEvent.setOnClickListener(mOnClickListener);
+		mButtonSModeLog.setOnClickListener(mOnClickListener);
+		mButtonMemberInvite.setOnClickListener(mOnClickListener);
+		mButtonDelete.setOnClickListener(mOnClickListener);
+		mButtonLogOut.setOnClickListener(mOnClickListener);
 
-        for (Device device : devices){
-            MainFragment fragment = new MainFragment(device);
-            listFragment.add(fragment);
-        }
-        MainFragment fragment = new MainFragment( null);
-        listFragment.add(fragment);
+	}
+
+	private void getInstallData(int position)
+	{
+		mUserType = mAdapter.getItem(position).getUserType();
+		mCurrentDeviceID = mAdapter.getItem(position).getDeviceID();
+
+		setMenu(mUserType);
+
+		if (mCurrentDeviceID == null)
+		{
+			mTextEvent.setText(getString(R.string.main_install_navi));
+		}
+		else
+		{
+			Task.getInstance().getEvnetTask(mUser.getUserEmail(), mCurrentDeviceID, eventCollback);
+		}
+	}
+
+	private ControlCallback eventCollback = new ControlCallback()
+	{
+		@Override
+		public void onSucccess()
+		{
+			int event_count = 0;
+
+			RealmResults<Event> events = RealmManager.getEvent(mCurrentDeviceID);
+			for (Event event : events)
+			{
+				if (event.getConfirm().equals("X"))
+				{
+					event_count++;
+				} ;
+			}
+
+			if (event_count == 0)
+			{
+				mTextEvent.setText(getString(R.string.main_event_null));
+			}
+			else
+			{
+				mTextEvent.setText(getString(R.string.main_event, event_count));
+			}
+			Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_SHORT).show();
+		}
+
+		@Override
+		public void onError(int code)
+		{
+			mTextEvent.setText(getString(R.string.main_event_error));
+		}
+
+		@Override
+		public void onFail()
+		{
+			mTextEvent.setText(getString(R.string.main_event_error));
+		}
+	};
+
+	private void getDeviceData()
+	{
+		Task.getInstance().getInstallTask(mUser.getUserEmail(), deviceCallback);
+	}
+
+	ControlCallback deviceCallback = new ControlCallback()
+	{
+		@Override
+		public void onSucccess()
+		{
+			Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_SHORT).show();
+			setViewPage();
+			if (listFragment.size() - 1 < mViewPagerIndex)
+			{
+				mViewPager.setCurrentItem(0);
+			}
+			else
+			{
+				mViewPager.setCurrentItem(mViewPagerIndex);
+			}
+		}
+
+		@Override
+		public void onError(int code)
+		{
+			Toast.makeText(getApplicationContext(), "error : " + code, Toast.LENGTH_SHORT).show();
+		}
+
+		@Override
+		public void onFail()
+		{
+			Toast.makeText(getApplicationContext(), "오류", Toast.LENGTH_SHORT).show();
+		}
+	};
+
+	private void setMenu(UserType userType)
+	{
+		switch (userType)
+		{
+		case MASTER:
+			mButtonEvent.setVisibility(View.VISIBLE);
+			mButtonMember.setVisibility(View.VISIBLE);
+			mButtonSModeLog.setVisibility(View.VISIBLE);
+			mButtonMemberInvite.setVisibility(View.VISIBLE);
+			mButtonDelete.setVisibility(View.VISIBLE);
+			break;
+		case GUEST:
+			mButtonEvent.setVisibility(View.VISIBLE);
+			mButtonMember.setVisibility(View.VISIBLE);
+			mButtonSModeLog.setVisibility(View.VISIBLE);
+			mButtonMemberInvite.setVisibility(View.GONE);
+			mButtonDelete.setVisibility(View.GONE);
+			break;
+		case DEFAULT:
+			mButtonEvent.setVisibility(View.GONE);
+			mButtonMember.setVisibility(View.GONE);
+			mButtonSModeLog.setVisibility(View.GONE);
+			mButtonMemberInvite.setVisibility(View.GONE);
+			mButtonDelete.setVisibility(View.GONE);
+			break;
+		}
+	}
+
+	private long time = 0;
+
+	@Override
+	public void onBackPressed()
+	{
+		if (mLayoutSliding.getPanelState().equals(SlidingUpPanelLayout.PanelState.EXPANDED))
+		{
+			mLayoutSliding.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+		}
+		else
+		{
+			if (System.currentTimeMillis() - time >= 2000)
+			{
+				time = System.currentTimeMillis();
+				Toast.makeText(getApplicationContext(), getString(R.string.main_backpress), Toast.LENGTH_SHORT).show();
+			}
+			else if (System.currentTimeMillis() - time < 2000)
+			{
+				finish();
+			}
+		}
+	}
+
+	private void setViewPage()
+	{
+		if (listFragment == null)
+		{
+			listFragment = new ArrayList<>();
+		}
+		else
+		{
+			listFragment.clear();
+		}
+
+		RealmResults<Device> devices = RealmManager.getDevices();
+
+		for (Device device : devices)
+		{
+			MainFragment fragment = new MainFragment(device);
+			listFragment.add(fragment);
+		}
+		MainFragment fragment = new MainFragment(null);
+		listFragment.add(fragment);
 
 
-        mAdapter = new ViewPagerAdapter(getSupportFragmentManager(), listFragment);
+		mAdapter = new ViewPagerAdapter(getSupportFragmentManager(), listFragment);
 
-        mViewPager.setAdapter(mAdapter);
-        mViewPager.addOnPageChangeListener(mOnPageChangeListener);
+		mViewPager.setAdapter(mAdapter);
+		mViewPager.addOnPageChangeListener(mOnPageChangeListener);
 
-        mViewPager.setCurrentItem(mViewPagerIndex);
+		mViewPager.setCurrentItem(mViewPagerIndex);
 
-        initIndicaotor();
-        setViewPagerButton(mViewPager.getCurrentItem());
-    }
+		initIndicaotor();
+		setViewPagerButton(mViewPager.getCurrentItem());
+	}
 
-    private void initIndicaotor() {
-        mPagerIndicator.removeAllViews();
+	private void initIndicaotor()
+	{
+		mPagerIndicator.removeAllViews();
 
-        mPagerIndicator.setItemMargin(10);
-        mPagerIndicator.setAnimDuration(300);
+		mPagerIndicator.setItemMargin(10);
+		mPagerIndicator.setAnimDuration(300);
 
-        Point pt = new Point();
-        getWindowManager().getDefaultDisplay().getSize(pt);
-        ((WindowManager) getSystemService(WINDOW_SERVICE)).getDefaultDisplay().getSize(pt);
+		Point pt = new Point();
+		getWindowManager().getDefaultDisplay().getSize(pt);
+		((WindowManager) getSystemService(WINDOW_SERVICE)).getDefaultDisplay().getSize(pt);
 
-        int width = pt.x;
+		int width = pt.x;
 
-        mPagerIndicator.createDotPanel(listFragment.size(), R.drawable.indicator_non, R.drawable.indicator_on, width /
-                        120,
-                mViewPagerIndex);
-    }
+		mPagerIndicator.createDotPanel(listFragment.size(), R.drawable.indicator_non, R.drawable.indicator_on, width /
+				120,
+			mViewPagerIndex);
+	}
 
-    private void setViewPagerButton(int pageindex) {
-        if (listFragment.size() == 1) {
-            mButtonLeft.setVisibility(View.INVISIBLE);
-            mButtonRight.setVisibility(View.INVISIBLE);
-        } else if (pageindex <= 0) {
-            mButtonLeft.setVisibility(View.INVISIBLE);
-            mButtonRight.setVisibility(View.VISIBLE);
-        } else if (pageindex >= listFragment.size() - 1) {
-            mButtonLeft.setVisibility(View.VISIBLE);
-            mButtonRight.setVisibility(View.INVISIBLE);
-        } else {
-            mButtonLeft.setVisibility(View.VISIBLE);
-            mButtonRight.setVisibility(View.VISIBLE);
-        }
-    }
+	private void setViewPagerButton(int pageindex)
+	{
+		if (listFragment.size() == 1)
+		{
+			mButtonLeft.setVisibility(View.INVISIBLE);
+			mButtonRight.setVisibility(View.INVISIBLE);
+		}
+		else if (pageindex <= 0)
+		{
+			mButtonLeft.setVisibility(View.INVISIBLE);
+			mButtonRight.setVisibility(View.VISIBLE);
+		}
+		else if (pageindex >= listFragment.size() - 1)
+		{
+			mButtonLeft.setVisibility(View.VISIBLE);
+			mButtonRight.setVisibility(View.INVISIBLE);
+		}
+		else
+		{
+			mButtonLeft.setVisibility(View.VISIBLE);
+			mButtonRight.setVisibility(View.VISIBLE);
+		}
+	}
 
-    private ViewPager.OnPageChangeListener mOnPageChangeListener = new ViewPager.OnPageChangeListener() {
+	private ViewPager.OnPageChangeListener mOnPageChangeListener = new ViewPager.OnPageChangeListener()
+	{
 
-        @Override
-        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-        }
+		@Override
+		public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
+		{
+		}
 
-        @Override
-        public void onPageSelected(int position) {
-            mPagerIndicator.selectDot(position);
-            setViewPagerButton(position);
-            mViewPagerIndex = position;
-        }
+		@Override
+		public void onPageSelected(int position)
+		{
+			mPagerIndicator.selectDot(position);
+			setViewPagerButton(position);
+			mViewPagerIndex = position;
 
-        @Override
-        public void onPageScrollStateChanged(int state) {
-        }
-    };
+			getInstallData(position);
+
+		}
+
+		@Override
+		public void onPageScrollStateChanged(int state)
+		{
+		}
+	};
 
 
-    View.OnClickListener mOnClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
+	View.OnClickListener mOnClickListener = new View.OnClickListener()
+	{
+		@Override
+		public void onClick(View v)
+		{
 
-            mLayoutSliding.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+			mLayoutSliding.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
 
-            Intent intent;
+			Intent intent;
 
-            switch (v.getId()) {
-                case R.id.button_left:
-                    mViewPager.setCurrentItem(mViewPagerIndex - 1);
-                    break;
-                case R.id.button_right:
-                    mViewPager.setCurrentItem(mViewPagerIndex + 1);
-                    break;
-                case R.id.button_member:
-                    intent = new Intent(MainActivity.this, MemberActivity.class);
-                    startActivity(intent);
-                    break;
-                case R.id.button_event:
-                    intent = new Intent(MainActivity.this, EventActivity.class);
-                    startActivity(intent);
-                    break;
-                case R.id.button_member_invite:
-                    intent = new Intent(MainActivity.this, InviteActivity.class);
-                    startActivity(intent);
-                    break;
-                case R.id.button_delete:
-                    break;
-                case R.id.button_logout:
-                    Task.getInstance().logoutTask(logoutCallback);
-                    break;
+			switch (v.getId())
+			{
+			case R.id.button_left:
+				mViewPager.setCurrentItem(mViewPagerIndex - 1);
+				break;
+			case R.id.button_right:
+				mViewPager.setCurrentItem(mViewPagerIndex + 1);
+				break;
+			case R.id.button_member:
+				intent = new Intent(MainActivity.this, MemberActivity.class);
+				startActivity(intent);
+				break;
+			case R.id.button_event:
+				intent = new Intent(MainActivity.this, EventActivity.class);
+				startActivity(intent);
+				break;
+			case R.id.button_member_invite:
+				intent = new Intent(MainActivity.this, InviteActivity.class);
+				startActivity(intent);
+				break;
+			case R.id.button_delete:
+				break;
+			case R.id.button_logout:
+				Task.getInstance().logoutTask(logoutCallback);
+				break;
 
-            }
-        }
-    };
+			}
+		}
+	};
 
-    ControlCallback logoutCallback = new ControlCallback()
-    {
-        @Override
-        public void onSucccess()
-        {
-            finish();
-            Toast.makeText(getApplicationContext(),"success",Toast.LENGTH_SHORT).show();
-        }
+	ControlCallback logoutCallback = new ControlCallback()
+	{
+		@Override
+		public void onSucccess()
+		{
+			finish();
+			Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_SHORT).show();
+		}
 
-        @Override
-        public void onError(int code)
-        {
-            Toast.makeText(getApplicationContext(),"error : "+code,Toast.LENGTH_SHORT).show();
-        }
+		@Override
+		public void onError(int code)
+		{
+			Toast.makeText(getApplicationContext(), "error : " + code, Toast.LENGTH_SHORT).show();
+		}
 
-        @Override
-        public void onFail()
-        {
-            Toast.makeText(getApplicationContext(),"serverfail",Toast.LENGTH_SHORT).show();
-        }
-    };
+		@Override
+		public void onFail()
+		{
+			Toast.makeText(getApplicationContext(), "serverfail", Toast.LENGTH_SHORT).show();
+		}
+	};
 
 }

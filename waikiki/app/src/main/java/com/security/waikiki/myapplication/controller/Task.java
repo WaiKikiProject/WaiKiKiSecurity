@@ -3,6 +3,7 @@ package com.security.waikiki.myapplication.controller;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.security.waikiki.myapplication.db.RealmManager;
 import com.security.waikiki.myapplication.entitiy.Device;
+import com.security.waikiki.myapplication.entitiy.Event;
 import com.security.waikiki.myapplication.entitiy.User;
 import com.security.waikiki.myapplication.network.ServerCallBack;
 import com.security.waikiki.myapplication.network.ServerManager;
@@ -102,6 +103,7 @@ public class Task {
             @Override
             public void onResponseResult(Response response) {
                 if (response.isSuccessful()) {
+                    RealmManager.dumpEvent();
                     List<Device> devices = (List<Device>) response.body();
                     RealmManager.insertDevice(devices);
                     controlCallback.onSucccess();
@@ -118,5 +120,28 @@ public class Task {
         };
 
         ServerManager.getInstanse().installListMethod(serverCallBack, email);
+    }
+
+    public void getEvnetTask(String email,String device_id, final ControlCallback controlCallback) {
+        ServerCallBack serverCallBack = new ServerCallBack() {
+            @Override
+            public void onResponseResult(Response response) {
+                if (response.isSuccessful()) {
+                    List<Event> events = (List<Event>) response.body();
+                    RealmManager.insertEvent(events);
+                    controlCallback.onSucccess();
+                } else {
+                    controlCallback.onError(response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                super.onFailure(call, t);
+                controlCallback.onFail();
+            }
+        };
+
+        ServerManager.getInstanse().eventListMethod(serverCallBack, email, device_id);
     }
 }

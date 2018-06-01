@@ -1,6 +1,7 @@
 package com.security.waikiki.myapplication.db;
 
 import com.security.waikiki.myapplication.entitiy.Device;
+import com.security.waikiki.myapplication.entitiy.Event;
 import com.security.waikiki.myapplication.entitiy.User;
 
 import java.util.List;
@@ -16,12 +17,13 @@ public class RealmManager
 		Realm realm = Realm.getDefaultInstance();
 		User user = realm.where(User.class).findFirst();
 		return user;
+
 	};
 
 	public static void insertUser(User user){
 		Realm realm = Realm.getDefaultInstance();
 		realm.beginTransaction();
-		realm.insert(user);
+		realm.insertOrUpdate(user);
 		realm.commitTransaction();
 	}
 
@@ -35,7 +37,6 @@ public class RealmManager
 
 	public static void insertDevice(List<Device> devices){
 		Realm realm = Realm.getDefaultInstance();
-		User user = realm.where(User.class).findFirst();
 		realm.beginTransaction();
 		for(Device device : devices){
 			realm.insert(device);
@@ -49,6 +50,35 @@ public class RealmManager
 		RealmResults<Device> devices = realm.where(Device.class).findAll();
 		return devices;
 	}
+
+	public static void dumpDevice(){
+		Realm realm = Realm.getDefaultInstance();
+		realm.beginTransaction();
+		realm.delete(Device.class);
+		realm.commitTransaction();
+	}
+
+	public static void insertEvent(List<Event> events){
+		Realm realm = Realm.getDefaultInstance();
+		realm.beginTransaction();
+		for(Event event : events){
+			realm.insertOrUpdate(event);
+		}
+		realm.commitTransaction();
+	}
+
+	public static void dumpEvent(){
+		Realm realm = Realm.getDefaultInstance();
+		realm.beginTransaction();
+		realm.delete(Event.class);
+		realm.commitTransaction();
+	}
+
+	public static RealmResults<Event> getEvent(String device_id){
+		Realm realm = Realm.getDefaultInstance();
+		RealmResults<Event> events = realm.where(Event.class).equalTo("DeviceID",device_id).findAll();
+		return events;
+	};
 
 	public static void dumpDB(){
 		Realm realm = Realm.getDefaultInstance();

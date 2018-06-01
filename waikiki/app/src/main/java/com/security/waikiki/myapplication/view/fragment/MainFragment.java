@@ -49,7 +49,7 @@ public class MainFragment extends Fragment {
 
         if (device != null) {
             mDevcie = device;
-            mUserType = device.getMaster().equals(RealmManager.getUser().getUserName()) ? UserType.MASTER : UserType.GUEST;
+            mUserType = device.getMaster().equals(RealmManager.getUser().getUserEmail()) ? UserType.MASTER : UserType.GUEST;
             mSecureMode = device.getSMode().equals("O") ? SecureMode.SECURE : SecureMode.UNSECURE;
         } else {
             mUserType = UserType.DEFAULT;
@@ -57,8 +57,15 @@ public class MainFragment extends Fragment {
 
     }
 
-    public UserType isMaster() {
+    public UserType getUserType() {
         return mUserType;
+    }
+
+    public  String getDeviceID() {
+        if(mDevcie == null){
+            return null;
+        }
+        return mDevcie.getDeviceID();
     }
 
     @Nullable

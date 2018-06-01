@@ -1,14 +1,14 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">WAIKIKI</string>
 
-    <string name="sign_in_email">이메일을 입력해주세요.</string>
-    <string name="sign_in_password">비밀번호를 입력해주세요.</string>
+    <string name="sign_in_email">이메일을 입력해주세요</string>
+    <string name="sign_in_password">비밀번호를 입력해주세요</string>
     <string name="sign_in_forgot">이메일/비밀번호 찾기</string>
     <string name="sign_in_navigation">회원가입을 하지 않은 경우, 회원가입을 눌러주세요</string>
     <string name= "sign_in_sign_up">회원가입</string>
     <string name="sign_in_login">로그인</string>
-    <string name="sign_up_name">이름을 입력해주세요.</string>
-    <string name="sign_up_repassword">비밀번호를 재입력해주세요.</string>
+    <string name="sign_up_name">이름을 입력해주세요</string>
+    <string name="sign_up_repassword">비밀번호를 재입력해주세요</string>
 
     <string name="type_master">마스터</string>
     <string name="type_guest">게스트</string>
@@ -21,6 +21,10 @@
     <string name="main_event">%1$d개의 이벤트 발생</string>
     <string name="main_install">설치하기</string>
     <string name="main_title">WAIKIKI</string>
+    <string name="main_event_error">이벤트 정보를 받아오지 못했습니다\n새로고침을 눌러주세요</string>
+    <string name="main_install_navi">WAIKIKI보안 장치를 설치해보세요</string>
+    <string name="main_event_null">발생한 이벤트가 없습니다</string>
+    <string name="main_backpress">뒤로 버튼을 한번 더 누르면 종료합니다</string>
 
     <string name="menu_title">메뉴</string>
     <string name="menu_close">닫기</string>
@@ -36,15 +40,15 @@
     <string name="menu_install">장치 설치</string>
 
     <string name="install_splash_title">설치하기</string>
-    <string name="install_splash_navi">설치하기 원하는 유형을 선택해주세요.</string>
+    <string name="install_splash_navi">설치하기 원하는 유형을 선택해주세요</string>
     <string name="install_splash_install">장치설치</string>
     <string name="install_splash_type">타입선택</string>
-    <string name="install_splash_master_navi">마스터유형의 설치는\n마스터가 설치되지 않은 장치만 가능합니다.</string>
-    <string name="install_splash_guest_navi">게스트유형의 설치는\n마스터가 설치된 장치만 가능합니다.\n설치는 마스터의 요청승인후 완료됩니다.</string>
+    <string name="install_splash_master_navi">마스터유형의 설치는\n마스터가 설치되지 않은 장치만 가능합니다</string>
+    <string name="install_splash_guest_navi">게스트유형의 설치는\n마스터가 설치된 장치만 가능합니다.\n설치는 마스터의 요청승인후 완료됩니다</string>
 
     <string name="install_name_title">장치 닉네임</string>
     <string name="install_name_main_navi">장치 닉네임 설정</string>
-    <string name="install_name_navi">보안장치의 대표할 닉네임을정해주세요.\n설치후에도 설정을 통해 이름을 변경하실 수 있습니다.</string>
+    <string name="install_name_navi">보안장치의 대표할 닉네임을정해주세요.\n설치후에도 설정을 통해 이름을 변경하실 수 있습니다</string>
     <string name="install_name_hint">장치 닉네임 입력</string>
     <string name="install_name">장치 닉네임 입력</string>
     <string name="install_name_setting">설정완료</string>

@@ -21,18 +21,21 @@
             app:contentInsetEnd="0dp"
             app:contentInsetLeft="0dp"
             app:contentInsetRight="0dp"
-            app:contentInsetStart="0dp">
+            app:contentInsetStart="0dp"
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                >
 
                 <android.support.constraint.ConstraintLayout
                     android:id="@+id/button_up"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
-                    android:visibility="invisible">
+                    android:visibility="invisible"
+                    >
 
                     <View
                         android:layout_width="0dp"
@@ -42,13 +45,15 @@
                         app:layout_constraintDimensionRatio="W,28:37"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="?attr/selectableItemBackgroundBorderless"
-                        android:duplicateParentState="true" />
+                        android:duplicateParentState="true"
+                        />
                 </android.support.constraint.ConstraintLayout>
 
                 <TextView
@@ -57,24 +62,28 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="@string/main_title" />
+                    android:text="@string/main_title"
+                    />
 
                 <RelativeLayout
                     android:id="@+id/button_home"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
-                    android:visibility="invisible">
+                    android:visibility="invisible"
+                    >
 
                     <View
                         android:layout_width="56dp"
                         android:layout_height="56dp"
-                        android:layout_centerInParent="true" />
+                        android:layout_centerInParent="true"
+                        />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="?attr/selectableItemBackgroundBorderless"
-                        android:duplicateParentState="true" />
+                        android:duplicateParentState="true"
+                        />
                 </RelativeLayout>
             </LinearLayout>
         </android.support.v7.widget.Toolbar>
@@ -102,15 +111,16 @@
                 app:layout_constraintGuide_percent="0.9" />
 
             <TextView
-                android:id="@+id/textview_user"
+                android:id="@+id/textview_event"
                 style="@style/text_main_user"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="36dp"
-                android:text="@string/main_welcome"
+                android:text="@string/main_event"
                 app:layout_constraintBottom_toTopOf="@id/viewpager"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent" />
+                app:layout_constraintRight_toRightOf="parent"
+                />
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/viewpager"
@@ -121,7 +131,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.7">
+                app:layout_constraintVertical_bias="0.6">
 
             </android.support.v4.view.ViewPager>
 
@@ -189,13 +199,15 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
 
         <include
             android:id="@+id/include_menu"
             layout="@layout/activity_menu"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            />
     </android.support.constraint.ConstraintLayout>
 
 

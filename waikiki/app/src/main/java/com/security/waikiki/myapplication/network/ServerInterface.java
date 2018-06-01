@@ -1,6 +1,7 @@
 package com.security.waikiki.myapplication.network;
 
 import com.security.waikiki.myapplication.entitiy.Device;
+import com.security.waikiki.myapplication.entitiy.Event;
 import com.security.waikiki.myapplication.entitiy.User;
 
 import java.util.List;
@@ -34,5 +35,8 @@ public interface ServerInterface
 	Call<ResponseBody> logout(@Header("email") String email);
 
 	@GET("installlist/{email}/")
-	Call<List<Device>> getInstallist(@Path("email") String email);
+	Call<List<Device>> getInstallList(@Path("email") String email);
+
+	@GET("eventlist/{email}/{device_id}/")
+	Call<List<Event>> getEvnetList(@Path("email") String email,@Path("device_id") String device_id );
 }

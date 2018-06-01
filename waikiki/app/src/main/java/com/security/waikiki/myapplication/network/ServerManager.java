@@ -1,6 +1,7 @@
 package com.security.waikiki.myapplication.network;
 
 import com.security.waikiki.myapplication.entitiy.Device;
+import com.security.waikiki.myapplication.entitiy.Event;
 import com.security.waikiki.myapplication.entitiy.User;
 
 import java.util.List;
@@ -74,7 +75,12 @@ public class ServerManager {
     }
 
     public void installListMethod(ServerCallBack callBack, String email){
-        Call<List<Device>> call = mServerInterface.getInstallist(email);
+        Call<List<Device>> call = mServerInterface.getInstallList(email);
+        call.enqueue(callBack);
+    }
+
+    public void eventListMethod(ServerCallBack callBack, String email,String device_id){
+        Call<List<Event>> call = mServerInterface.getEvnetList(email,device_id);
         call.enqueue(callBack);
     }
 
