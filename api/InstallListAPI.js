@@ -52,7 +52,7 @@ exports.getInstallList = function(email,connection,callback){
 						asyncCallback(true);
 					}else{
 						if(result != 0 ){
-							callback.resultcallback(JSON.stringify(result),result_code.SuccessCode);
+							callback.resultcallback(JSON.stringify(result[0]),result_code.SuccessCode);
 							asyncCallback(null);
 						}else{
 							console.log("Not Find Install");
