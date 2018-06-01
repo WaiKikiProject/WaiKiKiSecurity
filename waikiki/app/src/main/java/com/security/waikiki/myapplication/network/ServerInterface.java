@@ -37,6 +37,6 @@ public interface ServerInterface
 	@GET("installlist/{email}/")
 	Call<List<Device>> getInstallList(@Path("email") String email);
 
-	@GET("eventlist/{email}/{device_id}/")
-	Call<List<Event>> getEvnetList(@Path("email") String email,@Path("device_id") String device_id );
+	@GET("eventlist/{email}/")
+	Call<List<Event>> getEvnetList(@Path("email") String email);
 }

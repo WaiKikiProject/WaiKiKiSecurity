@@ -103,7 +103,7 @@ public class Task {
             @Override
             public void onResponseResult(Response response) {
                 if (response.isSuccessful()) {
-                    RealmManager.dumpEvent();
+                    RealmManager.dumpDevice();
                     List<Device> devices = (List<Device>) response.body();
                     RealmManager.insertDevice(devices);
                     controlCallback.onSucccess();
@@ -122,11 +122,12 @@ public class Task {
         ServerManager.getInstanse().installListMethod(serverCallBack, email);
     }
 
-    public void getEvnetTask(String email,String device_id, final ControlCallback controlCallback) {
+    public void getEvnetTask(String email, final ControlCallback controlCallback) {
         ServerCallBack serverCallBack = new ServerCallBack() {
             @Override
             public void onResponseResult(Response response) {
                 if (response.isSuccessful()) {
+                    RealmManager.dumpEvent();
                     List<Event> events = (List<Event>) response.body();
                     RealmManager.insertEvent(events);
                     controlCallback.onSucccess();
@@ -142,6 +143,6 @@ public class Task {
             }
         };
 
-        ServerManager.getInstanse().eventListMethod(serverCallBack, email, device_id);
+        ServerManager.getInstanse().eventListMethod(serverCallBack, email);
     }
 }

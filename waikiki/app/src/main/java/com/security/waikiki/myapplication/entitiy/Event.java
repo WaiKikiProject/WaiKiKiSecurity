@@ -9,7 +9,7 @@ import io.realm.annotations.PrimaryKey;
 public class Event extends RealmObject
 {
 	@Expose
-	@SerializedName("envent_code")
+	@SerializedName("event_code")
 	@PrimaryKey
 	private String EventCode;
 

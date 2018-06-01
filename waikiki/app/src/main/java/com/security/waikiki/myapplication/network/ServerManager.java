@@ -79,8 +79,8 @@ public class ServerManager {
         call.enqueue(callBack);
     }
 
-    public void eventListMethod(ServerCallBack callBack, String email,String device_id){
-        Call<List<Event>> call = mServerInterface.getEvnetList(email,device_id);
+    public void eventListMethod(ServerCallBack callBack, String email){
+        Call<List<Event>> call = mServerInterface.getEvnetList(email);
         call.enqueue(callBack);
     }
 
