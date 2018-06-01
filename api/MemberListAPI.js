@@ -30,7 +30,7 @@ exports.getMemberList = function(device_id,connection,callback){
 						asyncCallback(true);
 					}else{
 						if(result != 0 ){
-							callback.resultcallback(JSON.stringify(result),result_code.SuccessCode);
+							callback.resultcallback(result,result_code.SuccessCode);
 							asyncCallback(null);
 						}else{
 							console.log("Not Find Install");

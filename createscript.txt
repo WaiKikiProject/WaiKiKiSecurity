@@ -2,7 +2,8 @@ create table user
 (
 	email varchar(50) primary key,
 	name varchar(30) not null,
-	password varchar(30) not null
+	password varchar(30) not null,
+	token varchar(200)
 );
 
 create table device
@@ -44,7 +45,8 @@ create table convertlog
 (	
 	email varchar(50) references user(email),
 	convert_date datetime,
-	convert_result enum("O","X") not null
+	convert_result enum("O","X") not null,
+	device_id varchar(30) references device(device_id)
 );
 
 
