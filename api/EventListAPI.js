@@ -45,7 +45,7 @@ exports.getEventList = function(email,connection,callback){
 
 			console.log("start findMember method");
 
-			  var findmemberstmt = "select * from confirmevent where email like ?";
+			  var findmemberstmt = "select device_id,event_code,confirm_result from confirmevent where email like ?";
 			  connection.query(findmemberstmt,[device_id,email],function(err, result){
 					if(err){
 						callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
