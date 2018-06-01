@@ -44,7 +44,8 @@ exports.sendMessage = function(token,type){
 		to: token, // required fill with device token or topics
 		collapse_key: '',
 		data: {
-			your_custom_data_key: 'your_custom_data_value'
+			title: PushMessage.APP_NAME,
+			message: body_message
 		},
 		notification: {
 			title: PushMessage.APP_NAME,
