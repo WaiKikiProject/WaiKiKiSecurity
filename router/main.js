@@ -78,8 +78,7 @@ module.exports = function(app,connection)
 			MemberList.getMemberList(device_id,connection,callback(res));
 	 });
 
-	 app.get('/eventlist/:email/:device_id',function(req,res){
-		 var device_id = req.params.device_id;
+	 app.get('/eventlist/:email',function(req,res){
 		 var email = req.params.email;
 		 var EventList = require("../api/EventListAPI");
 		 EventList.getEventList(email,device_id,connection,callback(res));
