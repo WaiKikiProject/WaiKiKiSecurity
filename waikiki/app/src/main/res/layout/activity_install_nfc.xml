@@ -81,7 +81,47 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         >
+        <android.support.constraint.Guideline
+            android:id="@+id/left_guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
 
+        <android.support.constraint.Guideline
+            android:id="@+id/right_guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95"
+            />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/top_guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1" />
+        <View
+            android:id="@+id/nfc"
+            android:layout_width="0dp"
+            android:layout_height="320dp"
+            android:background="@drawable/icon_nfc"
+            app:layout_constraintLeft_toLeftOf="@id/left_guide"
+            app:layout_constraintRight_toRightOf="@id/right_guide"
+            app:layout_constraintTop_toTopOf="@id/top_guide"
+
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            app:layout_constraintLeft_toLeftOf="@id/left_guide"
+            app:layout_constraintRight_toRightOf="@id/right_guide"
+            app:layout_constraintTop_toBottomOf="@id/nfc"
+            android:layout_marginTop="20dp"
+            style="@style/nfc_install_tag"
+            android:text="@string/nfc_install_tag"
+            />
 
     </android.support.constraint.ConstraintLayout>
 

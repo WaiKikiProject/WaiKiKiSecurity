@@ -11,6 +11,8 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.security.waikiki.myapplication.R;
+import com.security.waikiki.myapplication.view.activity.SignInActivity;
+import com.security.waikiki.myapplication.view.activity.SignUpActivity;
 
 public class Customdialog extends Dialog {
 
@@ -28,7 +30,7 @@ public class Customdialog extends Dialog {
         setContentView(R.layout.customdialog);
 
         getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        findViewById(R.id.dialog_confirm).setOnClickListener(mOnclickListener);
+        findViewById(R.id.dialog_confirm).setOnClickListener(dOnclickListener);
 
         title = findViewById(R.id.dialog_title);
         mesgase = findViewById(R.id.dialog_mesgase);
@@ -46,7 +48,7 @@ public class Customdialog extends Dialog {
 
 
 
-    private View.OnClickListener mOnclickListener = new View.OnClickListener() {
+    private View.OnClickListener dOnclickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             dismiss();
