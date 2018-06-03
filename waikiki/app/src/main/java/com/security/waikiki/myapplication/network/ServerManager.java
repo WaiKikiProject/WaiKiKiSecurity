@@ -84,4 +84,15 @@ public class ServerManager {
         call.enqueue(callBack);
     }
 
+    public void convertMethod(ServerCallBack callBack, String email,String device_id){
+        Call<ResponseBody> call = mServerInterface.convert(email,device_id);
+        call.enqueue(callBack);
+    }
+
+    public void inviteMethod(ServerCallBack callBack, String email,String device_id){
+        Call<ResponseBody> call = mServerInterface.invite(email,device_id);
+        call.enqueue(callBack);
+    }
+
+
 }

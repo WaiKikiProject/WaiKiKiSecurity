@@ -44,6 +44,8 @@ public class InstallSplashActivity extends RootParentActivity {
 
 //        setStatusbar(toolbar);
 
+        findViewById(R.id.button_up).setOnClickListener(mOnClickListener);
+
         mButtonUserType = findViewById(R.id.button_usertype);
         mLayoutOption = findViewById(R.id.layout_option);
         mViewArrow = findViewById(R.id.view_arrow);

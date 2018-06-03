@@ -347,6 +347,7 @@ public class MainActivity extends RootParentActivity {
                     break;
                 case R.id.button_member_invite:
                     intent = new Intent(MainActivity.this, InviteActivity.class);
+                    intent.putExtra("DeviceID",mCurrentDeviceID);
                     startActivity(intent);
                     break;
                 case R.id.button_delete:

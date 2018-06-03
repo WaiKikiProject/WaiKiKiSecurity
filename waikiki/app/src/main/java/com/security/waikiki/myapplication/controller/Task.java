@@ -34,7 +34,7 @@ public class Task {
                 if (response.isSuccessful()) {
                     User user = (User) response.body();
                     RealmManager.insertUser(user);
-                    tokenTask(email,controlCallback);
+                    tokenTask(email, controlCallback);
                 } else {
                     controlCallback.onError(response.code());
                 }
@@ -77,13 +77,13 @@ public class Task {
         ServerManager.getInstanse().logOutMethod(serverCallBack, user.getUserEmail());
     }
 
-    public void signupTask(String email,String name, String password, final  ControlCallback controlCallback){
+    public void signupTask(String email, String name, String password, final ControlCallback controlCallback) {
         ServerCallBack serverCallBack = new ServerCallBack() {
             @Override
             public void onResponseResult(Response response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     controlCallback.onSucccess();
-                }else {
+                } else {
                     controlCallback.onError(response.code());
                 }
             }
@@ -94,7 +94,7 @@ public class Task {
                 controlCallback.onFail();
             }
         };
-        ServerManager.getInstanse().signUpMethod(serverCallBack,email,name,password);
+        ServerManager.getInstanse().signUpMethod(serverCallBack, email, name, password);
     }
 
     public void tokenTask(String email, final ControlCallback controlCallback) {
@@ -111,7 +111,7 @@ public class Task {
             @Override
             public void onFailure(Call call, Throwable t) {
                 super.onFailure(call, t);
-             //   controlCallback.onFail();
+                //   controlCallback.onFail();
             }
         };
 
@@ -164,5 +164,47 @@ public class Task {
         };
 
         ServerManager.getInstanse().eventListMethod(serverCallBack, email);
+    }
+
+    public void inviteTask(String email, String deivce_id, final ControlCallback controlCallback) {
+        ServerCallBack serverCallBack = new ServerCallBack() {
+            @Override
+            public void onResponseResult(Response response) {
+                if (response.isSuccessful()) {
+                    controlCallback.onSucccess();
+                } else {
+                    controlCallback.onError(response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                super.onFailure(call, t);
+                controlCallback.onFail();
+            }
+        };
+
+        ServerManager.getInstanse().inviteMethod(serverCallBack,email,deivce_id);
+    }
+
+    public void convertTask(String email, String deivce_id, final ControlCallback controlCallback) {
+        ServerCallBack serverCallBack = new ServerCallBack() {
+            @Override
+            public void onResponseResult(Response response) {
+                if (response.isSuccessful()) {
+                    controlCallback.onSucccess();
+                } else {
+                    controlCallback.onError(response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                super.onFailure(call, t);
+                controlCallback.onFail();
+            }
+        };
+
+        ServerManager.getInstanse().convertMethod(serverCallBack,email,deivce_id);
     }
 }

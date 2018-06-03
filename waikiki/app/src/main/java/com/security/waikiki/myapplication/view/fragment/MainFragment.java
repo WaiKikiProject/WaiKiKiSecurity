@@ -14,8 +14,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.security.waikiki.myapplication.R;
+import com.security.waikiki.myapplication.controller.ControlCallback;
+import com.security.waikiki.myapplication.controller.Task;
 import com.security.waikiki.myapplication.db.RealmManager;
 import com.security.waikiki.myapplication.entitiy.Device;
 import com.security.waikiki.myapplication.entitiy.User;
@@ -38,7 +41,7 @@ public class MainFragment extends Fragment {
     private TextView mTextDeviceName;
     private TextView mTextUserType;
     private TextView mTextSMode;
-    private TextView mTextevent;
+    private TextView mButtonSecurity;
 
     public enum SecureMode {
         SECURE,
@@ -61,8 +64,8 @@ public class MainFragment extends Fragment {
         return mUserType;
     }
 
-    public  String getDeviceID() {
-        if(mDevcie == null){
+    public String getDeviceID() {
+        if (mDevcie == null) {
             return null;
         }
         return mDevcie.getDeviceID();
@@ -78,12 +81,13 @@ public class MainFragment extends Fragment {
         mTextDeviceName = mRootview.findViewById(R.id.textview_device_name);
         mTextSMode = mRootview.findViewById(R.id.text_smode);
         mTextUserType = mRootview.findViewById(R.id.textview_user_type);
-        mTextevent = mRootview.findViewById(R.id.text_event);
+        mButtonSecurity = mRootview.findViewById(R.id.button_security);
 
         mDefaultLayout = mRootview.findViewById(R.id.layout_install);
         mStatusLayout = mRootview.findViewById(R.id.layout_status);
 
         mRootview.findViewById(R.id.button_install).setOnClickListener(mOnclickListener);
+        mButtonSecurity.setOnClickListener(mOnclickListener);
 
         setStatusUI();
 
@@ -120,17 +124,15 @@ public class MainFragment extends Fragment {
             switch (mSecureMode) {
                 case SECURE:
                     mTextSMode.setText(R.string.main_smode_on);
+                    mButtonSecurity.setText(getString(R.string.main_unsecurity));
                     break;
                 case UNSECURE:
                     mTextSMode.setText(R.string.main_smode_off);
+                    mButtonSecurity.setText(getString(R.string.main_security));
+                    break;
             }
         }
-
-        String event = getString(R.string.main_event, 1);
-        mTextevent.setText(event);
-
     }
-
 
     private View.OnClickListener mOnclickListener = new View.OnClickListener() {
         @Override
@@ -140,7 +142,26 @@ public class MainFragment extends Fragment {
                     Intent intent = new Intent(mContext, InstallSplashActivity.class);
                     mContext.startActivity(intent);
                     break;
+                case R.id.button_security:
+                    User user = RealmManager.getUser();
+                    Task.getInstance().convertTask(user.getUserEmail(), mDevcie.getDeviceID(), convertCallback);
             }
+        }
+    };
+
+    ControlCallback convertCallback = new ControlCallback() {
+        @Override
+        public void onSucccess() {
+
+        }
+
+        @Override
+        public void onError(int code) {
+
+        }
+
+        @Override
+        public void onFail() {
 
         }
     };

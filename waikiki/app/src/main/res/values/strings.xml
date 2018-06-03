@@ -25,6 +25,8 @@
     <string name="main_install_navi">WAIKIKI보안 장치를 설치해보세요</string>
     <string name="main_event_null">발생한 이벤트가 없습니다</string>
     <string name="main_backpress">뒤로 버튼을 한번 더 누르면 종료합니다</string>
+    <string name="main_security">보안모드작동</string>
+    <string name="main_unsecurity">보안모드해제</string>
 
     <string name="menu_title">메뉴</string>
     <string name="menu_close">닫기</string>
@@ -53,6 +55,10 @@
     <string name="install_name">장치 닉네임 입력</string>
     <string name="install_name_setting">설정완료</string>
 
+    <string name="invite_title">초대하기</string>
+    <string name="invite_main_navi">장치가입초대</string>
+    <string name="invite_navi">초대할 회원 E_MAIL을 입력해주세요</string>
+    <string name="invite_invite">초대하기</string>
 
 
 </resources>
