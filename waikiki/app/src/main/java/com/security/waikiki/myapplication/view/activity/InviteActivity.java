@@ -55,26 +55,55 @@ public class InviteActivity extends RootParentActivity {
                     finish();
                     break;
                 case R.id.button_invite:
-                    if(checkEmailFormat()){
+                    if (checkEmailFormat()) {
                         inviteTask();
                     }
             }
         }
     };
 
-    private void inviteTask(){
-        Task.getInstance().inviteTask(mEditEmail.getText().toString(),mDevice_ID,inviteCallback);
+    private void inviteTask() {
+        Task.getInstance().inviteTask(mEditEmail.getText().toString(), mDevice_ID, inviteCallback);
     }
 
     ControlCallback inviteCallback = new ControlCallback() {
         @Override
         public void onSucccess() {
-            Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_SHORT).show();
+            String title = getString(R.string.dialog_signup_title);
+            WaiKiKi.showDialog(InviteActivity.this, title, getString(R.string.dialog_deivce_success_message), null);
         }
 
         @Override
         public void onError(int code) {
-            Toast.makeText(getApplicationContext(), "Error : "+code, Toast.LENGTH_SHORT).show();
+            String title = getString(R.string.dialog_signup_title);
+            switch (code) {
+                case 403:
+                    WaiKiKi.showDialog(InviteActivity.this, title, getString(R.string.dialog_error_diss_match_login_message), null);
+                    break;
+                case 405:
+                    WaiKiKi.showDialog(InviteActivity.this, title, getString(R.string.dialog_error_not_exist_deivce_message), null);
+                    break;
+                case 406:
+                    WaiKiKi.showDialog(InviteActivity.this, title, getString(R.string.dialog_error_not_exist_user_message), null);
+                    break;
+                case 408:
+                    WaiKiKi.showDialog(InviteActivity.this, title, getString(R.string.dialog_error_not_install_user_message), null);
+                    break;
+                case 409:
+                    WaiKiKi.showDialog(InviteActivity.this, title, getString(R.string.dialog_error_aleady_install_device_message), null);
+                    break;
+                case 410:
+                    WaiKiKi.showDialog(InviteActivity.this, title, getString(R.string.dialog_error_aleady_install_master_message), null);
+                    break;
+                case 411:
+                    WaiKiKi.showDialog(InviteActivity.this, title, getString(R.string.dialog_error_not_install_master_message), null);
+                    break;
+                case 500:
+                    WaiKiKi.showDialog(InviteActivity.this, title, getString(R.string.dialog_error_not_dis_match_error_message), null);
+                    break;
+
+            }
+
         }
 
         @Override

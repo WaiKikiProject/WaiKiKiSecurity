@@ -41,17 +41,17 @@ public class SignInActivity extends RootParentActivity {
     }
 
     public boolean isValid() {
-
+        String title = getString(R.string.dialog_signup_title);
         if (edit_email.getText().toString().length() == 0) {
-            Toast.makeText(SignInActivity.this, "이메일을 입력해주세요", Toast.LENGTH_SHORT).show();
+            WaiKiKi.showDialog(SignInActivity.this, getString(R.string.dialog_email_message), null);
             edit_email.requestFocus();
             return false;
         } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(edit_email.getText().toString()).matches()) {
-            Toast.makeText(SignInActivity.this, "이메일 형식이 아닙니다", Toast.LENGTH_SHORT).show();
+            WaiKiKi.showDialog(SignInActivity.this, getString(R.string.dialog_email_message_form), null);
             edit_email.requestFocus();
             return false;
         } else if (edit_password.getText().toString().length() == 0) {
-            Toast.makeText(SignInActivity.this, "비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show();
+            WaiKiKi.showDialog(SignInActivity.this, getString(R.string.dialog_password_message), null);
             edit_password.requestFocus();
             return false;
         }
@@ -90,12 +90,18 @@ public class SignInActivity extends RootParentActivity {
 
         @Override
         public void onError(int code) {
-            Toast.makeText(getApplicationContext(), "error : " + code, Toast.LENGTH_SHORT).show();
+            switch (code) {
+                case 402:
+                    WaiKiKi.showDialog(SignInActivity.this, getString(R.string.dialog_error_not_exist_mail_message), null);
+                    break;
+                case 403:
+                    WaiKiKi.showDialog(SignInActivity.this, getString(R.string.dialog_error_diss_match_login_message), null);
+                    break;
+            }
         }
-
         @Override
         public void onFail() {
-            Toast.makeText(getApplicationContext(), "serverfail", Toast.LENGTH_SHORT).show();
+            WaiKiKi.showDialog(SignInActivity.this, getString(R.string.dialog_error_not_dis_match_error_message), null);
         }
     };
 
@@ -105,7 +111,7 @@ public class SignInActivity extends RootParentActivity {
         public void onSucccess() {
             mCountDownLatch.countDown();
             if (checkTask()) {
-                Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
@@ -115,13 +121,22 @@ public class SignInActivity extends RootParentActivity {
         @Override
         public void onError(int code) {
             RealmManager.dumpDB();
-            Toast.makeText(getApplicationContext(), "error : " + code, Toast.LENGTH_SHORT).show();
+            String title = getString(R.string.dialog_signin_title);
+            switch (code) {
+                case 402 :
+                    WaiKiKi.showDialog(SignInActivity.this, title,getString(R.string.dialog_error_not_exist_mail_message), null);
+                    break;
+                case 403 :
+                    WaiKiKi.showDialog(SignInActivity.this, title,getString(R.string.dialog_error_diss_match_login_message), null);
+                    break;
+
+            }
         }
 
         @Override
         public void onFail() {
             RealmManager.dumpDB();
-            Toast.makeText(getApplicationContext(), "오류", Toast.LENGTH_SHORT).show();
+            WaiKiKi.showDialog(SignInActivity.this, getString(R.string.dialog_error_not_dis_match_error_message), null);
         }
     };
 

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -17,7 +18,7 @@ import com.security.waikiki.myapplication.view.activity.SignUpActivity;
 
 public class Customdialog extends Dialog {
 
-    String title,message;
+    String title, message;
     TextView mTextTitle, mTextMessage;
     OnDismissListener mDismissListener;
 
@@ -49,7 +50,7 @@ public class Customdialog extends Dialog {
 
     public Customdialog(@NonNull Context context, String message, OnDismissListener dismissListener) {
         super(context);
-        this.title =context.getString(R.string.app_name);
+        this.title = context.getString(R.string.app_name);
         this.message = message;
         mDismissListener = dismissListener;
     }
@@ -58,7 +59,9 @@ public class Customdialog extends Dialog {
     private View.OnClickListener dOnclickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            mDismissListener.onDismiss(Customdialog.this);
+            if (mDismissListener != null) {
+                mDismissListener.onDismiss(Customdialog.this);
+            }
             dismiss();
         }
     };

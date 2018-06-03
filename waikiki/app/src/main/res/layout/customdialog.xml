@@ -29,46 +29,43 @@
         <!--android:layout_height="wrap_content"-->
         <!--android:orientation="horizontal"-->
         <!--android:background="@android:color/transparent"-->
-        <!--app:layout_constraintGuide_percent="0.4" />-->
+        <!--app:layout_constraintGuide_percent="0.3" />-->
 
 
     <TextView
         android:id="@+id/dialog_title"
         style="@style/dialog_title"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
         android:background="@drawable/background_dialog_title"
         android:text="@string/dialogtitle"
-        app:layout_constraintLeft_toLeftOf="@id/left_guide"
-        app:layout_constraintRight_toRightOf="@id/right_guide"
-        app:layout_constraintTop_toTopOf="@id/top_guide"/>
+       />
 
     <TextView
         android:id="@+id/dialog_mesgase"
         style="@style/dialog_mesgase"
-        android:layout_width="250dp"
+        android:layout_width="300dp"
         android:layout_height="120dp"
         android:background="@drawable/background_dialog_mesage"
         android:text="TextView"
-        app:layout_constraintLeft_toLeftOf="@id/left_guide"
-        app:layout_constraintRight_toRightOf="@id/right_guide"
-        app:layout_constraintTop_toBottomOf="@+id/dialog_title" />
+         />
 
     <View
-        android:layout_width="250dp"
+        android:id="@+id/dialog_line"
+        android:layout_width="290dp"
         android:layout_height="1dp"
         android:layout_centerInParent="true"
-        android:background="#BDBDBD"/>
+        android:layout_gravity="center"
+        android:background="#BDBDBD"
+         />
 
     <TextView
         android:id="@+id/dialog_confirm"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
         android:text="@string/dialogconfirm"
         android:background="@drawable/background_dialog_confirm"
         style="@style/dialog_confirm"
-        app:layout_constraintLeft_toLeftOf="@id/left_guide"
-        app:layout_constraintRight_toRightOf="@id/right_guide"
-        app:layout_constraintTop_toBottomOf="@+id/dialog_mesgase"/>
+        />
 
 </LinearLayout>
