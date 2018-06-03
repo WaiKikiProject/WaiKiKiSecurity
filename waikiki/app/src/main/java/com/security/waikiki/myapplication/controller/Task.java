@@ -77,6 +77,26 @@ public class Task {
         ServerManager.getInstanse().logOutMethod(serverCallBack, user.getUserEmail());
     }
 
+    public void signupTask(String email,String name, String password, final  ControlCallback controlCallback){
+        ServerCallBack serverCallBack = new ServerCallBack() {
+            @Override
+            public void onResponseResult(Response response) {
+                if(response.isSuccessful()){
+                    controlCallback.onSucccess();
+                }else {
+                    controlCallback.onError(response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                super.onFailure(call, t);
+                controlCallback.onFail();
+            }
+        };
+        ServerManager.getInstanse().signUpMethod(serverCallBack,email,name,password);
+    }
+
     public void tokenTask(String email, final ControlCallback controlCallback) {
         ServerCallBack serverCallBack = new ServerCallBack() {
             @Override

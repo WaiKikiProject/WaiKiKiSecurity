@@ -11,18 +11,15 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.security.waikiki.myapplication.R;
+import com.security.waikiki.myapplication.WaiKiKi;
 import com.security.waikiki.myapplication.view.activity.SignInActivity;
 import com.security.waikiki.myapplication.view.activity.SignUpActivity;
 
 public class Customdialog extends Dialog {
 
-    private String dialogtitel;
-    private String dialogmesgase;
-
-    TextView title, mesgase, confirm;
-
-
-
+    String title,message;
+    TextView mTextTitle, mTextMessage;
+    OnDismissListener mDismissListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,28 +29,40 @@ public class Customdialog extends Dialog {
         getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         findViewById(R.id.dialog_confirm).setOnClickListener(dOnclickListener);
 
-        title = findViewById(R.id.dialog_title);
-        mesgase = findViewById(R.id.dialog_mesgase);
+        mTextTitle = findViewById(R.id.dialog_title);
+        mTextMessage = findViewById(R.id.dialog_mesgase);
 
-        title.setText(dialogtitel);
-        mesgase.setText(dialogmesgase);
+        mTextTitle.setText(title);
+        mTextMessage.setText(message);
     }
 
-    public Customdialog(@NonNull Context context, String title, String content,
-                        View.OnClickListener singleListener) {
+    public Customdialog(@NonNull Context context) {
         super(context);
-        this.dialogtitel = title;
-        this.dialogmesgase = content;
     }
 
+    public Customdialog(@NonNull Context context, String title, String message, OnDismissListener dismissListener) {
+        super(context);
+        this.title = title;
+        this.message = message;
+        mDismissListener = dismissListener;
+    }
+
+    public Customdialog(@NonNull Context context, String message, OnDismissListener dismissListener) {
+        super(context);
+        this.title =context.getString(R.string.app_name);
+        this.message = message;
+        mDismissListener = dismissListener;
+    }
 
 
     private View.OnClickListener dOnclickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            mDismissListener.onDismiss(Customdialog.this);
             dismiss();
         }
     };
+
 
 }
 
