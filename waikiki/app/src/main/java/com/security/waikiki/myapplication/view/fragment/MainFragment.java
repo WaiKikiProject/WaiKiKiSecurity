@@ -23,6 +23,7 @@ import com.security.waikiki.myapplication.db.RealmManager;
 import com.security.waikiki.myapplication.entitiy.Device;
 import com.security.waikiki.myapplication.entitiy.User;
 import com.security.waikiki.myapplication.entitiy.UserType;
+import com.security.waikiki.myapplication.util.CustomProgress;
 import com.security.waikiki.myapplication.view.activity.InstallSplashActivity;
 
 @SuppressLint("ValidFragment")
@@ -42,6 +43,8 @@ public class MainFragment extends Fragment {
     private TextView mTextUserType;
     private TextView mTextSMode;
     private TextView mButtonSecurity;
+
+    CustomProgress mProgress;
 
     public enum SecureMode {
         SECURE,
@@ -90,6 +93,8 @@ public class MainFragment extends Fragment {
         mButtonSecurity.setOnClickListener(mOnclickListener);
 
         setStatusUI();
+
+        mProgress = new CustomProgress(mContext);
 
         return mRootview;
     }
@@ -144,6 +149,7 @@ public class MainFragment extends Fragment {
                     break;
                 case R.id.button_security:
                     User user = RealmManager.getUser();
+                    mProgress.show();
                     Task.getInstance().convertTask(user.getUserEmail(), mDevcie.getDeviceID(), convertCallback);
             }
         }
@@ -152,17 +158,17 @@ public class MainFragment extends Fragment {
     ControlCallback convertCallback = new ControlCallback() {
         @Override
         public void onSucccess() {
-
+			mProgress.dismiss();
         }
 
         @Override
         public void onError(int code) {
-
+	        mProgress.dismiss();
         }
 
         @Override
         public void onFail() {
-
+	        mProgress.dismiss();
         }
     };
 }

@@ -11,6 +11,7 @@ import com.security.waikiki.myapplication.WaiKiKi;
 import com.security.waikiki.myapplication.controller.ControlCallback;
 import com.security.waikiki.myapplication.controller.Task;
 import com.security.waikiki.myapplication.db.RealmManager;
+import com.security.waikiki.myapplication.util.CustomProgress;
 
 import java.util.concurrent.CountDownLatch;
 
@@ -21,6 +22,8 @@ public class SignInActivity extends RootParentActivity {
     private CountDownLatch mCountDownLatch;
     private String email;
     private String password;
+
+    public CustomProgress mProgrss;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +35,8 @@ public class SignInActivity extends RootParentActivity {
 
         findViewById(R.id.button_login).setOnClickListener(mOnclickListener);
         findViewById(R.id.button_sign_up).setOnClickListener(mOnclickListener);
+
+        mProgrss = new CustomProgress(this);
 
     }
 
@@ -98,10 +103,13 @@ public class SignInActivity extends RootParentActivity {
                     WaiKiKi.showDialog(SignInActivity.this, getString(R.string.dialog_error_diss_match_login_message), null);
                     break;
             }
+
+            mProgrss.dismiss();
         }
         @Override
         public void onFail() {
             WaiKiKi.showDialog(SignInActivity.this, getString(R.string.dialog_error_not_dis_match_error_message), null);
+            mProgrss.dismiss();
         }
     };
 
@@ -115,6 +123,7 @@ public class SignInActivity extends RootParentActivity {
                 Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
+                mProgrss.dismiss();
             }
         }
 
@@ -131,16 +140,19 @@ public class SignInActivity extends RootParentActivity {
                     break;
 
             }
+            mProgrss.dismiss();
         }
 
         @Override
         public void onFail() {
             RealmManager.dumpDB();
             WaiKiKi.showDialog(SignInActivity.this, getString(R.string.dialog_error_not_dis_match_error_message), null);
+            mProgrss.dismiss();
         }
     };
 
     public void loginTask() {
+        mProgrss.show();
         mCountDownLatch = new CountDownLatch(1);
         Task.getInstance().loginTask(email, password, loginCallback);
     }

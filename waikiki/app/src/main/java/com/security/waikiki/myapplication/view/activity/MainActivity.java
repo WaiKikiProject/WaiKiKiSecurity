@@ -26,6 +26,7 @@ import com.security.waikiki.myapplication.entitiy.Event;
 import com.security.waikiki.myapplication.entitiy.User;
 import com.security.waikiki.myapplication.entitiy.UserType;
 import com.security.waikiki.myapplication.util.CircleAnimIndicator;
+import com.security.waikiki.myapplication.util.CustomProgress;
 import com.security.waikiki.myapplication.view.adapter.ViewPagerAdapter;
 import com.security.waikiki.myapplication.view.fragment.MainFragment;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
@@ -65,6 +66,8 @@ public class MainActivity extends RootParentActivity {
     private UserType mUserType;
     private User mUser;
 
+    private CustomProgress mProgress;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,6 +104,8 @@ public class MainActivity extends RootParentActivity {
 
         setMenu();
 
+        mProgress = new CustomProgress(this);
+
         getEventData();
         getDeviceData();
 
@@ -126,6 +131,7 @@ public class MainActivity extends RootParentActivity {
     }
 
     private void getEventData() {
+        mProgress.show();
         Task.getInstance().getEvnetTask(mUser.getUserEmail(), eventCollback);
     }
 
@@ -134,20 +140,24 @@ public class MainActivity extends RootParentActivity {
         public void onSucccess() {
             setEventData();
             Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_SHORT).show();
+            mProgress.dismiss();
         }
 
         @Override
         public void onError(int code) {
             mTextEvent.setText(getString(R.string.main_event_error));
+            mProgress.dismiss();
         }
 
         @Override
         public void onFail() {
             mTextEvent.setText(getString(R.string.main_event_error));
+            mProgress.dismiss();
         }
     };
 
     private void getDeviceData() {
+        mProgress.show();
         Task.getInstance().getInstallTask(mUser.getUserEmail(), deviceCallback);
     }
 
@@ -161,16 +171,19 @@ public class MainActivity extends RootParentActivity {
             } else {
                 mViewPager.setCurrentItem(mViewPagerIndex);
             }
+            mProgress.dismiss();
         }
 
         @Override
         public void onError(int code) {
             Toast.makeText(getApplicationContext(), "error : " + code, Toast.LENGTH_SHORT).show();
+            mProgress.dismiss();
         }
 
         @Override
         public void onFail() {
             Toast.makeText(getApplicationContext(), "오류", Toast.LENGTH_SHORT).show();
+            mProgress.dismiss();
         }
     };
 
@@ -273,13 +286,8 @@ public class MainActivity extends RootParentActivity {
         mPagerIndicator.setItemMargin(10);
         mPagerIndicator.setAnimDuration(300);
 
-        Point pt = new Point();
-        getWindowManager().getDefaultDisplay().getSize(pt);
-        ((WindowManager) getSystemService(WINDOW_SERVICE)).getDefaultDisplay().getSize(pt);
 
-        int width = pt.x;
-
-        mPagerIndicator.createDotPanel(listFragment.size(), R.drawable.indicator_non, R.drawable.indicator_on, width /
+        mPagerIndicator.createDotPanel(listFragment.size(), R.drawable.indicator_non, R.drawable.indicator_on, WaiKiKi.WIDTH /
                         120,
                 mViewPagerIndex);
     }

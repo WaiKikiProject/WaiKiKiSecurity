@@ -7,6 +7,9 @@ import com.security.waikiki.myapplication.util.Customdialog;
 
 public class WaiKiKi {
 
+    public static int WIDTH;
+    public static int HEIGTH;
+
     public static final int SIGN_IN = 0x0001;
     public static final int INSTALL = 0x0002;
 

@@ -20,5 +20,7 @@ public class WaikikiAplication extends Application
 			.build();
 
 		Realm.setDefaultConfiguration(config);
+
+
 	}
 }
