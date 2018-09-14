@@ -31,10 +31,9 @@
     <string name="menu_title">메뉴</string>
     <string name="menu_close">닫기</string>
     <string name="menu_usertype">유저타입 - %1$s</string>
-    <string name="menu_member">설치현황</string>
     <string name="menu_evnet">침입 이벤트</string>
     <string name="menu_smode_log">장치 컨트롤 로그</string>
-    <string name="menu_member_invite">멤버초대</string>
+    <string name="menu_member">멤버 조회/초대</string>
     <string name="menu_delete">장치 삭제</string>
     <string name="menu_logout">로그아웃</string>
     <string name="menu_master">메뉴(마스터)</string>
@@ -55,10 +54,20 @@
     <string name="install_name">장치 닉네임 입력</string>
     <string name="install_name_setting">설정완료</string>
 
+    <string name="install_nfc_title">장치 태그</string>
+    <string name="install_nfc_guide">장치설치를 위해 nfc를 태그해주세요</string>
+
     <string name="invite_title">초대하기</string>
     <string name="invite_main_navi">장치가입초대</string>
     <string name="invite_navi">초대할 회원 E_MAIL을 입력해주세요</string>
     <string name="invite_invite">초대하기</string>
 
+    <string name="member_title">멤버</string>
+    <string name="member_invite">멤버초대</string>
+    <string name="member_invite_fail">마스터만 초대가 가능합니다.</string>
+
+    <string name="controllog_title">보안모드 이력</string>
+    <string name="controllog_smode_on">보안모드 작동</string>
+    <string name="controllog_smode_off">보안모드 해제</string>
 
 </resources>

@@ -6,21 +6,28 @@ import android.view.View;
 
 import com.security.waikiki.myapplication.R;
 
-public class EventActivity extends RootParentActivity {
+public class EventActivity extends RootParentActivity
+{
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_event);
 
+        findViewById(R.id.button_up).setOnClickListener(mOnClickListener);
     }
 
 
-    private View.OnClickListener mOnClickListener = new View.OnClickListener() {
+    private View.OnClickListener mOnClickListener = new View.OnClickListener()
+    {
         @Override
-        public void onClick(View view) {
-            switch (view.getId()){
-                case R.id.button_up:
-                    finish();
+        public void onClick(View view)
+        {
+            switch (view.getId())
+            {
+            case R.id.button_up:
+                finish();
             }
         }
     };

@@ -27,6 +27,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation group: SupportLibraryGroup, name: "appcompat-v7", version: AppcompatVersion
+    implementation group: SupportLibraryGroup, name: "design", version: AppcompatVersion
     implementation group: SupportConstraint, name: 'constraint-layout', version: ConstraintVersion
     implementation group: RetrofitGroup, name: "retrofit", version: RetrofitVersion
     implementation group: RetrofitGroup, name: "converter-gson", version: RetrofitGsonVersion
