@@ -23,7 +23,7 @@ exports.getMemberList = function(device_id,connection,callback){
 
 			console.log("start findMember method");
 
-			  var findmemberstmt = "select * from install join user using(email) where device_id like ?";
+			  var findmemberstmt = "select device_id, email, name from install join user using(email) where device_id like ?";
 			  connection.query(findmemberstmt,[device_id],function(err, result){
 					if(err){
 						callback.resultcallback(result_code.DatabaseErrorMessage,result_code.DatabaseErrorCode);
