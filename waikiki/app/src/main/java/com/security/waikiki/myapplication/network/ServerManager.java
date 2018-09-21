@@ -2,6 +2,7 @@ package com.security.waikiki.myapplication.network;
 
 import com.security.waikiki.myapplication.entitiy.Device;
 import com.security.waikiki.myapplication.entitiy.Event;
+import com.security.waikiki.myapplication.entitiy.Member;
 import com.security.waikiki.myapplication.entitiy.User;
 
 import java.util.List;
@@ -91,6 +92,11 @@ public class ServerManager {
 
     public void inviteMethod(ServerCallBack callBack, String email,String device_id){
         Call<ResponseBody> call = mServerInterface.invite(email,device_id);
+        call.enqueue(callBack);
+    }
+
+    public void getMemberList(ServerCallBack callBack,String device_id){
+        Call<List<Member>> call = mServerInterface.getMemberList(device_id);
         call.enqueue(callBack);
     }
 

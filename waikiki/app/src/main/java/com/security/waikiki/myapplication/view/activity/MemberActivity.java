@@ -1,18 +1,25 @@
 package com.security.waikiki.myapplication.view.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.security.waikiki.myapplication.R;
+import com.security.waikiki.myapplication.view.adapter.MemberAdapter;
 
 public class MemberActivity extends RootParentActivity
 {
     FloatingActionButton mFABPlus,mFABAdd,mFABDelete,mFABComm;
+    RecyclerView mRecyclerList;
+    MemberAdapter mMemberAdpater;
+
     boolean isFabOpen = false;
+    String mDeviceID;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
@@ -20,9 +27,13 @@ public class MemberActivity extends RootParentActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member);
 
+        Intent intent = getIntent();
+        mDeviceID = intent.getStringExtra("DeviceID");
+
         findViewById(R.id.button_up).setOnClickListener(mOnClickListener);
 
         initFloatingActionButton();
+
     }
 
     private void initFloatingActionButton(){
@@ -34,6 +45,11 @@ public class MemberActivity extends RootParentActivity
         mFABAdd.setOnClickListener(mOnClickListener);
         mFABDelete.setOnClickListener(mOnClickListener);
         mFABComm.setOnClickListener(mOnClickListener);
+    }
+
+    private void initRecyclerView(){
+        mRecyclerList = findViewById(R.id.recyclerview_member);
+        mMemberAdpater
     }
 
 

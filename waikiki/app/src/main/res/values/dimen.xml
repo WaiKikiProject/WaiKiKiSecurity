@@ -2,5 +2,4 @@
 <resources>
     <dimen name="toolbar_height">56dp</dimen>
     <dimen name="button_height">48dp</dimen>
-
 </resources>

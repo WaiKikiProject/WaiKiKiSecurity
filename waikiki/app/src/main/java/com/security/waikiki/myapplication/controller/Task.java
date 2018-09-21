@@ -4,6 +4,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.security.waikiki.myapplication.db.RealmManager;
 import com.security.waikiki.myapplication.entitiy.Device;
 import com.security.waikiki.myapplication.entitiy.Event;
+import com.security.waikiki.myapplication.entitiy.Member;
 import com.security.waikiki.myapplication.entitiy.User;
 import com.security.waikiki.myapplication.network.ServerCallBack;
 import com.security.waikiki.myapplication.network.ServerManager;
@@ -206,5 +207,27 @@ public class Task {
         };
 
         ServerManager.getInstanse().convertMethod(serverCallBack,email,deivce_id);
+    }
+
+    public void getMemberTask(final String device_id, final  ControlCallback controlCallback){
+        ServerCallBack serverCallBack = new ServerCallBack() {
+            @Override
+            public void onResponseResult(Response response) {
+                if (response.isSuccessful()) {
+                    RealmManager.insertMemberList(device_id,(List<Member>)response.body());
+                    controlCallback.onSucccess();
+                } else {
+                    controlCallback.onError(response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                super.onFailure(call, t);
+                controlCallback.onFail();
+            }
+        };
+
+        ServerManager.getInstanse().getMemberList(serverCallBack,device_id);
     }
 }

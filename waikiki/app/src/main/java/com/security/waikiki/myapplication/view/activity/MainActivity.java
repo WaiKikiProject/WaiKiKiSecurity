@@ -400,9 +400,28 @@ public class MainActivity extends RootParentActivity
 				mViewPager.setCurrentItem(mViewPagerIndex + 1);
 				break;
 			case R.id.button_member:
-				intent = new Intent(MainActivity.this, MemberActivity.class);
-				intent.putExtra("DeviceID", mCurrentDeviceID);
-				startActivity(intent);
+				Task.getInstance().getMemberTask(mCurrentDeviceID, new ControlCallback()
+				{
+					@Override
+					public void onSucccess()
+					{
+						Intent intent = new Intent(MainActivity.this, MemberActivity.class);
+						intent.putExtra("DeviceID", mCurrentDeviceID);
+						startActivity(intent);
+					}
+
+					@Override
+					public void onError(int code)
+					{
+						Toast.makeText(getApplicationContext(), "error : " + code, Toast.LENGTH_SHORT).show();
+					}
+
+					@Override
+					public void onFail()
+					{
+						Toast.makeText(getApplicationContext(), "serverfail", Toast.LENGTH_SHORT).show();
+					}
+				});
 				break;
 			case R.id.button_event:
 				intent = new Intent(MainActivity.this, EventActivity.class);
@@ -424,34 +443,33 @@ public class MainActivity extends RootParentActivity
 				break;
 
 			case R.id.button_logout:
-				Task.getInstance().logoutTask(logoutCallback);
+				Task.getInstance().logoutTask(new ControlCallback()
+				{
+					@Override
+					public void onSucccess()
+					{
+						finish();
+						Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_SHORT).show();
+					}
+
+					@Override
+					public void onError(int code)
+					{
+						Toast.makeText(getApplicationContext(), "error : " + code, Toast.LENGTH_SHORT).show();
+					}
+
+					@Override
+					public void onFail()
+					{
+						Toast.makeText(getApplicationContext(), "serverfail", Toast.LENGTH_SHORT).show();
+					}
+				});
 				break;
 
 			}
 		}
 	};
 
-	ControlCallback logoutCallback = new ControlCallback()
-	{
-		@Override
-		public void onSucccess()
-		{
-			finish();
-			Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_SHORT).show();
-		}
-
-		@Override
-		public void onError(int code)
-		{
-			Toast.makeText(getApplicationContext(), "error : " + code, Toast.LENGTH_SHORT).show();
-		}
-
-		@Override
-		public void onFail()
-		{
-			Toast.makeText(getApplicationContext(), "serverfail", Toast.LENGTH_SHORT).show();
-		}
-	};
 
 	BroadcastReceiver mPushBroadcast = new BroadcastReceiver()
 	{

@@ -2,6 +2,7 @@ package com.security.waikiki.myapplication.network;
 
 import com.security.waikiki.myapplication.entitiy.Device;
 import com.security.waikiki.myapplication.entitiy.Event;
+import com.security.waikiki.myapplication.entitiy.Member;
 import com.security.waikiki.myapplication.entitiy.User;
 
 import java.util.List;
@@ -46,4 +47,8 @@ public interface ServerInterface {
     @POST("convert/")
     @FormUrlEncoded
     Call<ResponseBody> convert(@Field("email") String email, @Field("device_id") String device_id);
+
+    @GET("memberlist/")
+    @FormUrlEncoded
+    Call<List<Member>> getMemberList(@Field("device_id") String device_id);
 }
