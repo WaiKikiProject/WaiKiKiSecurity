@@ -57,7 +57,7 @@ public class MemberAdapter extends RealmRecyclerViewAdapter<Member, MemberAdapte
 
 			if (member.getStatus() == MemberActivity.MemberActionStatus.DEFAULT.ordinal())
 			{
-				holder.mLayStatus.setVisibility(View.INVISIBLE);
+				holder.mLayStatus.setVisibility(View.GONE);
 			}
 			else
 			{
@@ -74,7 +74,7 @@ public class MemberAdapter extends RealmRecyclerViewAdapter<Member, MemberAdapte
 			holder.mTextName.setBackgroundResource(R.drawable.background_member_master_sub);
 			holder.mTextEmail.setBackgroundResource(R.drawable.background_member_master_sub);
 
-			holder.mLayStatus.setVisibility(View.INVISIBLE);
+			holder.mLayStatus.setVisibility(View.GONE);
 		}
 
 		holder.mTextEmailDetail.setText(member.getEmail());

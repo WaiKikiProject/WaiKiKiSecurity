@@ -121,9 +121,9 @@ public class MemberActivity extends RootParentActivity
 			mFABAdd.setAnimation(ani_close);
 			mFABDelete.setAnimation(ani_close);
 			mFABComm.setAnimation(ani_close);
-			mFABAdd.setVisibility(View.INVISIBLE);
-			mFABDelete.setVisibility(View.INVISIBLE);
-			mFABComm.setVisibility(View.INVISIBLE);
+			mFABAdd.setVisibility(View.GONE);
+			mFABDelete.setVisibility(View.GONE);
+			mFABComm.setVisibility(View.GONE);
 		}
 		else
 		{
