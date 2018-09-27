@@ -10,11 +10,14 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.security.waikiki.myapplication.R;
+import com.security.waikiki.myapplication.db.RealmManager;
+import com.security.waikiki.myapplication.entitiy.Member;
 import com.security.waikiki.myapplication.view.adapter.MemberAdapter;
 
-public class MemberActivity extends RootParentActivity
-{
-    FloatingActionButton mFABPlus,mFABAdd,mFABDelete,mFABComm;
+import io.realm.RealmResults;
+
+public class MemberActivity extends RootParentActivity {
+    FloatingActionButton mFABPlus, mFABAdd, mFABDelete, mFABComm;
     RecyclerView mRecyclerList;
     MemberAdapter mMemberAdpater;
 
@@ -22,8 +25,7 @@ public class MemberActivity extends RootParentActivity
     String mDeviceID;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState)
-    {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member);
 
@@ -31,12 +33,12 @@ public class MemberActivity extends RootParentActivity
         mDeviceID = intent.getStringExtra("DeviceID");
 
         findViewById(R.id.button_up).setOnClickListener(mOnClickListener);
-
         initFloatingActionButton();
+        initRecyclerView();
 
     }
 
-    private void initFloatingActionButton(){
+    private void initFloatingActionButton() {
         mFABPlus = findViewById(R.id.fab_plus);
         mFABAdd = findViewById(R.id.fab_add);
         mFABDelete = findViewById(R.id.fab_delete);
@@ -47,40 +49,39 @@ public class MemberActivity extends RootParentActivity
         mFABComm.setOnClickListener(mOnClickListener);
     }
 
-    private void initRecyclerView(){
+    private void initRecyclerView() {
+        RealmResults<Member> items = RealmManager.getMember();
         mRecyclerList = findViewById(R.id.recyclerview_member);
-        mMemberAdpater
+        mMemberAdpater = new MemberAdapter(items,true, null);
+        mRecyclerList.setAdapter(mMemberAdpater);
     }
 
 
-    private View.OnClickListener mOnClickListener = new View.OnClickListener()
-    {
+    private View.OnClickListener mOnClickListener = new View.OnClickListener() {
         @Override
-        public void onClick(View view)
-        {
-            switch (view.getId())
-            {
-            case R.id.button_up:
-                finish();
-                break;
-            case R.id.fab_plus:
-                startAni();
-                break;
-            case R.id.fab_add:
-                startAni();
-                break;
-            case R.id.fab_commission:
-                startAni();
-                break;
-            case  R.id.fab_delete:
-                startAni();
-                break;
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.button_up:
+                    finish();
+                    break;
+                case R.id.fab_plus:
+                    startAni();
+                    break;
+                case R.id.fab_add:
+                    startAni();
+                    break;
+                case R.id.fab_commission:
+                    startAni();
+                    break;
+                case R.id.fab_delete:
+                    startAni();
+                    break;
             }
         }
     };
 
 
-    void startAni(){
+    void startAni() {
 
         if (isFabOpen) {
             Animation ani_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
@@ -96,7 +97,7 @@ public class MemberActivity extends RootParentActivity
             mFABComm.setVisibility(View.INVISIBLE);
         } else {
             Animation ani_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
-            Animation ani_rotate_open= AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_fab_open);
+            Animation ani_rotate_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_fab_open);
             ani_rotate_open.setRepeatCount(0);
             isFabOpen = true;
             mFABPlus.setAnimation(ani_rotate_open);

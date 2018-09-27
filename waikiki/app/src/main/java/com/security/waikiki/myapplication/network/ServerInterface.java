@@ -48,7 +48,6 @@ public interface ServerInterface {
     @FormUrlEncoded
     Call<ResponseBody> convert(@Field("email") String email, @Field("device_id") String device_id);
 
-    @GET("memberlist/")
-    @FormUrlEncoded
-    Call<List<Member>> getMemberList(@Field("device_id") String device_id);
+    @GET("memberlist/{device_id}/")
+    Call<List<Member>> getMemberList(@Path("device_id") String device_id);
 }

@@ -47,6 +47,9 @@ public class MemberAdapter extends RealmRecyclerViewAdapter<Member, MemberAdapte
 			holder.mTextEmail.setBackgroundResource(R.drawable.background_member_guest_sub);
 		}
 
+		holder.mTextEmailDetail.setText(member.getEmail());
+		holder.mTextNameDetail.setText(member.getName());
+
 	}
 
 	public class ViewHolder extends RecyclerView.ViewHolder
@@ -56,17 +59,21 @@ public class MemberAdapter extends RealmRecyclerViewAdapter<Member, MemberAdapte
 		TextView mTextTitle;
 		TextView mTextEmail;
 		TextView mTextName;
+		TextView mTextEmailDetail;
+		TextView mTextNameDetail;
 
 		public ViewHolder(View view)
 		{
-			super(view);
-
-			view.setOnClickListener(mOnClickListener);
+            super(view);
+//			view.setOnClickListener(mOnClickListener);
 			mLaymain = view.findViewById(R.id.layout_member_item);
 			mLayTitle = view.findViewById(R.id.layout_member_item_top);
 			mTextTitle = view.findViewById(R.id.textview_item_title);
 			mTextEmail = view.findViewById(R.id.textview_email);
 			mTextName = view.findViewById(R.id.textview_name);
+			mTextEmailDetail = view.findViewById(R.id.textview_email_detail);
+			mTextNameDetail =  view.findViewById(R.id.textview_name_detail);
+
 		}
 	}
 

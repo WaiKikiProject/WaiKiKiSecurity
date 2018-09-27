@@ -21,14 +21,13 @@ public class RealmManager
 		return user;
 	}
 
-	;
-
 	public static void insertUser(User user)
 	{
 		Realm realm = Realm.getDefaultInstance();
 		realm.beginTransaction();
 		realm.insertOrUpdate(user);
 		realm.commitTransaction();
+		
 	}
 
 	public static void deleteUser()
@@ -38,6 +37,7 @@ public class RealmManager
 		realm.beginTransaction();
 		user.deleteFromRealm();
 		realm.commitTransaction();
+        
 	}
 
 	public static void insertDevice(List<Device> devices)
@@ -93,26 +93,26 @@ public class RealmManager
 		return events;
 	}
 
-	;
 
 	public static void insertMemberList(String device_id, List<Member> Members)
 	{
 		Realm realm = Realm.getDefaultInstance();
-		String master = realm.where(Device.class).equalTo("device_id", device_id).findFirst().getMaster();
+		String master = realm.where(Device.class).equalTo("DeviceID", device_id).findFirst().getMaster();
 		realm.beginTransaction();
+		realm.delete(Member.class);
 		for (Member member : Members)
 		{
-			member.setMaster(member.getName().equals(master) ? true : false);
+			member.setMaster(member.getEmail().equals(master) ? true : false);
 			realm.insertOrUpdate(member);
 		}
 		realm.commitTransaction();
 	}
 
 
-	public static RealmResults<Member> getMember(String device_id)
+	public static RealmResults<Member> getMember()
 	{
 		Realm realm = Realm.getDefaultInstance();
-		RealmResults<Member> members = realm.where(Member.class).equalTo("device_id", device_id).findAll();
+		RealmResults<Member> members = realm.where(Member.class).findAll();
 		return members;
 	}
 

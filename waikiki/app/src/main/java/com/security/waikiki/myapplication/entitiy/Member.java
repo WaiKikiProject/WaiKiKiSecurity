@@ -1,13 +1,27 @@
 package com.security.waikiki.myapplication.entitiy;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+import retrofit2.http.Field;
 
 public class Member extends RealmObject
 {
-	private String device_id;
-	private String email;
-	private String name;
-	private boolean isMaster;
+	@Expose
+	@SerializedName("device_id")
+	private String DeviceID;
+
+	@Expose
+	@SerializedName("email")
+	private String Email;
+
+	@Expose
+	@SerializedName("name")
+	private String Name;
+
+	private boolean IsMaster;
 
 	public Member()
 	{
@@ -16,49 +30,40 @@ public class Member extends RealmObject
 
 	public Member(String device_id, String email, String name)
 	{
-		this.device_id = device_id;
-		this.email = email;
-		this.name = name;
+		DeviceID = device_id;
+		Email = email;
+		Name = name;
 	}
 
-	public String getDevice_id()
-	{
-		return device_id;
+	public String getDeviceID() {
+		return DeviceID;
 	}
 
-	public void setDevice_id(String device_id)
-	{
-		this.device_id = device_id;
+	public void setDeviceID(String deviceID) {
+		DeviceID = deviceID;
 	}
 
-	public String getEmail()
-	{
-		return email;
+	public String getEmail() {
+		return Email;
 	}
 
-	public void setEmail(String email)
-	{
-		this.email = email;
+	public void setEmail(String email) {
+		Email = email;
 	}
 
-	public String getName()
-	{
-		return name;
+	public String getName() {
+		return Name;
 	}
 
-	public void setName(String name)
-	{
-		this.name = name;
+	public void setName(String name) {
+		Name = name;
 	}
 
-	public boolean isMaster()
-	{
-		return isMaster;
+	public boolean isMaster() {
+		return IsMaster;
 	}
 
-	public void setMaster(boolean isMaster)
-	{
-		this.isMaster = isMaster;
+	public void setMaster(boolean master) {
+		IsMaster = master;
 	}
-
 }
