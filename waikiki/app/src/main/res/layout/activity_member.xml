@@ -95,11 +95,13 @@
             android:id="@+id/recyclerview_member"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-        >
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            android:dividerHeight="20dp"
+            >
 
         </android.support.v7.widget.RecyclerView>
 
@@ -123,8 +125,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="80dp"
         android:layout_marginRight="20dp"
-        android:backgroundTint="@color/color_D43131"
-        android:src="@mipmap/add"
+        android:backgroundTint="@color/color_ffffff"
+        android:src="@drawable/user_add"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/fab_plus"
         app:layout_constraintRight_toRightOf="parent"
@@ -137,8 +139,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
         android:layout_marginRight="20dp"
-        android:backgroundTint="@color/color_D43131"
-        android:src="@mipmap/add"
+        android:backgroundTint="@color/color_ffffff"
+        android:src="@drawable/user_sub"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/fab_add"
         app:layout_constraintRight_toRightOf="parent"
@@ -151,8 +153,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
         android:layout_marginRight="20dp"
-        android:backgroundTint="@color/color_D43131"
-        android:src="@mipmap/add"
+        android:backgroundTint="@color/color_ffffff"
+        android:src="@drawable/master_transfer"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/fab_delete"
         app:layout_constraintRight_toRightOf="parent"

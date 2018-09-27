@@ -4,12 +4,14 @@ import com.security.waikiki.myapplication.entitiy.Device;
 import com.security.waikiki.myapplication.entitiy.Event;
 import com.security.waikiki.myapplication.entitiy.Member;
 import com.security.waikiki.myapplication.entitiy.User;
+import com.security.waikiki.myapplication.view.activity.MemberActivity;
 
 import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmResults;
+import io.realm.Sort;
 
 public class RealmManager
 {
@@ -59,6 +61,13 @@ public class RealmManager
 		return devices;
 	}
 
+	public static Device getDevice(String device_id)
+	{
+		Realm realm = Realm.getDefaultInstance();
+		Device device = realm.where(Device.class).equalTo("DeviceID",device_id).findFirst();
+		return device;
+	}
+
 	public static void dumpDevice()
 	{
 		Realm realm = Realm.getDefaultInstance();
@@ -103,6 +112,7 @@ public class RealmManager
 		for (Member member : Members)
 		{
 			member.setMaster(member.getEmail().equals(master) ? true : false);
+			member.setStatus(MemberActivity.MemberActionStatus.DEFAULT.ordinal());
 			realm.insertOrUpdate(member);
 		}
 		realm.commitTransaction();
@@ -112,7 +122,7 @@ public class RealmManager
 	public static RealmResults<Member> getMember()
 	{
 		Realm realm = Realm.getDefaultInstance();
-		RealmResults<Member> members = realm.where(Member.class).findAll();
+		RealmResults<Member> members = realm.where(Member.class).sort("IsMaster", Sort.DESCENDING).findAll();
 		return members;
 	}
 

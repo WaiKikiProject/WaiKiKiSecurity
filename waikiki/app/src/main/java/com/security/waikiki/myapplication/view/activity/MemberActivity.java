@@ -10,103 +10,141 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.security.waikiki.myapplication.R;
+import com.security.waikiki.myapplication.WaiKiKi;
 import com.security.waikiki.myapplication.db.RealmManager;
 import com.security.waikiki.myapplication.entitiy.Member;
 import com.security.waikiki.myapplication.view.adapter.MemberAdapter;
 
 import io.realm.RealmResults;
 
-public class MemberActivity extends RootParentActivity {
-    FloatingActionButton mFABPlus, mFABAdd, mFABDelete, mFABComm;
-    RecyclerView mRecyclerList;
-    MemberAdapter mMemberAdpater;
+public class MemberActivity extends RootParentActivity
+{
+	FloatingActionButton mFABPlus, mFABAdd, mFABDelete, mFABComm;
+	RecyclerView mRecyclerList;
+	MemberAdapter mMemberAdpater;
+	MemberActionStatus mStatus;
 
-    boolean isFabOpen = false;
-    String mDeviceID;
+	String mDeviceID;
+	boolean isMaster;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_member);
+	boolean isFabOpen = false;
 
-        Intent intent = getIntent();
-        mDeviceID = intent.getStringExtra("DeviceID");
+	@Override
+	protected void onCreate(@Nullable Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_member);
 
-        findViewById(R.id.button_up).setOnClickListener(mOnClickListener);
-        initFloatingActionButton();
-        initRecyclerView();
+		Intent intent = getIntent();
+		mDeviceID = intent.getStringExtra("DeviceID");
 
-    }
+		isMaster = RealmManager.getDevice(mDeviceID).getMaster().equals(RealmManager.getUser().getUserEmail()) ?
+			true : false;
 
-    private void initFloatingActionButton() {
-        mFABPlus = findViewById(R.id.fab_plus);
-        mFABAdd = findViewById(R.id.fab_add);
-        mFABDelete = findViewById(R.id.fab_delete);
-        mFABComm = findViewById(R.id.fab_commission);
-        mFABPlus.setOnClickListener(mOnClickListener);
-        mFABAdd.setOnClickListener(mOnClickListener);
-        mFABDelete.setOnClickListener(mOnClickListener);
-        mFABComm.setOnClickListener(mOnClickListener);
-    }
+		findViewById(R.id.button_up).setOnClickListener(mOnClickListener);
 
-    private void initRecyclerView() {
-        RealmResults<Member> items = RealmManager.getMember();
-        mRecyclerList = findViewById(R.id.recyclerview_member);
-        mMemberAdpater = new MemberAdapter(items,true, null);
-        mRecyclerList.setAdapter(mMemberAdpater);
-    }
+		initFloatingActionButton();
+		initRecyclerView();
 
+		mStatus = MemberActionStatus.DEFAULT;
 
-    private View.OnClickListener mOnClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.button_up:
-                    finish();
-                    break;
-                case R.id.fab_plus:
-                    startAni();
-                    break;
-                case R.id.fab_add:
-                    startAni();
-                    break;
-                case R.id.fab_commission:
-                    startAni();
-                    break;
-                case R.id.fab_delete:
-                    startAni();
-                    break;
-            }
-        }
-    };
+	}
+
+	private void initFloatingActionButton()
+	{
+		mFABPlus = findViewById(R.id.fab_plus);
+		mFABAdd = findViewById(R.id.fab_add);
+		mFABDelete = findViewById(R.id.fab_delete);
+		mFABComm = findViewById(R.id.fab_commission);
+		mFABPlus.setOnClickListener(mOnClickListener);
+		mFABAdd.setOnClickListener(mOnClickListener);
+		mFABDelete.setOnClickListener(mOnClickListener);
+		mFABComm.setOnClickListener(mOnClickListener);
+	}
+
+	private void initRecyclerView()
+	{
+		RealmResults<Member> items = RealmManager.getMember();
+		mRecyclerList = findViewById(R.id.recyclerview_member);
+		mMemberAdpater = new MemberAdapter(items, true, null);
+		mRecyclerList.setAdapter(mMemberAdpater);
+	}
 
 
-    void startAni() {
+	private View.OnClickListener mOnClickListener = new View.OnClickListener()
+	{
+		@Override
+		public void onClick(View view)
+		{
+			switch (view.getId())
+			{
+			case R.id.button_up:
+				finish();
+				break;
+			case R.id.fab_plus:
+				startAni();
+				break;
+			case R.id.fab_add:
+				mStatus = MemberActionStatus.DEFAULT;
+				mMemberAdpater.setMemberStatus(mStatus);
+				Intent intent = new Intent(MemberActivity.this,InviteActivity.class);
+				startActivityForResult(intent, WaiKiKi.INVITE);
+				startAni();
+				break;
+			case R.id.fab_commission:
+				mStatus = MemberActionStatus.COMMISSION;
+				mMemberAdpater.setMemberStatus(mStatus);
+				startAni();
+				break;
+			case R.id.fab_delete:
+				mStatus = MemberActionStatus.DELETE;
+				int a = mStatus.ordinal();
+				mMemberAdpater.setMemberStatus(mStatus);
+				startAni();
+				break;
+			}
+		}
+	};
 
-        if (isFabOpen) {
-            Animation ani_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
-            Animation ani_rotate_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_fab_close);
-            ani_rotate_close.setRepeatCount(0);
-            isFabOpen = false;
-            mFABPlus.setAnimation(ani_rotate_close);
-            mFABAdd.setAnimation(ani_close);
-            mFABDelete.setAnimation(ani_close);
-            mFABComm.setAnimation(ani_close);
-            mFABAdd.setVisibility(View.INVISIBLE);
-            mFABDelete.setVisibility(View.INVISIBLE);
-            mFABComm.setVisibility(View.INVISIBLE);
-        } else {
-            Animation ani_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
-            Animation ani_rotate_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_fab_open);
-            ani_rotate_open.setRepeatCount(0);
-            isFabOpen = true;
-            mFABPlus.setAnimation(ani_rotate_open);
-            mFABAdd.setAnimation(ani_open);
-            mFABDelete.setAnimation(ani_open);
-            mFABComm.setAnimation(ani_open);
-            mFABAdd.setVisibility(View.VISIBLE);
-            mFABDelete.setVisibility(View.VISIBLE);
-            mFABComm.setVisibility(View.VISIBLE);
-        }
-    }
+
+	void startAni()
+	{
+
+		if (isFabOpen)
+		{
+			Animation ani_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
+			Animation ani_rotate_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim
+				.rotate_fab_close);
+			ani_rotate_close.setRepeatCount(0);
+			isFabOpen = false;
+			mFABPlus.setAnimation(ani_rotate_close);
+			mFABAdd.setAnimation(ani_close);
+			mFABDelete.setAnimation(ani_close);
+			mFABComm.setAnimation(ani_close);
+			mFABAdd.setVisibility(View.INVISIBLE);
+			mFABDelete.setVisibility(View.INVISIBLE);
+			mFABComm.setVisibility(View.INVISIBLE);
+		}
+		else
+		{
+			Animation ani_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
+			Animation ani_rotate_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_fab_open);
+			ani_rotate_open.setRepeatCount(0);
+			isFabOpen = true;
+			mFABPlus.setAnimation(ani_rotate_open);
+			mFABAdd.setAnimation(ani_open);
+			mFABDelete.setAnimation(ani_open);
+			mFABComm.setAnimation(ani_open);
+			mFABAdd.setVisibility(View.VISIBLE);
+			mFABDelete.setVisibility(View.VISIBLE);
+			mFABComm.setVisibility(View.VISIBLE);
+		}
+	}
+
+	public enum MemberActionStatus
+	{
+		DEFAULT,
+		COMMISSION,
+		DELETE
+	}
 }

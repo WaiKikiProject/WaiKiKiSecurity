@@ -2,6 +2,7 @@ package com.security.waikiki.myapplication.entitiy;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.security.waikiki.myapplication.view.activity.MemberActivity;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -23,6 +24,8 @@ public class Member extends RealmObject
 
 	private boolean IsMaster;
 
+	private int Status;
+
 	public Member()
 	{
 
@@ -35,35 +38,53 @@ public class Member extends RealmObject
 		Name = name;
 	}
 
-	public String getDeviceID() {
+	public String getDeviceID()
+	{
 		return DeviceID;
 	}
 
-	public void setDeviceID(String deviceID) {
+	public void setDeviceID(String deviceID)
+	{
 		DeviceID = deviceID;
 	}
 
-	public String getEmail() {
+	public String getEmail()
+	{
 		return Email;
 	}
 
-	public void setEmail(String email) {
+	public void setEmail(String email)
+	{
 		Email = email;
 	}
 
-	public String getName() {
+	public String getName()
+	{
 		return Name;
 	}
 
-	public void setName(String name) {
+	public void setName(String name)
+	{
 		Name = name;
 	}
 
-	public boolean isMaster() {
+	public boolean isMaster()
+	{
 		return IsMaster;
 	}
 
-	public void setMaster(boolean master) {
+	public void setMaster(boolean master)
+	{
 		IsMaster = master;
+	}
+
+	public int getStatus()
+	{
+		return Status;
+	}
+
+	public void setStatus(int status)
+	{
+		Status = status;
 	}
 }
