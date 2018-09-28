@@ -124,6 +124,9 @@ public class MemberActivity extends RootParentActivity
 			mFABAdd.setVisibility(View.GONE);
 			mFABDelete.setVisibility(View.GONE);
 			mFABComm.setVisibility(View.GONE);
+			mFABAdd.setEnabled(false);
+			mFABDelete.setEnabled(false);
+			mFABComm.setEnabled(false);
 		}
 		else
 		{
@@ -138,6 +141,9 @@ public class MemberActivity extends RootParentActivity
 			mFABAdd.setVisibility(View.VISIBLE);
 			mFABDelete.setVisibility(View.VISIBLE);
 			mFABComm.setVisibility(View.VISIBLE);
+			mFABAdd.setEnabled(true);
+			mFABDelete.setEnabled(true);
+			mFABComm.setEnabled(true);
 		}
 	}
 
