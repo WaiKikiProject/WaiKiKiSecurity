@@ -7,5 +7,25 @@
         <item name="android:gravity">center</item>
     </style>
 
+<<<<<<< HEAD
+=======
+    <style name="dialog_mesgase">
+        <item name="android:textColor">@color/color_111111</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="dialog_confirm">
+        <item name="android:textColor">@color/color_111111</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="nfc_install_tag">
+        <item name="android:textColor">@color/color_222222</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+>>>>>>> android_feature
 
 </resources>

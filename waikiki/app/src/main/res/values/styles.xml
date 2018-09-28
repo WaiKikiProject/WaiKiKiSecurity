@@ -3,8 +3,8 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/color_D43131</item>
+        <item name="colorPrimaryDark">@color/color_D43131</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
@@ -58,6 +58,13 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="button_main_sequrity">
+        <item name="android:textColor">@color/color_ffffff</item>
+        <item name="android:textSize">12.3dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="button_main_install">
         <item name="android:textColor">#FFFFFFFF</item>
         <item name="android:textSize">16dp</item>
@@ -66,8 +73,26 @@
 
     <style name="toolbar_title">
         <item name="android:textSize">18dp</item>
+<<<<<<< HEAD
         <item name="android:textColor">#ffffffff</item>
         <item name="android:gravity">center</item>
+=======
+        <item name="android:textColor">@color/color_ffffff</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="button_menu_title">
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">@color/color_ffffff</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="button_menu_list">
+        <item name="android:textSize">16dp</item>
+        <item name="android:textColor">@color/color_222222</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">@color/color_ffffff</item>
+>>>>>>> android_feature
     </style>
 
     <style name="edit_device_name">
@@ -77,4 +102,61 @@
         <item name="android:paddingLeft">20dp</item>
     </style>
 
+<<<<<<< HEAD
+=======
+
+    <style name="text_device_navi_main">
+        <item name="android:textColor">#FF333333</item>
+        <item name="android:textSize">24dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="text_device_navi_sub">
+        <item name="android:textColor">#FF333333</item>
+        <item name="android:textSize">13dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="text_install_splash_navi">
+        <item name="android:textSize">16dp</item>
+        <item name="android:textColor">@color/color_222222</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="text_install_splash_usertype">
+        <item name="android:textSize">18dp</item>
+        <item name="android:textColor">@color/color_222222</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="button_install_splash">
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">@color/color_ffffff</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="text_member_item_title">
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">@color/color_ffffff</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="text_member_item_sub">
+        <item name="android:textSize">12dp</item>
+        <item name="android:textColor">@color/color_ffffff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+    </style>
+
+
+    <style name="text_member_item_sub_detail">
+        <item name="android:textSize">12dp</item>
+        <item name="android:textColor">@color/color_222222</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginLeft">5dp</item>
+    </style>
+
+>>>>>>> android_feature
 </resources>

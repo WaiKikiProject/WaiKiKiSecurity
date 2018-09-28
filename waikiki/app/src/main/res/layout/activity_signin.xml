@@ -4,6 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+
     <android.support.constraint.Guideline
         android:id="@+id/left_guide"
         android:layout_width="wrap_content"
@@ -53,7 +55,13 @@
         app:layout_constraintLeft_toLeftOf="@id/left_guide"
         app:layout_constraintRight_toRightOf="@id/right_guide"
         app:layout_constraintTop_toTopOf="@id/login_guide"
+<<<<<<< HEAD
         android:maxLength="20"
+=======
+        android:maxLength="30"
+        android:singleLine = "true"
+        android:lines = "1"
+>>>>>>> android_feature
         android:hint="@string/sign_in_email"
         />
 
@@ -67,7 +75,11 @@
         app:layout_constraintRight_toRightOf="@id/right_guide"
         app:layout_constraintTop_toBottomOf="@id/edit_email"
         android:layout_marginTop="10dp"
+<<<<<<< HEAD
         android:maxLength="10"
+=======
+        android:maxLength="20"
+>>>>>>> android_feature
         android:inputType="textPassword"
         android:hint="@string/sign_in_password"
         />

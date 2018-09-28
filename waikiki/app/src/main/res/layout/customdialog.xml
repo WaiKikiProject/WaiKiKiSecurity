@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -50,3 +51,75 @@
         app:layout_constraintTop_toBottomOf="@+id/dialog_title" />
 
 </android.support.constraint.ConstraintLayout>
+=======
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--<android.support.constraint.Guideline-->
+        <!--android:id="@+id/left_guide"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="vertical"-->
+        <!--android:background="@android:color/transparent"-->
+        <!--app:layout_constraintGuide_percent="0.15" />-->
+
+    <!--<android.support.constraint.Guideline-->
+        <!--android:id="@+id/right_guide"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="vertical"-->
+        <!--android:background="@android:color/transparent"-->
+        <!--app:layout_constraintGuide_percent="0.85"-->
+        <!--/>-->
+
+    <!--<android.support.constraint.Guideline-->
+        <!--android:id="@+id/top_guide"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:background="@android:color/transparent"-->
+        <!--app:layout_constraintGuide_percent="0.3" />-->
+
+
+    <TextView
+        android:id="@+id/dialog_title"
+        style="@style/dialog_title"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:background="@drawable/background_dialog_title"
+        android:text="@string/dialogtitle"
+       />
+
+    <TextView
+        android:id="@+id/dialog_mesgase"
+        style="@style/dialog_mesgase"
+        android:layout_width="300dp"
+        android:layout_height="120dp"
+        android:background="@drawable/background_dialog_mesage"
+        android:text="TextView"
+         />
+
+    <View
+        android:id="@+id/dialog_line"
+        android:layout_width="290dp"
+        android:layout_height="1dp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:background="#BDBDBD"
+         />
+
+    <TextView
+        android:id="@+id/dialog_confirm"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:text="@string/dialogconfirm"
+        android:background="@drawable/background_dialog_confirm"
+        style="@style/dialog_confirm"
+        />
+
+</LinearLayout>
+>>>>>>> android_feature

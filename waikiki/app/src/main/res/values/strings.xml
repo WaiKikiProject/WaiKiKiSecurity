@@ -1,15 +1,23 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">WAIKIKI</string>
 
-    <string name="sign_in_email">이메일을 입력해주세요.</string>
-    <string name="sign_in_password">비밀번호를 입력해주세요.</string>
+    <string name="sign_in_email">이메일을 입력해주세요</string>
+    <string name="sign_in_password">비밀번호를 입력해주세요</string>
     <string name="sign_in_forgot">이메일/비밀번호 찾기</string>
     <string name="sign_in_navigation">회원가입을 하지 않은 경우, 회원가입을 눌러주세요</string>
     <string name= "sign_in_sign_up">회원가입</string>
     <string name="sign_in_login">로그인</string>
-    <string name="sign_up_name">이름을 입력해주세요.</string>
-    <string name="sign_up_repassword">비밀번호를 재입력해주세요.</string>
+    <string name="sign_up_name">이름을 입력해주세요</string>
+    <string name="sign_up_repassword">비밀번호를 재입력해주세요</string>
 
+<<<<<<< HEAD
+=======
+    <string name="type_master">마스터</string>
+    <string name="type_guest">게스트</string>
+    <string name="type_master_english">MASTER</string>
+    <string name="type_guest_english">GUEST</string>
+
+>>>>>>> android_feature
     <string name="main_welcome">WaiKiKi의 보안솔루션</string>
     <string name="main_master">마스터</string>
     <string name="main_guest">게스트</string>
@@ -18,11 +26,62 @@
     <string name="main_event">%1$d개의 이벤트 발생</string>
     <string name="main_install">설치하기</string>
     <string name="main_title">WAIKIKI</string>
+    <string name="main_event_error">이벤트 정보를 받아오지 못했습니다\n새로고침을 눌러주세요</string>
+    <string name="main_install_navi">WAIKIKI보안 장치를 설치해보세요</string>
+    <string name="main_event_null">발생한 이벤트가 없습니다</string>
+    <string name="main_backpress">뒤로 버튼을 한번 더 누르면 종료합니다</string>
+    <string name="main_security">보안모드작동</string>
+    <string name="main_unsecurity">보안모드해제</string>
 
+<<<<<<< HEAD
+=======
+    <string name="menu_title">메뉴</string>
+    <string name="menu_close">닫기</string>
+    <string name="menu_usertype">유저타입 - %1$s</string>
+    <string name="menu_evnet">침입 이벤트</string>
+    <string name="menu_smode_log">장치 컨트롤 로그</string>
+    <string name="menu_member">멤버 조회/초대</string>
+    <string name="menu_delete">장치 삭제</string>
+    <string name="menu_logout">로그아웃</string>
+    <string name="menu_master">메뉴(마스터)</string>
+    <string name="menu_guest">메뉴(게스트)</string>
+    <string name="menu_install">장치 설치</string>
+
+    <string name="install_splash_title">설치하기</string>
+    <string name="install_splash_navi">설치하기 원하는 유형을 선택해주세요</string>
+    <string name="install_splash_install">장치설치</string>
+    <string name="install_splash_type">타입선택</string>
+    <string name="install_splash_master_navi">마스터유형의 설치는\n마스터가 설치되지 않은 장치만 가능합니다</string>
+    <string name="install_splash_guest_navi">게스트유형의 설치는\n마스터가 설치된 장치만 가능합니다.\n설치는 마스터의 요청승인후 완료됩니다</string>
+>>>>>>> android_feature
 
     <string name="install_name_main_navi">장치 닉네임 설정</string>
+<<<<<<< HEAD
     <string name="install_name_navi">보안장치의 대표할 닉네임을정해주세요.\n설치후에도 설정을 통해 이름을 변경하실 수 있습니다.</string>
+=======
+    <string name="install_name_navi">보안장치의 대표할 닉네임을정해주세요.\n설치후에도 설정을 통해 이름을 변경하실 수 있습니다</string>
+    <string name="install_name_hint">장치 닉네임 입력</string>
+>>>>>>> android_feature
     <string name="install_name">장치 닉네임 입력</string>
     <string name="install_install">설치하기</string>
+
+    <string name="install_nfc_title">장치 태그</string>
+    <string name="install_nfc_guide">장치설치를 위해 nfc를 태그해주세요</string>
+
+    <string name="invite_title">초대하기</string>
+    <string name="invite_main_navi">장치가입초대</string>
+    <string name="invite_navi">초대할 회원 E_MAIL을 입력해주세요</string>
+    <string name="invite_invite">초대하기</string>
+
+    <string name="member_title">멤버</string>
+    <string name="member_invite">멤버초대</string>
+    <string name="member_invite_fail">마스터만 초대가 가능합니다.</string>
+    <string name="member_email">이메일</string>
+    <string name="member_name">닉네임</string>
+
+    <string name="controllog_title">보안모드 이력</string>
+    <string name="controllog_smode_on">보안모드 작동</string>
+    <string name="controllog_smode_off">보안모드 해제</string>
+
 
 </resources>

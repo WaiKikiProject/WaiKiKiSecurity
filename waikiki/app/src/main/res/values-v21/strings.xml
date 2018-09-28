@@ -1,8 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+<<<<<<< HEAD
     <string name="app_name">My Application</string>
     <string name="dialogtitle">WAIKIKI</string>
 
 
+=======
+    <string name="dialogtitle">Waikiki</string>
+    <string name="dialogconfirm">확인</string>
+    <string name="dialog_email_message">이메일을 입력해주세요.</string>
+    <string name="dialog_email_message_form">이메일 형식이 아닙니다.</string>
+    <string name="dialog_name_message">이름을 입력해주세요.</string>
+    <string name="dialog_password_message">비밀번호를 입력해주세요.</string>
+    <string name="dialog_repassword_message">비밀번호를 재입력해주세요.</string>
+    <string name="dialog_password_confirm_message">비밀번호가 일치 하지않습니다.</string>
+    <string name="dialog_signup_success_message">회원가입에 성공하셨습니다.</string>
+    <string name="dialog_signup_fail_message">회원가입에 실패하셨습니다.</string>
+    <string name="dialog_signup_title">회원가입</string>
+    <string name="dialog_signin_title">로그인</string>
+    <string name="dialog_deivce_title">장치등록</string>
+
+    <string name="dialog_signin_success_message">로그인 성공</string>
+    <string name="dialog_deivce_success_message">장치등록 성공</string>
+    <string name="dialog_error_aleady_exist_mail_message">존재하는 이메일 입니다.</string>
+    <string name="dialog_error_not_exist_mail_message">존재하지 않는 이메일 입니다.</string>
+    <string name="dialog_error_diss_match_login_message">사용자 정보가 올바르지 않습니다.</string>
+    <string name="dialog_error_not_match_name_message">존재하지 않는 이름 입니다.</string>
+    <string name="dialog_error_not_exist_deivce_message">존재하지 않는 기기 입니다.</string>
+    <string name="dialog_error_not_exist_user_message">설치된 유저가 없습니다.</string>
+    <string name="dialog_error_not_install_user_message">장치에 설치가 되지 않았습니다.</string>
+    <string name="dialog_error_aleady_install_device_message">이미 장치에 설치가 되었습니다.</string>
+    <string name="dialog_error_aleady_install_master_message">이미 마스터가 설치가 되었습니다.</string>
+    <string name="dialog_error_not_install_master_message">마스터가 설치가 안된 기기 입니다.</string>
+    <string name="dialog_error_not_exist_event_message">이벤트가 없습니다.</string>
+    <string name="dialog_error_database_error_message">DB에러.</string>
+    <string name="dialog_error_database_overlap_message">이메일이 중복이 되었습니다.</string>
+    <string name="dialog_error_not_dis_match_error_message">알수 없는 에러.</string>
+    <string name="nfc_install_tag">NFC를 태그 해주세요.</string>
+>>>>>>> android_feature
 </resources>

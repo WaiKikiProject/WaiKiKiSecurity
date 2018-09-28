@@ -10,4 +10,11 @@
     <color name="color_FFFF4545">#FFFF4545</color>
     <color name="color_111111">#111111</color>
     <color name="color_FFFBF7F1">#FFFBF7F1</color>
+<<<<<<< HEAD
+=======
+    <color name="color_D43131">#FFD43131</color>
+    <color name="colorTransparent">#00000000</color>
+    <color name="color_66D43131">#66D43131</color>
+    <color name="color_12365E">#12365E</color>
+>>>>>>> android_feature
 </resources>
