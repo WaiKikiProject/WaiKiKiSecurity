@@ -66,11 +66,9 @@ ext {
     RetrofitGroup = "com.squareup.retrofit2"
     RetrofitVersion = "2.4.0"
     RetrofitGsonVersion = "2.4.0"
-<<<<<<< HEAD
-=======
 
     SlidingUpPanelVersion = "3.4.0"
     FireBaseMessageVersion = '11.4.2'
->>>>>>> android_feature
+
 }
 

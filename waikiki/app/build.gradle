@@ -1,9 +1,8 @@
 apply plugin: 'com.android.application'
-<<<<<<< HEAD
-=======
+
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'realm-android'
->>>>>>> android_feature
+
 
 android {
     compileSdkVersion BuildTargetSdkVersion
@@ -36,11 +35,9 @@ dependencies {
     implementation group: RetrofitGroup, name: "converter-gson", version: RetrofitGsonVersion
     implementation group: RealmGroup, name: "realm-gradle-plugin", version: RealmVersion
     implementation group: RealmGroup, name: "android-adapters", version: RealmAdapterVersion
-<<<<<<< HEAD
-=======
+
     implementation group: 'com.sothree.slidinguppanel', name: 'library', version: SlidingUpPanelVersion
     implementation group: 'com.google.firebase', name: 'firebase-messaging', version: FireBaseMessageVersion\
->>>>>>> android_feature
 
     testImplementation group: "junit", name: "junit", version: "4.12"
     androidTestImplementation group: "com.android.support.test", name: "runner", version: "1.0.2"
