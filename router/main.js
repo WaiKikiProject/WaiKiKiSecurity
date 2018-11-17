@@ -5,6 +5,9 @@ module.exports = function(app,connection)
 	 app.use(bodyParser.urlencoded({extended:true}));
 	 app.use(bodyParser.json());
 
+	 var multer = require('multer');
+	 var upload = multer({ dest: './imageupload/' })
+
 	 var statuscode;
 	 var resultmessage;
 
@@ -147,7 +150,7 @@ module.exports = function(app,connection)
      });
 
 	 app.post('/signup',function(req,res){
-    	 var email = req.body.email;
+     var email = req.body.email;
 		 var name = req.body.name;
 		 var password = req.body.password;
 		 console.log(email);
@@ -157,5 +160,11 @@ module.exports = function(app,connection)
 		 var signup = require("../api/SignUpAPI");
 		 signup.checkSignup(email,name,password,connection,callback(res));
      });
+
+		 // /upload_image POST 요청을 받는 라우터
+		app.post('/upload_image',upload.single("image"), function(req,res){
+
+ 			callback(res).resultcallback("imageSave",200)
+		});
 
 }
