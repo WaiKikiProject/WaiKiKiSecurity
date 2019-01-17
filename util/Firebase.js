@@ -45,8 +45,7 @@ exports.sendMessage = function(token,type){
 		collapse_key: '',
 		notification: {
 			title: PushMessage.APP_NAME,
-			body: body_message,
-			bodyLocKey: "test"
+			body: body_message
 		},
 		data: {
 			title: PushMessage.APP_NAME,
