@@ -13,7 +13,7 @@ module.exports = (function () {
       database: 'waikiki'
     },
     real: { // real server db info
-      host: '13.209.49.159',
+      host: '127.0.0.1',
       port: '3306',
       user: 'root',
       password: 'password',
