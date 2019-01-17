@@ -43,7 +43,12 @@ exports.sendMessage = function(token,type){
 		var message = {
 		to: token, // required fill with device token or topics
 		collapse_key: '',
+		notification: {
+			title: PushMessage.APP_NAME,
+			body: body_message
+		},
 		android: {
+			 ttl:"86400s",
 			 notification: {
 				 bodyLocKey: "test"
 			 }
@@ -51,10 +56,6 @@ exports.sendMessage = function(token,type){
 		data: {
 			title: PushMessage.APP_NAME,
 			message: body_message
-		},
-		notification: {
-			title: PushMessage.APP_NAME,
-			body: body_message
 		}
 		};
 
