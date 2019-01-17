@@ -18,6 +18,7 @@ exports.sendMessage = function(token,type){
 	var fcm = new FCM(serverKey);
 
 	var body_message;
+	var bodyKey = "test";
 
 	switch(type){
 		case EVENT:
@@ -45,8 +46,13 @@ exports.sendMessage = function(token,type){
 		collapse_key: '',
 		notification: {
 			title: PushMessage.APP_NAME,
-			body: body_message
+			body: body_message,
 		},
+		android: {
+        notification: {
+          bodyLocKey: bodyKey
+        }
+      },
 		data: {
 			title: PushMessage.APP_NAME,
 			message: body_message
