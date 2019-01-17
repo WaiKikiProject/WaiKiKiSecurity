@@ -45,8 +45,7 @@ exports.sendMessage = function(token,type){
 		collapse_key: '',
 		android: {
 			 notification: {
-				 bodyLocKey: "test",
-				 bodyLocArgs: ["testarg"],
+				 bodyLocKey: "test"
 			 }
 		 },
 		data: {
