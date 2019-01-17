@@ -51,7 +51,6 @@ exports.sendMessage = function(token,type){
 		data: {
 			title: PushMessage.APP_NAME,
 			message: body_message
-			bo
 		},
 		notification: {
 			title: PushMessage.APP_NAME,
