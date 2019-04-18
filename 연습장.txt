@@ -1,0 +1,66 @@
+img_symbol.png
+
+ydp2018>Magazin>AppDelegate : 앱 델리게이트
+ydp2018>Magazin>GSTwitPicEngine : 
+ydp2018>Magazin>ViewController :
+ydp2018>Magazin>CustomBadge :
+ydp2018>Magazin>LAVersion :
+ydp2018>Magazin>JSONKit :
+ydp2018>Magazin>Utilities :
+ydp2018>Magazin>iCarousel :
+1. 첫 시작 화면 : ydp2018>Magazin>SplashViewController : 론치스크린 -> 이미지 바꾸는거 알아오기
+ydp2018>Magazin>CustomImageButton :
+ydp2018>Magazin>CustomImageView :
+ydp2018>Magazin>LoginStatus :
+ydp2018>Magazin>Me2DayLogin :
+ydp2018>Magazin>FacebookLogin :
+ydp2018>Magazin>SMPageControl :
+ydp2018>Magazin>mainController_iPad :
+ydp2018>Magazin>SelectControll : 웹진 형식 or PDF뷰어 보는 컨트롤러
+ydp2018>Magazin>ShareView :
+ydp2018>Magazin>StoryLinkHelper :
+ydp2018>Magazin>replyController :
+ydp2018>Magazin>replywriteController : 댓글쓰기
+
+ydp2018>Magazin>iPhone>customAlert :
+ydp2018>Magazin>iPhone>AlertMessages :
+ydp2018>Magazin>iPhone>MBProgressHUD :
+ydp2018>Magazin>iPhone>TapDetectingWindow :
+ydp2018>Magazin>iPhone>TapDetectingImageView :
+ydp2018>Magazin>iPhone>webViewController :
+ydp2018>Magazin>iPhone>ShareController :
+ydp2018>Magazin>iPhone>settingController : 메인>설정
+ydp2018>Magazin>iPhone>popupController :
+ydp2018>Magazin>iPhone>ebook>myLibraryController :
+ydp2018>Magazin>iPhone>ebook>ebookController : 메인화면
+ydp2018>Magazin>iPhone>ebook>tagController : 표시할 연도
+ydp2018>Magazin>iPhone>ebook>ebookCoverController :
+ydp2018>Magazin>iPhone>ebook>ebookCell :
+ydp2018>Magazin>iPhone>ebook>moreCell1 :
+ydp2018>Magazin>iPhone>webzine>webzineController :
+ydp2018>Magazin>iPhone>webzine>webzineCell :
+ydp2018>Magazin>iPhone>webzine>BookListCell :
+ydp2018>Magazin>iPhone>webzine>moreCell :
+ydp2018>Magazin>iPhone>webzine>WebzineData :
+ydp2018>Magazin>iPhone>webzine>webzinelistController :
+ydp2018>Magazin>iPhone>webzine>MobileCatagoryCell :
+ydp2018>Magazin>iPhone>webzine>webzineTableController :
+ydp2018>Magazin>iPhone>webzine>webzinemovieController :
+ydp2018>Magazin>iPhone>webzine>listCell :
+ydp2018>Magazin>iPhone>webzine>webzinpicController : 
+ydp2018>Magazin>iPhone>webzine>webzineFavController :
+ydp2018>Magazin>iPhone>webzine>webzineContentController :
+ydp2018>Magazin>iPhone>webzine>webzineImageViewController :
+ydp2018>Magazin>iPhone>webzine>webzineFindController :
+ydp2018>Magazin>iPhone>webzine>webzineTableSubController :
+ydp2018>Magazin>iPhone>webzine>PicViewerController :
+
+ydp2018>Magazin>ipad>ipadmoreCell :
+ydp2018>Magazin>ipad>BookCaseTableCellList :
+ydp2018>Magazin>ipad>BookCaseTableCell :
+ydp2018>Magazin>ipad>settingCell :
+ydp2018>Magazin>ipad>ipadsettingController :
+ydp2018>Magazin>ipad>SubXmlData :
+ydp2018>Magazin>ipad>SubBook :
+ydp2018>Magazin>ipad>myLibraryController :
+ydp2018>Magazin>ipad>findController :
